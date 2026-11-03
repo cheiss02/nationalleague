@@ -1,0 +1,7 @@
+{
+  "buildCommand": "node scripts/build-site.mjs",
+  "installCommand": "npm install --omit=dev",
+  "outputDirectory": ".",
+  "cleanUrls": false,
+  "trailingSlash": false
+}

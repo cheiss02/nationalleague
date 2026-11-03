@@ -90,17 +90,37 @@ In `js/site-config.js`:
 
 Rebuild after any change. A hidden crest file is dropped from the published site, the sitemap, the JSON-LD, and the share image entirely — it's not just visually hidden.
 
-## Hosting: GitHub Pages + GoDaddy domain
+## Hosting: Vercel + GoDaddy domain
 
-1. In GoDaddy's DNS settings for `nationalleagueusa.com`:
-   - Four `A` records for `@` pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - A `CNAME` record for `www` pointing to `<github-username>.github.io`
+The repo includes a `vercel.json` so this deploys with no manual build configuration:
+
+1. On [vercel.com](https://vercel.com), **Add New → Project**, import this GitHub repo. Vercel reads `vercel.json` automatically:
+   - Build command: `node scripts/build-site.mjs` (regenerates every page from `scripts/pages/*.mjs` + `js/i18n.js` before each deploy, so content edits — a new news post, an uploaded PDF, an updated date — always ship fresh)
+   - Install command: `npm install --omit=dev` (the only devDependency, `sharp`, is a local image-processing tool, not something the live build needs)
+   - Output directory: `.` (the generated `.html` files live at the repo root, same layout the reference GitHub Pages setup used)
+2. Deploy once to get a `*.vercel.app` preview URL and confirm it looks right.
+3. In the Vercel project → **Settings → Domains**, add `nationalleagueusa.com` (and `www.nationalleagueusa.com` if you want both). Vercel shows the exact DNS records to add.
+4. In GoDaddy's DNS settings for `nationalleagueusa.com`, typically:
+   - An `A` record for `@` pointing to `76.76.21.21` (Vercel's anycast IP — use whatever Vercel's Domains screen actually shows, as this can change)
+   - A `CNAME` record for `www` pointing to `cname.vercel-dns.com`
    - Delete GoDaddy's default parked-domain / forwarding records
-2. In this repo's GitHub Settings → Pages: set the custom domain to `nationalleagueusa.com`, then turn on **Enforce HTTPS** once the certificate issues (can take a few hours after DNS propagates).
-3. Optionally verify the domain under GitHub Settings → Pages → custom domain verification, to prevent domain takeover.
-4. After launch, submit `sitemap.xml` in both Google Search Console and Bing Webmaster Tools.
+5. Once DNS propagates, Vercel issues the SSL certificate automatically — no separate "enforce HTTPS" step.
+6. Every push to `main` redeploys automatically (Vercel's GitHub integration); no separate GitHub Action is needed for this path.
+7. After launch, submit `sitemap.xml` in both Google Search Console and Bing Webmaster Tools.
 
-The `CNAME` file in the repo root already contains `nationalleagueusa.com`; `.nojekyll` tells GitHub Pages not to run Jekyll.
+**404 page:** Vercel serves the repo's `404.html` automatically for any unmatched path, the same way GitHub Pages does — which is exactly why that page uses absolute URLs for every link and asset (see the comment in `scripts/lib/ssg.mjs`).
+
+<details>
+<summary>Alternative: GitHub Pages instead of Vercel</summary>
+
+The repo still supports this path too — `.github/workflows/build.yml` rebuilds and commits the generated files on every push, and `CNAME`/`.nojekyll` are already in place.
+
+1. GoDaddy DNS: four `A` records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`; a `CNAME` for `www` → `<github-username>.github.io`; remove GoDaddy's default parked/forwarding records.
+2. GitHub Settings → Pages: set the custom domain to `nationalleagueusa.com`, turn on **Enforce HTTPS** once the certificate issues.
+3. Optionally verify the domain under Settings → Pages → custom domain verification, to prevent domain takeover.
+
+Only use one hosting path at a time — pointing GoDaddy's DNS at both will conflict.
+</details>
 
 ## Security
 

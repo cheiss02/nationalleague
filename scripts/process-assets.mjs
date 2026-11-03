@@ -18,6 +18,7 @@ import sharp from "sharp";
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { SITE_CONFIG } from "../js/site-config.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const IMAGES = join(ROOT, "assets", "images");
@@ -179,9 +180,15 @@ async function run() {
     summary[`hero/${out}`] = { width: meta.width, height: meta.height, files: [join(heroDir, `${out}.jpg`), join(heroDir, `${out}.webp`)] };
   }
 
-  /* ---- 1200x630 social share image, from the convocatoria banner
-     (it already carries crest + wordmark + club crests + dates) ---- */
-  const shareSrc = join(SRC, "banner-convocatoria.jpg");
+  /* ---- 1200x630 social share image ----
+     The convocatoria banner carries the crest + wordmark + the 8 club
+     crests baked into its pixels as a flat photo — so unlike the live
+     marquee/academies grid, SITE_CONFIG.logos.clubs can't selectively
+     "remove" a club from it. When club logos are toggled off, fall back
+     to the national-league banner instead, which has no club crests in
+     it at all, so a hidden/unconfirmed club never appears in link
+     previews either. */
+  const shareSrc = join(SRC, SITE_CONFIG.logos.clubs ? "banner-convocatoria.jpg" : "banner-national-league.jpg");
   const shareMeta = await sharp(shareSrc).metadata();
   const srcRatio = shareMeta.width / shareMeta.height;
   const targetRatio = 1200 / 630;

@@ -913,7 +913,7 @@ main > section[id] {
   object-fit: contain;
 }
 
-.marquee-item.is-text-chip {
+.marquee-item .is-text-chip {
   font-family: var(--font-condensed);
   font-weight: 800;
   font-style: italic;
