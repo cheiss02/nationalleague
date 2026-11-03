@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "wame-sports-alianza",
+    "date": "2026-11-15",
+    "category": "general",
+    "title_en": "National League announces its technology partnership with Wame Sports",
+    "title_es": "National League anuncia su alianza tecnológica con Wame Sports",
+    "excerpt_en": "National League Official Academies confirmed its partnership with Wame Sports as the league's official technology partner. Through this partnership, registered academies and players will have access to analytics tools, match video, and player profiles as the season progresses.",
+    "excerpt_es": "National League Official Academies confirmó su alianza con Wame Sports como socio tecnológico oficial de la liga. A través de esta alianza, las academias y jugadores registrados tendrán acceso a herramientas de análisis, video de partidos y perfiles de jugador conforme avance la temporada.",
+    "image": "",
+    "image_alt_en": "",
+    "image_alt_es": "",
+    "sample": true
+  },
+  {
+    "slug": "bienvenida-temporada-2027",
+    "date": "2026-11-01",
+    "category": "general",
+    "title_en": "Welcome to the National League's 2027 season",
+    "title_es": "Bienvenida a la temporada 2027 de la National League",
+    "excerpt_en": "National League Official Academies welcomes the official Liga MX and MLS academies preparing for the season starting in February 2027. Over the coming weeks we'll share calls for registration, tournament dates, and the calendar for the U17, U15, U13, and U11 categories here.",
+    "excerpt_es": "National League Official Academies da la bienvenida a las academias oficiales de Liga MX y MLS que se preparan para la temporada que inicia en febrero de 2027. En las próximas semanas compartiremos aquí las convocatorias, fechas de torneo y el calendario de categorías Sub 17, Sub 15, Sub 13 y Sub 11.",
+    "image": "",
+    "image_alt_en": "",
+    "image_alt_es": "",
+    "sample": true
+  }
+]

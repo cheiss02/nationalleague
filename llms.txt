@@ -1,0 +1,13 @@
+# National League Official Academies
+> A youth soccer league in the United States for the official academies of Liga MX and MLS clubs, run in partnership with Wame Sports.
+## Facts
+- Categories: U17, U15, U13, U11 (Sub 17, Sub 15, Sub 13, Sub 11)
+- Season start: February 2027
+- Website: https://nationalleagueusa.com/
+- Languages: English (default) and Spanish (https://nationalleagueusa.com/es/)
+## How to join
+- Teams/academies register at: https://forms.gle/WPyyJBmizJsPh9aq5
+- Players register (guardian required for minors) at: https://forms.gle/qmw9LNgiRo4kurkv8
+- Full details: https://nationalleagueusa.com/join.html
+## Technology partner
+Wame Sports provides analytics tools, match video, and player profiles for the league. Details: https://nationalleagueusa.com/wame.html

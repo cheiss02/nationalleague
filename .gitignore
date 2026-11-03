@@ -1,0 +1,5 @@
+node_modules/
+scripts/_screens/
+scripts/asset-manifest.json
+.DS_Store
+Thumbs.db

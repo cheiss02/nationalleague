@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "js/**"
+      - "css/**"
+      - "scripts/**"
+      - "content/**"
+      - "assets/documents/**"
+      - "assets/images/**"
+      - "CNAME"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install build dependencies
+        run: npm install --no-save sharp
+
+      - name: Build site
+        run: node scripts/build-site.mjs
+
+      - name: Commit generated files if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A -- '*.html' 'es/' 'news/' 'content/news.json' 'assets/documents/documents.json' 'sitemap.xml' 'robots.txt' 'llms.txt' 'site.webmanifest'
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild generated files [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
