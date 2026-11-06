@@ -16,7 +16,7 @@ export const SITE_CONFIG = {
 
   social: {
     instagram: "https://www.instagram.com/officialacademiesnl",
-    facebook: "https://www.facebook.com/share/19yGj2APkp/",
+    facebook: "https://www.facebook.com/profile.php?id=61596286252568",
     tiktok: "",
     youtube: "",
     x: "",
