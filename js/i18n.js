@@ -30,7 +30,7 @@ export const translations = {
 
     pages: {
       index: {
-        title: "Liga MX & MLS Academy Youth League | National League Official Academies",
+        title: "Liga MX & MLS Academy League | NL Official Academies",
         description: "National League Official Academies unites the official academies of Liga MX and MLS clubs in a regional and national youth soccer competition, built with Wame Sports.",
       },
       about: {
@@ -301,7 +301,7 @@ export const translations = {
         refund: "Refund Policy",
         accessibility: "Accessibility",
       },
-      trademarkWithLogos: "Club names and crests are trademarks of their respective owners and are used with permission.",
+      trademarkWithLogos: "Club names and crests are trademarks of their respective owners.",
       trademarkNamesOnly: "Club names are trademarks of their respective owners. National League Official Academies is not operated by Liga MX or MLS.",
     },
   },
@@ -325,7 +325,7 @@ export const translations = {
 
     pages: {
       index: {
-        title: "Liga Juvenil de Academias Liga MX y MLS | National League Official Academies",
+        title: "Liga de Academias Liga MX y MLS | NL Official Academies",
         description: "National League Official Academies reúne a las academias oficiales de clubes de Liga MX y MLS en una competencia juvenil regional y nacional, construida junto a Wame Sports.",
       },
       about: {
@@ -596,7 +596,7 @@ export const translations = {
         refund: "Política de Reembolsos",
         accessibility: "Accesibilidad",
       },
-      trademarkWithLogos: "Los nombres y escudos de los clubes son marcas de sus respectivos dueños y se usan con permiso.",
+      trademarkWithLogos: "Los nombres y escudos de los clubes son marcas de sus respectivos dueños.",
       trademarkNamesOnly: "Los nombres de los clubes son marcas de sus respectivos dueños. National League Official Academies no es operada por la Liga MX ni la MLS.",
     },
   },

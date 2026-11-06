@@ -23,7 +23,7 @@ function sectionsEn(t, pagePath, lang) {
     },
     {
       heading: "Intellectual property",
-      html: `<p>The National League crest and site content belong to the League. Club names and crests shown on this site are trademarks of their respective owners and are used with permission; see the footer of any page for the current status of that permission. Nothing on this site should be read as the clubs, Liga MX, or MLS sponsoring, endorsing, or operating the League beyond what is stated here.</p>`,
+      html: `<p>The National League crest and site content belong to the League. Club names and crests shown on this site are trademarks of their respective owners. Nothing on this site should be read as the clubs, Liga MX, or MLS sponsoring, endorsing, or operating the League beyond what is stated here.</p>`,
     },
     {
       heading: "Disclaimers",
@@ -68,7 +68,7 @@ function sectionsEs(t, pagePath, lang) {
     },
     {
       heading: "Propiedad intelectual",
-      html: `<p>El escudo de National League y el contenido del sitio pertenecen a la Liga. Los nombres y escudos de los clubes que aparecen en este sitio son marcas de sus respectivos dueños y se usan con permiso; consulta el pie de página de cualquier página para conocer el estado actual de ese permiso. Nada en este sitio debe interpretarse como que los clubes, la Liga MX o la MLS patrocinan, avalan u operan la Liga más allá de lo aquí indicado.</p>`,
+      html: `<p>El escudo de National League y el contenido del sitio pertenecen a la Liga. Los nombres y escudos de los clubes que aparecen en este sitio son marcas de sus respectivos dueños. Nada en este sitio debe interpretarse como que los clubes, la Liga MX o la MLS patrocinan, avalan u operan la Liga más allá de lo aquí indicado.</p>`,
     },
     {
       heading: "Avisos legales",

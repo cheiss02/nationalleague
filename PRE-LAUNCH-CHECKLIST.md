@@ -2,7 +2,7 @@
 
 ## 1. Club and partner logo permission
 
-Written permission for 7 of the 8 club crests and the Wame Sports logo **has been confirmed by the client** — the footer and Terms & Conditions "...are used with permission" wording is accurate for those and does not need to change.
+Written permission for 7 of the 8 club crests and the Wame Sports logo **has been confirmed by the client.** The footer and Terms & Conditions no longer assert "...are used with permission," though — that claim was removed site-wide (see the commit that did it) rather than left in place, so there's nothing left to keep in sync here if a club's permission status changes later.
 
 - **Club América is the exception.** Its logo-use permission is still unconfirmed, so its slug (`club-america`) has been added to `hiddenClubLogos` in `js/site-config.js`. It now shows as a text-only chip (same size/position as a crest) in the homepage marquee and on the Academies page, in both languages, and is excluded from the sitemap and JSON-LD.
 - **To re-enable it** once permission comes through: remove `"club-america"` from `hiddenClubLogos` in `js/site-config.js`, run `node scripts/build-site.mjs` to rebuild every page, then run `node scripts/process-assets.mjs` (needs `sharp`: `npm install --no-save sharp` if it's not already installed) to regenerate `assets/images/brand/nl-share.jpg` with the full 8-crest banner again.
