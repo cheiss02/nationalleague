@@ -1,6 +1,7 @@
 ---
-title_es: National League anuncia su alianza tecnológica con Wame Sports
-title_en: National League announces its technology partnership with Wame Sports
+title_es: National League y Wame Sports anuncian alianza tecnológica
+title_en: National League names Wame Sports its technology partner
+slug_en: wame-sports-partnership
 date: 2026-11-15
 category: general
 sample: true

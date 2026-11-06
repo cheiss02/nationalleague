@@ -1,4 +1,4 @@
-import { renderPageHero } from "../lib/ssg.mjs";
+import { renderPageHero, keyDateEvents } from "../lib/ssg.mjs";
 
 function renderMain({ t, pagePath, lang }) {
   const filters = t("news.filters");
@@ -45,10 +45,15 @@ export function render(ctx) {
   const { t, pagePath, lang } = ctx;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: lang === "es" ? "Inicio" : "Home", item: pagePath.abs("index", lang) },
-      { "@type": "ListItem", position: 2, name: t("nav.news"), item: pagePath.abs("news", lang) },
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: lang === "es" ? "Inicio" : "Home", item: pagePath.abs("index", lang) },
+          { "@type": "ListItem", position: 2, name: t("nav.news"), item: pagePath.abs("news", lang) },
+        ],
+      },
+      ...keyDateEvents(lang),
     ],
   };
   return { bodyHtml: renderMain(ctx), jsonLd, scripts: ["js/news.js"] };

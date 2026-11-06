@@ -26,6 +26,7 @@ These aren't website tasks — they're decisions only the league can make. Until
    ---
    title_es: Título en español
    title_en: Title in English
+   slug_en: a-short-english-slug
    date: 2027-01-15
    category: torneo
    ---
@@ -35,7 +36,9 @@ These aren't website tasks — they're decisions only the league can make. Until
    English body text here.
    ```
 
-   `category` is one of `torneo`, `convocatoria`, `resultados`, or `general`.
+   `category` is one of `torneo`, `convocatoria`, `resultados`, or `general`. `slug_en` is optional but recommended — without it, the English post page uses the same (Spanish) slug as the filename. With it, the English post publishes at `news/<slug_en>.html` while the Spanish version stays at `es/news/<the-filename-slug>.html` — e.g. `slug_en: tryout-dates-announced` with a file named `2027-01-15-fechas-de-pruebas.md` publishes English at `news/tryout-dates-announced.html` and Spanish at `es/news/fechas-de-pruebas.html`.
+
+   Keep both `title_es` and `title_en` to roughly **60 characters or fewer** — that's what shows as the browser tab title and in Google search results; a longer title just gets truncated there.
 4. To add a photo: upload it to `assets/images/news/` (in the same Add file screen, or a separate commit) and add two more lines inside the `---` block: `image: your-filename.jpg`, `image_alt_es: ...`, `image_alt_en: ...`.
 5. Scroll down and click **Commit changes**. The site rebuilds itself automatically within a few minutes (the "Build" GitHub Action does this — nothing else to do).
 
@@ -81,6 +84,7 @@ Esto no son tareas del sitio web — son decisiones que solo la liga puede tomar
    ---
    title_es: Título en español
    title_en: Title in English
+   slug_en: a-short-english-slug
    date: 2027-01-15
    category: torneo
    ---
@@ -90,7 +94,9 @@ Esto no son tareas del sitio web — son decisiones que solo la liga puede tomar
    English body text here.
    ```
 
-   `category` puede ser `torneo`, `convocatoria`, `resultados` o `general`.
+   `category` puede ser `torneo`, `convocatoria`, `resultados` o `general`. `slug_en` es opcional pero recomendado — sin él, la página en inglés usa el mismo nombre (en español) que el archivo. Con él, la versión en inglés se publica en `news/<slug_en>.html` mientras que la versión en español sigue en `es/news/<nombre-del-archivo>.html` — por ejemplo, `slug_en: tryout-dates-announced` con un archivo llamado `2027-01-15-fechas-de-pruebas.md` publica el inglés en `news/tryout-dates-announced.html` y el español en `es/news/fechas-de-pruebas.html`.
+
+   Mantén `title_es` y `title_en` en **60 caracteres o menos** — eso es lo que se muestra en la pestaña del navegador y en los resultados de Google; un título más largo simplemente se corta ahí.
 4. Para agregar una foto: súbela a `assets/images/news/` y agrega estas líneas dentro del bloque `---`: `image: tu-archivo.jpg`, `image_alt_es: ...`, `image_alt_en: ...`.
 5. Baja y haz clic en **Commit changes**. El sitio se reconstruye automáticamente en unos minutos — no hay que hacer nada más.
 

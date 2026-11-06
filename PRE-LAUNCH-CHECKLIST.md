@@ -1,12 +1,13 @@
 # Pre-launch checklist
 
-## 1. Club and partner logo permission — confirm first
+## 1. Club and partner logo permission
 
-The site currently shows all 8 club crests and the Wame Sports logo (in the marquee, on the Academies page, and in the footer trademark line). **Written permission for every club crest and the Wame logo has not yet been confirmed.** Until it is:
+Written permission for 7 of the 8 club crests and the Wame Sports logo **has been confirmed by the client** — the footer and Terms & Conditions "...are used with permission" wording is accurate for those and does not need to change.
 
-- The footer and Terms & Conditions currently read "...are used with permission" — that line is only accurate once permission is actually confirmed.
-- If a club's permission doesn't come through, add that club's slug to `hiddenClubLogos` in `js/site-config.js` (or set `logos.clubs: false` to hide all of them) and rebuild — the crest is dropped from the published site, the sitemap, the JSON-LD, and the share image, and that club shows as a text-only chip instead. See the README's "Hiding or showing a club's logo" section.
-- The crest/logo files themselves were cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available. See `assets/images/README.md`.
+- **Club América is the exception.** Its logo-use permission is still unconfirmed, so its slug (`club-america`) has been added to `hiddenClubLogos` in `js/site-config.js`. It now shows as a text-only chip (same size/position as a crest) in the homepage marquee and on the Academies page, in both languages, and is excluded from the sitemap and JSON-LD.
+- **To re-enable it** once permission comes through: remove `"club-america"` from `hiddenClubLogos` in `js/site-config.js`, run `node scripts/build-site.mjs` to rebuild every page, then run `node scripts/process-assets.mjs` (needs `sharp`: `npm install --no-save sharp` if it's not already installed) to regenerate `assets/images/brand/nl-share.jpg` with the full 8-crest banner again.
+- Hiding a crest this way does **not** delete the file — `assets/images/clubs/club-america.*`, `_source-assets/banner-convocatoria.jpg`, and `assets/images/hero/hero-convocatoria.*` all still contain the crest and remain reachable by anyone who has or guesses the direct URL. That's expected and fine while permission is pending (nothing links to them), but delete those files yourself if Club América's permission is denied outright rather than just pending.
+- The crest/logo files themselves were cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available, Club América included if/when it's re-enabled. See `assets/images/README.md`.
 
 ## 2. Legal pages — attorney review
 
@@ -22,9 +23,9 @@ Search the codebase for `[TODO: legal entity name]` and `[TODO: mailing address]
 
 The Refund Policy page is a complete template with every number and deadline marked as a visible fill-in: `[REGISTRATION FEE]`, `[REFUND DEADLINE]`, `[PARTIAL-REFUND WINDOW]`, `[HOW TO REQUEST A REFUND]`, `[REFUND PROCESSING TIME]`. Fill these in in `scripts/pages/refund-policy.mjs` (both the English and Spanish sections) once the league decides on amounts and windows. No prices appear anywhere else on the site until this page is complete.
 
-## 5. Contact info and social links
+## 5. Contact info and social links — done
 
-`js/site-config.js` has empty `email`, `phone`, and `social` fields — each is hidden automatically on the live site until filled in. Add them, then run `node scripts/build-site.mjs` to propagate them into the footer, Contact page, JSON-LD, and `llms.txt`.
+`js/site-config.js` now has the league's email, phone, Instagram, and Facebook (TikTok/YouTube/X left empty, so those icons stay hidden). They're live in the footer, Contact page, JSON-LD, and `llms.txt` on every rebuild.
 
 ## 6. Google Forms — data minimization and consent questions
 

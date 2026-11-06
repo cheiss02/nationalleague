@@ -8,6 +8,13 @@ function renderMain({ t, pagePath, lang }) {
     )
     .join("");
 
+  const categoryYears = t("about.categoryYears")
+    .map(
+      (c) =>
+        `<li class="feature-card"><span class="feature-num">${c.code}</span><h3>${c.title}</h3><p>${c.years}</p></li>`
+    )
+    .join("");
+
   const faqItems = t("about.faqItems")
     .map(
       (item) =>
@@ -21,6 +28,33 @@ ${renderPageHero({ t, eyebrow: t("about.eyebrow"), title: t("about.title"), lead
 <div class="wrap back-top-bar">
   <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
 </div>
+
+<section class="section">
+  <div class="wrap">
+    <header class="section-head section-head-center">
+      <p class="eyebrow eyebrow-center">${t("about.whoEyebrow")}</p>
+      <h2>${t("about.whoTitle")}</h2>
+    </header>
+    <div class="legal-content">
+      <p>${t("about.whoP1")}</p>
+      <p>${t("about.whoP2")}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <header class="section-head section-head-center">
+      <p class="eyebrow eyebrow-center">${t("about.identityEyebrow")}</p>
+      <h2>${t("about.identityTitle")}</h2>
+    </header>
+    <div class="legal-content">
+      <p>${t("about.identityP1")}</p>
+      <p>${t("about.identityP2")}</p>
+      <p>${t("about.identityP3")}</p>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap split">
@@ -60,6 +94,29 @@ ${renderPageHero({ t, eyebrow: t("about.eyebrow"), title: t("about.title"), lead
       <h2>${t("about.categoriesTitle")}</h2>
     </header>
     <p class="lead lead-center">${t("about.categoriesText")}</p>
+    <ul class="card-grid">${categoryYears}</ul>
+    <p class="lead lead-center">${t("about.categoriesP2")}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <header class="section-head section-head-center">
+      <p class="eyebrow eyebrow-center">${t("about.techEyebrow")}</p>
+      <h2>${t("about.techTitle")}</h2>
+    </header>
+    <div class="legal-content">
+      <p>${t("about.techText")}</p>
+    </div>
+    <p class="section-head-center"><a class="inline-link" href="${pagePath("wame", lang)}">${t("about.techCta")}</a></p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="callout">${t("about.commitmentTitle")}</div>
+    <p class="lead lead-wide">${t("about.commitmentP1")}</p>
+    <p class="lead lead-wide"><strong>${t("about.commitmentClosing")}</strong></p>
   </div>
 </section>
 

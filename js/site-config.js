@@ -11,12 +11,12 @@ export const SITE_CONFIG = {
   legalEntityName: "", // TODO: fill in before launch — used on the legal pages
   legalAddress: "", // TODO: fill in before launch — mailing address for the legal pages
 
-  email: "", // e.g. "info@nationalleagueusa.com"
-  phone: "", // e.g. "+1 (555) 555-5555"
+  email: "nationalleague26@gmail.com",
+  phone: "+1 (951) 731-2046",
 
   social: {
-    instagram: "",
-    facebook: "",
+    instagram: "https://www.instagram.com/officialacademiesnl",
+    facebook: "https://www.facebook.com/share/19yGj2APkp/",
     tiktok: "",
     youtube: "",
     x: "",
@@ -29,14 +29,17 @@ export const SITE_CONFIG = {
 
   /* Club/partner crests: shown by default. Set clubs:false to hide every
      club crest (each appears as a text-only chip instead); add a club's
-     slug to hiddenClubLogos to hide just that one. The build script drops
-     hidden crest files from the published site, sitemap, JSON-LD and share
-     image entirely — a hidden logo is never still reachable by URL. */
+     slug to hiddenClubLogos to hide just that one. Hiding a crest this way
+     drops it from every GENERATED page, the sitemap, JSON-LD, and (once
+     process-assets.mjs is re-run) the og:image share photo — but the crest
+     file itself (assets/images/clubs/<slug>.*) is not deleted and stays
+     reachable by anyone who has or guesses its direct URL. Delete the file
+     yourself if that matters for a given club. */
   logos: {
     clubs: true,
     wame: true,
   },
-  hiddenClubLogos: [],
+  hiddenClubLogos: ["club-america"], // pending Club América's logo-use permission — see PRE-LAUNCH-CHECKLIST.md item 1
 };
 
 /* The full club roster. "slug" matches the crest file name in

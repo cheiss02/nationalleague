@@ -6,10 +6,14 @@
    the site root, under /es/, or under /es/news/), and the SITE_CONFIG /
    translations plumbing. */
 
-import { posix } from "node:path";
+import { posix, join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
 import { translations, lookup } from "../../js/i18n.js";
 import { renderHeader, renderFooter, NAV_ITEMS, SOCIAL_ICONS, ballButtonInner } from "../../js/layout.js";
 import { SITE_CONFIG, CLUBS } from "../../js/site-config.js";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 export { translations, NAV_ITEMS, SITE_CONFIG, CLUBS, SOCIAL_ICONS, ballButtonInner };
 
@@ -107,7 +111,7 @@ const CSP =
    canonical + hreflang alternates, favicons, self-hosted fonts, JSON-LD) +
    static header + the page's own <main> markup (from renderBody) + static
    footer + the EN/ES hint banner + script tags. */
-export function renderDocument({ lang, slug, currentSiteRel, title, description, bodyHtml, bodyAttrs = "", extraHead = "", jsonLd = null, scripts = [] }) {
+export function renderDocument({ lang, slug, currentSiteRel, title, description, bodyHtml, bodyAttrs = "", extraHead = "", jsonLd = null, scripts = [], alternates = null }) {
   const isIndexable = slug !== "404";
   /* the 404 page can be served at any URL depth (see makeAbsolutePagePath),
      so every link and asset on it must be absolute — swapping pagePath
@@ -115,24 +119,42 @@ export function renderDocument({ lang, slug, currentSiteRel, title, description,
      for both cases with no further special-casing */
   const pagePath = isIndexable ? makePagePath(currentSiteRel) : makeAbsolutePagePath();
   const t = makeT(lang);
-  const canonical = isIndexable ? pagePath.abs(slug, lang) : pagePath.absPath(currentSiteRel);
-  const enUrl = isIndexable ? pagePath.abs(slug, "en") : canonical;
-  const esUrl = isIndexable ? pagePath.abs(slug, "es") : canonical;
-  const shareImg = pagePath.absPath("assets/images/brand/nl-share.jpg");
 
+  /* `alternates` is for pages whose EN/ES mirror does NOT share the route
+     table's slug->file mapping — currently just news posts, where each
+     language can have its own slug (see scripts/pages/*.mjs "slug" is
+     always a ROUTES entry, e.g. "news", used only for header nav
+     highlighting here). When given, canonical/hreflang/the lang switcher
+     all point at this specific pair of files instead of being derived from
+     routeFile(slug, lang). */
+  let canonical, enUrl, esUrl, selfHref, otherLangHref;
+  if (alternates) {
+    canonical = pagePath.absPath(currentSiteRel);
+    enUrl = pagePath.absPath(alternates.en);
+    esUrl = pagePath.absPath(alternates.es);
+    selfHref = pagePath.asset(currentSiteRel);
+    otherLangHref = pagePath.asset(lang === "en" ? alternates.es : alternates.en);
+  } else {
+    canonical = isIndexable ? pagePath.abs(slug, lang) : pagePath.absPath(currentSiteRel);
+    enUrl = isIndexable ? pagePath.abs(slug, "en") : canonical;
+    esUrl = isIndexable ? pagePath.abs(slug, "es") : canonical;
+    selfHref = isIndexable ? pagePath(slug, lang) : pagePath.absPath(currentSiteRel);
+    /* the 404 page is a single bilingual file (GitHub Pages serves one root
+       404.html for the whole site, so there's no per-language mirror to
+       link to) — point its lang-switch at itself rather than crash or ship
+       a dead "#" link */
+    otherLangHref = isIndexable ? pagePath(slug, lang === "en" ? "es" : "en") : pagePath.absPath(currentSiteRel);
+  }
+
+  const shareImg = pagePath.absPath("assets/images/brand/nl-share.jpg");
   const joinHref = pagePath("join", lang);
-  /* the 404 page is a single bilingual file (GitHub Pages serves one root
-     404.html for the whole site, so there's no per-language mirror to
-     link to) — point its lang-switch at itself rather than crash or ship
-     a dead "#" link */
-  const otherLangHref = isIndexable ? pagePath(slug, lang === "en" ? "es" : "en") : pagePath.absPath(currentSiteRel);
 
   const header = renderHeader({
     lang,
     currentSlug: slug,
     pagePath,
     t,
-    selfHref: isIndexable ? pagePath(slug, lang) : pagePath.absPath(currentSiteRel),
+    selfHref,
     otherLangHref,
     joinHref,
   });
@@ -310,4 +332,25 @@ export function renderPageHero({ t, eyebrow, title, lead = "", image = null, ima
       ${lead ? `<p class="lead">${lead}</p>` : ""}
     </div>
   </section>`;
+}
+
+/* schema.org Event entries for content/key-dates.json, embedded in the
+   homepage and News page JSON-LD @graph so key dates (season start, etc.)
+   are machine-readable, not just a bullet list in the markup. */
+export function keyDateEvents(lang) {
+  const raw = readFileSync(join(ROOT, "content", "key-dates.json"), "utf8");
+  const data = JSON.parse(raw);
+  const organizer = {
+    "@type": "SportsOrganization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "National League Official Academies",
+    url: `${SITE_URL}/`,
+  };
+  return (data.upcoming || []).map((item) => ({
+    "@type": "Event",
+    name: item[`label_${lang}`] || item.label_en,
+    startDate: item.date,
+    inLanguage: lang,
+    organizer,
+  }));
 }

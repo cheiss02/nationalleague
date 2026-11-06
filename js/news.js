@@ -69,8 +69,9 @@
             '" alt="' + (field(post, "image_alt") || "") + '" loading="lazy" width="640" height="400"></div>'
           : "";
 
+        var postSlug = lang === "es" ? post.slug_es : post.slug_en;
         li.innerHTML =
-          '<a class="news-card" href="' + detailBase + post.slug + '.html">' +
+          '<a class="news-card" href="' + detailBase + postSlug + '.html">' +
           img +
           '<div class="news-card-body">' +
           '<span class="news-card-category">' + categoryLabel + "</span>" +

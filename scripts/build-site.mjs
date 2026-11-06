@@ -61,9 +61,11 @@ function buildNews() {
     const { data, body } = parseFrontMatter(raw);
     const [bodyEs, bodyEn] = body.split(/<!--\s*en\s*-->/);
     const slugMatch = file.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
-    const slug = slugMatch ? slugMatch[1] : file.replace(/\.md$/, "");
+    const slugEs = slugMatch ? slugMatch[1] : file.replace(/\.md$/, "");
+    const slugEn = data.slug_en || slugEs;
     return {
-      slug,
+      slug_en: slugEn,
+      slug_es: slugEs,
       date: data.date,
       category: data.category || "general",
       title_en: data.title_en,
@@ -102,7 +104,9 @@ function paragraphsHtml(text) {
 
 function renderNewsPostPage(post, lang) {
   const t = makeT(lang);
-  const slugRel = lang === "es" ? `es/news/${post.slug}.html` : `news/${post.slug}.html`;
+  const enRel = `news/${post.slug_en}.html`;
+  const esRel = `es/news/${post.slug_es}.html`;
+  const slugRel = lang === "es" ? esRel : enRel;
   const pagePath = makePagePath(slugRel);
   const title = post[`title_${lang}`] || post.title_en;
   const body = post[`body_${lang}`] || post.body_en;
@@ -140,17 +144,18 @@ function renderNewsPostPage(post, lang) {
     inLanguage: lang,
     image: post.image ? [pagePath.absPath("assets/images/news/" + post.image)] : undefined,
     publisher: { "@type": "Organization", name: "National League Official Academies" },
-    mainEntityOfPage: pagePath.abs("news", lang),
+    mainEntityOfPage: pagePath.absPath(slugRel),
   };
 
   return renderDocument({
     lang,
     slug: "news",
     currentSiteRel: slugRel,
-    title: `${title} | National League Official Academies`,
+    title,
     description: truncateWords(post[`excerpt_${lang}`] || post.excerpt_en || "", 160),
     bodyHtml,
     jsonLd,
+    alternates: { en: enRel, es: esRel },
   });
 }
 
@@ -175,7 +180,7 @@ function buildDocuments() {
 
 /* ------------------------------------------------------------ sitemap --- */
 
-function buildSitemapAndRobots(extraUrls) {
+function buildSitemapAndRobots(newsPairs) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [];
   for (const route of ROUTES) {
@@ -188,8 +193,17 @@ function buildSitemapAndRobots(extraUrls) {
       );
     }
   }
-  for (const url of extraUrls) {
-    urls.push(`  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.6</priority>\n  </url>`);
+  /* each news post is its own EN/ES pair of files (independent slugs, see
+     renderNewsPostPage) — give each one the same reciprocal hreflang
+     treatment as the regular routes above, instead of a bare <loc>. */
+  for (const { enFile, esFile } of newsPairs) {
+    const locEn = `${SITE_URL}/${enFile}`;
+    const locEs = `${SITE_URL}/${esFile}`;
+    for (const loc of [locEn, locEs]) {
+      urls.push(
+        `  <url>\n    <loc>${loc}</loc>\n    <xhtml:link rel="alternate" hreflang="en" href="${locEn}"/>\n    <xhtml:link rel="alternate" hreflang="es" href="${locEs}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${locEn}"/>\n    <lastmod>${today}</lastmod>\n    <priority>0.6</priority>\n  </url>`
+      );
+    }
   }
 
   writeFileSync(
@@ -323,11 +337,11 @@ async function run() {
   build404();
 
   for (const post of posts) {
-    writeRoute(`news/${post.slug}.html`, renderNewsPostPage(post, "en"));
-    writeRoute(`es/news/${post.slug}.html`, renderNewsPostPage(post, "es"));
+    writeRoute(`news/${post.slug_en}.html`, renderNewsPostPage(post, "en"));
+    writeRoute(`es/news/${post.slug_es}.html`, renderNewsPostPage(post, "es"));
   }
 
-  buildSitemapAndRobots(posts.flatMap((p) => [`${SITE_URL}/news/${p.slug}.html`, `${SITE_URL}/es/news/${p.slug}.html`]));
+  buildSitemapAndRobots(posts.map((p) => ({ enFile: `news/${p.slug_en}.html`, esFile: `es/news/${p.slug_es}.html` })));
   buildLlmsTxt();
   buildManifest();
 

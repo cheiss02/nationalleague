@@ -88,7 +88,7 @@ In `js/site-config.js`:
 - Hide **all** club crests: set `logos.clubs: false`.
 - Hide the Wame logo: set `logos.wame: false`.
 
-Rebuild after any change. A hidden crest file is dropped from the published site, the sitemap, the JSON-LD, and the share image entirely — it's not just visually hidden.
+Rebuild after any change. A hidden crest is dropped from every generated page, the sitemap, and the JSON-LD, and (after also re-running `node scripts/process-assets.mjs`) from the share image — but the crest file itself is not deleted from `assets/images/clubs/` and stays reachable by direct URL. Delete the file too if that matters.
 
 ## Hosting: Vercel + GoDaddy domain
 

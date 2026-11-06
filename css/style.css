@@ -188,6 +188,9 @@ p {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.72rem;
+  line-height: 1.65; /* matches body's base line-height — .eyebrow is also used
+    as the page's real <h1> in the hero (see .hero-content), and the
+    global h1 { line-height: 1.04 } element rule must not leak into it */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-primary);
@@ -792,8 +795,18 @@ main > section[id] {
   margin-bottom: 0.7rem;
 }
 
-.hero-content h1 {
-  margin-bottom: 0.6rem;
+/* The big slogan is a <p class="hero-title">, not the real <h1> (that's the
+   small eyebrow-styled line above it — see .eyebrow and index.mjs) — so it
+   needs its own copy of the base h1 font rules instead of inheriting them
+   from the element selectors below. */
+.hero-content .hero-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
   color: #fff;
   text-shadow: 0 6px 26px rgba(0, 10, 25, 0.5);
 }
@@ -2236,6 +2249,46 @@ mark.todo {
 
 .contact-card a:hover {
   text-decoration: underline;
+}
+
+/* The footer's `.social a` is a 40px icon-only dark circle meant for the
+   navy footer background — its two children (icon + label, see
+   SOCIAL_ICONS/contact.mjs) just stack and overlap inside that small
+   circle, and the icon is hardcoded white (`.social svg`), invisible on
+   this card's light background. Pill buttons with a visible label fix
+   both problems for this one spot without touching the footer. */
+.contact-card .social {
+  flex-wrap: wrap;
+}
+
+.contact-card .social a {
+  width: auto;
+  height: auto;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  justify-content: flex-start;
+}
+
+.contact-card .social a:hover {
+  background: var(--color-bg-warm);
+  border-color: var(--color-royal);
+}
+
+.contact-card .social svg,
+.contact-card .social a:hover svg {
+  fill: var(--color-primary);
+}
+
+.contact-card .social span {
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 /* --------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 ---
 title_es: Bienvenida a la temporada 2027 de la National League
 title_en: Welcome to the National League's 2027 season
+slug_en: welcome-2027-season
 date: 2026-11-01
 category: general
 sample: true

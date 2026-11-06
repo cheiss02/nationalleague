@@ -183,12 +183,13 @@ async function run() {
   /* ---- 1200x630 social share image ----
      The convocatoria banner carries the crest + wordmark + the 8 club
      crests baked into its pixels as a flat photo — so unlike the live
-     marquee/academies grid, SITE_CONFIG.logos.clubs can't selectively
-     "remove" a club from it. When club logos are toggled off, fall back
-     to the national-league banner instead, which has no club crests in
-     it at all, so a hidden/unconfirmed club never appears in link
-     previews either. */
-  const shareSrc = join(SRC, SITE_CONFIG.logos.clubs ? "banner-convocatoria.jpg" : "banner-national-league.jpg");
+     marquee/academies grid, SITE_CONFIG.logos.clubs/hiddenClubLogos can't
+     selectively "remove" one club from it. Whenever any club crest is
+     hidden (clubs:false, or any slug in hiddenClubLogos) fall back to the
+     national-league banner instead, which has no club crests in it at
+     all, so a hidden/unconfirmed club never appears in link previews. */
+  const anyClubHidden = !SITE_CONFIG.logos.clubs || SITE_CONFIG.hiddenClubLogos.length > 0;
+  const shareSrc = join(SRC, anyClubHidden ? "banner-national-league.jpg" : "banner-convocatoria.jpg");
   const shareMeta = await sharp(shareSrc).metadata();
   const srcRatio = shareMeta.width / shareMeta.height;
   const targetRatio = 1200 / 630;

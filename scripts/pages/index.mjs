@@ -1,4 +1,4 @@
-import { renderMarquee, ballButtonInner, SITE_URL } from "../lib/ssg.mjs";
+import { renderMarquee, ballButtonInner, keyDateEvents, SITE_URL } from "../lib/ssg.mjs";
 
 function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
   const heroJpg = pagePath.asset("assets/images/hero/hero-national-league.jpg");
@@ -30,7 +30,8 @@ function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
       const img = post.image
         ? `<div class="news-card-media"><img src="${pagePath.asset("assets/images/news/" + post.image)}" alt="${post[`image_alt_${lang}`] || ""}" loading="lazy" width="640" height="400"></div>`
         : "";
-      return `<li><a class="news-card" href="${pagePath.asset("news/" + post.slug + ".html")}">${img}<div class="news-card-body"><span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p></div></a></li>`;
+      const href = lang === "es" ? pagePath.asset(`es/news/${post.slug_es}.html`) : pagePath.asset(`news/${post.slug_en}.html`);
+      return `<li><a class="news-card" href="${href}">${img}<div class="news-card-body"><span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p></div></a></li>`;
     })
     .join("");
 
@@ -46,8 +47,8 @@ ${renderMarquee({ lang, pagePath, t })}
   </div>
   <div class="hero-shade"></div>
   <div class="wrap hero-content">
-    <p class="eyebrow eyebrow-ondark eyebrow-center">${t("hero.eyebrow")}</p>
-    <h1>${t("hero.title")}</h1>
+    <h1 class="eyebrow eyebrow-ondark eyebrow-center">${t("hero.h1")}</h1>
+    <p class="hero-title">${t("hero.title")}</p>
     <p class="lead">${t("hero.body")}</p>
     <div class="hero-badge-row">
       <a class="btn btn-lg" href="${pagePath("join", lang)}">${ballButtonInner(t("hero.cta"))}</a>
@@ -156,6 +157,7 @@ export function render(ctx) {
         name: "National League Official Academies",
         inLanguage: lang === "es" ? "es" : "en",
       },
+      ...keyDateEvents(lang),
     ],
   };
 

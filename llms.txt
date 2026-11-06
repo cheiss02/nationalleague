@@ -11,3 +11,5 @@
 - Full details: https://nationalleagueusa.com/join.html
 ## Technology partner
 Wame Sports provides analytics tools, match video, and player profiles for the league. Details: https://nationalleagueusa.com/wame.html
+## Contact
+nationalleague26@gmail.com

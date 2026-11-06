@@ -7,6 +7,9 @@ function withHrefs(html, privacyHref, termsHref) {
 function renderMain({ t, pagePath, lang, config }) {
   const privacyHref = pagePath("privacy-policy", lang);
   const termsHref = pagePath("terms-conditions", lang);
+  const refundHref = pagePath("refund-policy", lang);
+  const contactHref = pagePath("contact", lang);
+  const feesNote = t("join.feesNote").replace(/REFUND_HREF/g, refundHref).replace(/CONTACT_HREF/g, contactHref);
 
   const teams = t("join.teams");
   const players = t("join.players");
@@ -54,6 +57,10 @@ ${renderPageHero({ t, eyebrow: t("join.eyebrow"), title: t("join.title"), lead: 
 
 <div class="wrap back-top-bar">
   <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
+</div>
+
+<div class="wrap">
+  <div class="callout">${feesNote}</div>
 </div>
 
 <section class="section">
