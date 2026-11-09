@@ -1,7 +1,7 @@
 import { renderLegalPage } from "../lib/ssg.mjs";
 
 const EFFECTIVE_DATE = "[TODO: set before publishing]";
-const ENTITY = '<mark class="todo">[TODO: legal entity name]</mark>';
+const ENTITY = "National League USA";
 const ADDRESS = "2884 Marie Dr, Riverside, CA 92509";
 
 function sectionsEn(t, pagePath, lang, config) {

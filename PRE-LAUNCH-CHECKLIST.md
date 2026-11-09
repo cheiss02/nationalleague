@@ -13,9 +13,9 @@ Written permission for 7 of the 8 club crests and the Wame Sports logo **has bee
 
 Every page under **Legal** in the footer (Privacy Policy, Terms & Conditions, Cookie Policy, Refund Policy, Accessibility) currently shows a draft banner: *"Draft: have an attorney review before publishing."* Have an attorney review all five, then remove the banner (`renderLegalPage` in `scripts/lib/ssg.mjs`) and set each page's effective date (`EFFECTIVE_DATE` constant at the top of each `scripts/pages/*-policy.mjs` / `terms-conditions.mjs` / `accessibility.mjs` file).
 
-## 3. Legal entity name and address — address done, entity name still pending
+## 3. Legal entity name and address — done
 
-The mailing address is filled in (`2884 Marie Dr, Riverside, CA 92509`, in `scripts/pages/privacy-policy.mjs`). The **legal entity name is still a `[TODO:` placeholder** in both `scripts/pages/privacy-policy.mjs` and `scripts/pages/terms-conditions.mjs` — the client said the league itself isn't formally registered/trademarked yet (Wame Sports, their tech partner, is already legally constituted as WAAKAT, SL; the league is still working on its own registration), and specifically asked not to put anything not yet confirmed. Fill in `ENTITY` in both files once that's done.
+`ENTITY` is "National League USA" and `ADDRESS` is "2884 Marie Dr, Riverside, CA 92509", in both `scripts/pages/privacy-policy.mjs` and `scripts/pages/terms-conditions.mjs`. (Earlier the client said the league's own registration/trademark was still in progress — worth double-checking with them that "National League USA" is the name they want on legal pages specifically, as opposed to just a working/brand name, since trademark registration being separate from "has a legal name to operate under" is a nuance an attorney should confirm during the item 2 review.)
 
 ## 4. Registration fees and refund terms — model confirmed, amounts still pending
 
