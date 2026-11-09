@@ -1,6 +1,5 @@
-/* Mobile menu, sticky-header state, back-to-top, the fade-in that runs as
-   sections scroll into view, the "¿Prefieres español?" hint banner, and the
-   once-on-load date-badge pulse. Header/footer markup is already static
+/* Mobile menu, sticky-header state, back-to-top, the Join page's role
+   chooser, and the "¿Prefieres español?" hint banner. Header/footer markup is already static
    HTML (baked in per language by the build script) — this file only wires
    up interactivity on top of it. */
 
@@ -94,53 +93,41 @@
     });
   });
 
-  /* ---- fade sections in as they scroll into view ---- */
-  var revealTargets = Array.prototype.slice.call(
-    document.querySelectorAll(
-      ".split, .section-head, .card-grid, .callout, .band-content, .explore-grid, .home-intro-inner, .faq-list, .club-grid, .join-grid, .news-grid, .contact-grid, .key-dates"
-    )
-  );
+  /* ---- Join page: one registration at a time ----
+     Nothing shows until a role is picked. Without JS both cards stay visible
+     and the tiles are plain anchors. */
+  var joinGrid = document.querySelector("[data-join-grid]");
+  if (joinGrid) {
+    var joinPicks = Array.prototype.slice.call(document.querySelectorAll("[data-join-pick]"));
+    var joinCards = Array.prototype.slice.call(joinGrid.querySelectorAll("[data-join-card]"));
 
-  function revealAll() {
-    revealTargets.forEach(function (el) {
-      el.classList.add("is-revealed");
-    });
-  }
+    var applyPick = function (pick) {
+      joinGrid.classList.add("is-picked");
+      joinCards.forEach(function (card) {
+        card.hidden = card.getAttribute("data-join-card") !== pick;
+      });
+      joinPicks.forEach(function (link) {
+        if (link.getAttribute("data-join-pick") === pick) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
 
-  if ("IntersectionObserver" in window) {
-    var primed = revealTargets.filter(function (el) {
-      return el.getBoundingClientRect().top > window.innerHeight * 0.85;
-    });
-    primed.forEach(function (el) {
-      el.classList.add("will-reveal");
-    });
-
-    var observer = new IntersectionObserver(
-      function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-revealed");
-          obs.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -10% 0px" }
-    );
-    primed.forEach(function (el) {
-      observer.observe(el);
+    joinPicks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        var pick = link.getAttribute("data-join-pick");
+        applyPick(pick);
+        var card = joinGrid.querySelector('[data-join-card="' + pick + '"]');
+        card.setAttribute("tabindex", "-1");
+        card.focus({ preventScroll: true });
+        card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+      });
     });
 
-    window.setTimeout(revealAll, 1800);
-    window.addEventListener("load", function () {
-      window.setTimeout(revealAll, 300);
-    });
-  }
-
-  /* ---- date badge: pulse once after first paint ---- */
-  var badge = document.querySelector(".date-badge");
-  if (badge && !reduceMotion) {
-    window.requestAnimationFrame(function () {
-      badge.classList.add("pulse-once");
-    });
+    var hashPick = window.location.hash.slice(1);
+    applyPick(hashPick === "teams" || hashPick === "players" ? hashPick : "");
   }
 
   /* ---- "¿Prefieres español?" hint banner ----

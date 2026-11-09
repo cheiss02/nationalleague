@@ -99,7 +99,6 @@ export function render({ t, pagePath, lang }) {
     lang,
     pagePath,
     t,
-    eyebrow: "Legal",
     title: lang === "es" ? "Términos y Condiciones" : "Terms & Conditions",
     effectiveDate: EFFECTIVE_DATE,
     sections,

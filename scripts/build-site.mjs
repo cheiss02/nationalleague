@@ -127,7 +127,6 @@ function renderNewsPostPage(post, lang) {
   const bodyHtml = `<article class="section post-article">
     <div class="wrap">
       <div class="back-top-bar"><a class="back-home-top" href="${pagePath("news", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("nav.news")}</a></div>
-      <p class="eyebrow">${lang === "es" ? "Noticias" : "News"}</p>
       <h1>${title}</h1>
       <p class="post-meta"><span>${dateStr}</span></p>
       ${img}
@@ -266,7 +265,6 @@ function build404() {
 <section class="page-hero">
   <div class="page-hero-gradient"></div>
   <div class="wrap">
-    <p class="eyebrow eyebrow-center">404</p>
     <h1>This page took a wrong turn. / Esta página tomó un camino equivocado.</h1>
     <p class="lead">The page you're looking for doesn't exist, or has moved.<br>La página que buscas no existe, o fue movida.</p>
   </div>

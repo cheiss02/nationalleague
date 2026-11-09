@@ -3,22 +3,18 @@ import { renderPageHero } from "../lib/ssg.mjs";
 function renderMain({ t, pagePath, lang }) {
   const features = t("wame.features")
     .map(
-      (f, i) =>
-        `<li class="feature-card"><span class="feature-num">0${i + 1}</span><h3>${f.title}</h3><p>${f.body}</p></li>`
+      (f) =>
+        `<li class="feature-card"><h3>${f.title}</h3><p>${f.body}</p></li>`
     )
     .join("");
 
   return `
-${renderPageHero({ t, eyebrow: t("wame.eyebrow"), title: t("wame.title"), lead: t("wame.lead") })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title: t("wame.title"), lead: t("wame.lead") })}
 
 <section class="section">
   <div class="wrap split">
     <div class="split-media split-media-logo">
-      <img src="${pagePath.asset("assets/images/partners/wame-sports-dark.png")}" alt="Wame Sports" loading="lazy" width="560" height="138">
+      <img src="${pagePath.asset("assets/images/partners/wame-sports-light.png")}" alt="Wame Sports" loading="lazy" width="560" height="138">
     </div>
     <div class="split-copy">
       <p>${t("wame.introText")}</p>
@@ -28,14 +24,17 @@ ${renderPageHero({ t, eyebrow: t("wame.eyebrow"), title: t("wame.title"), lead: 
 
 <section class="section section-alt">
   <div class="wrap">
+    <header class="section-head">
+      <h2>${t("wame.featuresTitle")}</h2>
+    </header>
     <ul class="card-grid">${features}</ul>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="callout">${t("wame.noteTitle")}</div>
-    <p class="lead lead-wide">${t("wame.noteText")}</p>
+    <h2>${t("wame.noteTitle")}</h2>
+    <p class="lead">${t("wame.noteText")}</p>
     <a class="inline-link" href="${pagePath("join", lang)}">${t("wame.cta")}</a>
   </div>
 </section>

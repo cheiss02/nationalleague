@@ -40,7 +40,7 @@ content/
 assets/
   images/brand|clubs|partners|hero|news/   See assets/images/README.md
   documents/reglamentos|convocatorias|calendarios|formatos/   PDFs, plus a generated documents.json
-  fonts/                         Self-hosted Manrope, DM Sans, Barlow Condensed (woff2)
+  fonts/                         Self-hosted DM Sans, Barlow Condensed (woff2)
 
 _source-assets/                 Raw source art (crest, banners) — process-assets.mjs reads from here
 .github/workflows/build.yml     Rebuilds generated files on every push to main

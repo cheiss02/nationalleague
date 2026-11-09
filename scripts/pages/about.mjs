@@ -2,17 +2,11 @@ import { renderPageHero, SITE_URL } from "../lib/ssg.mjs";
 
 function renderMain({ t, pagePath, lang }) {
   const howItems = t("about.howItems")
-    .map(
-      (item, i) =>
-        `<li class="feature-card"><span class="feature-num">0${i + 1}</span><h3>${item.title}</h3><p>${item.body}</p></li>`
-    )
+    .map((item) => `<li class="feature-card"><h3>${item.title}</h3><p>${item.body}</p></li>`)
     .join("");
 
   const categoryYears = t("about.categoryYears")
-    .map(
-      (c) =>
-        `<li class="feature-card"><span class="feature-num">${c.code}</span><h3>${c.title}</h3><p>${c.years}</p></li>`
-    )
+    .map((c) => `<li><span class="cat-code">${c.code}</span><span class="cat-years">${c.years}</span></li>`)
     .join("");
 
   const faqItems = t("about.faqItems")
@@ -23,19 +17,15 @@ function renderMain({ t, pagePath, lang }) {
     .join("");
 
   return `
-${renderPageHero({ t, eyebrow: t("about.eyebrow"), title: t("about.title"), lead: t("about.lead") })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title: t("about.title"), lead: t("about.lead") })}
 
 <section class="section">
-  <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.whoEyebrow")}</p>
-      <h2>${t("about.whoTitle")}</h2>
-    </header>
-    <div class="legal-content">
+  <div class="wrap editorial">
+    <div>
+      <h2>${t("about.whoEyebrow")}</h2>
+      <p class="statement">${t("about.whoTitle")}</p>
+    </div>
+    <div class="prose">
       <p>${t("about.whoP1")}</p>
       <p>${t("about.whoP2")}</p>
     </div>
@@ -43,12 +33,12 @@ ${renderPageHero({ t, eyebrow: t("about.eyebrow"), title: t("about.title"), lead
 </section>
 
 <section class="section section-alt">
-  <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.identityEyebrow")}</p>
-      <h2>${t("about.identityTitle")}</h2>
-    </header>
-    <div class="legal-content">
+  <div class="wrap editorial">
+    <div>
+      <h2>${t("about.identityEyebrow")}</h2>
+      <p class="statement">${t("about.identityTitle")}</p>
+    </div>
+    <div class="prose">
       <p>${t("about.identityP1")}</p>
       <p>${t("about.identityP2")}</p>
       <p>${t("about.identityP3")}</p>
@@ -57,73 +47,68 @@ ${renderPageHero({ t, eyebrow: t("about.eyebrow"), title: t("about.title"), lead
 </section>
 
 <section class="section">
-  <div class="wrap split">
-    <div class="split-copy">
-      <p class="eyebrow">${t("about.missionEyebrow")}</p>
-      <h2>${t("about.missionTitle")}</h2>
+  <div class="wrap duo">
+    <div>
+      <h2>${t("about.missionEyebrow")}</h2>
+      <p class="statement">${t("about.missionTitle")}</p>
       <p>${t("about.missionP1")}</p>
       <p>${t("about.missionP2")}</p>
     </div>
-    <div class="split-media split-media-logo split-media-logo-crest">
-      <img src="${pagePath.asset("assets/images/brand/nl-crest.png")}" alt="" loading="lazy" width="582" height="640">
+    <div>
+      <h2>${t("about.visionEyebrow")}</h2>
+      <p class="statement">${t("about.visionTitle")}</p>
+      <p>${t("about.visionP1")}</p>
     </div>
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="wrap">
-    <div class="callout">${t("about.visionTitle")}</div>
-    <p class="lead lead-wide">${t("about.visionP1")}</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.howEyebrow")}</p>
-      <h2>${t("about.howTitle")}</h2>
+    <header class="section-head">
+      <h2>${t("about.howEyebrow")}</h2>
+      <p class="statement">${t("about.howTitle")}</p>
     </header>
     <ol class="card-grid">${howItems}</ol>
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.categoriesEyebrow")}</p>
-      <h2>${t("about.categoriesTitle")}</h2>
-    </header>
-    <p class="lead lead-center">${t("about.categoriesText")}</p>
-    <ul class="card-grid">${categoryYears}</ul>
-    <p class="lead lead-center">${t("about.categoriesP2")}</p>
-  </div>
-</section>
-
 <section class="section">
   <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.techEyebrow")}</p>
-      <h2>${t("about.techTitle")}</h2>
+    <header class="section-head">
+      <h2>${t("about.categoriesEyebrow")}</h2>
+      <p class="statement">${t("about.categoriesTitle")}</p>
     </header>
-    <div class="legal-content">
-      <p>${t("about.techText")}</p>
-    </div>
-    <p class="section-head-center"><a class="inline-link" href="${pagePath("wame", lang)}">${t("about.techCta")}</a></p>
+    <p class="prose">${t("about.categoriesText")}</p>
+    <ul class="cat-board">${categoryYears}</ul>
+    <p class="prose">${t("about.categoriesP2")}</p>
   </div>
 </section>
 
 <section class="section section-alt">
-  <div class="wrap">
-    <div class="callout">${t("about.commitmentTitle")}</div>
-    <p class="lead lead-wide">${t("about.commitmentP1")}</p>
-    <p class="lead lead-wide"><strong>${t("about.commitmentClosing")}</strong></p>
+  <div class="wrap editorial">
+    <div>
+      <h2>${t("about.techEyebrow")}</h2>
+      <p class="statement">${t("about.techTitle")}</p>
+    </div>
+    <div class="prose">
+      <p>${t("about.techText")}</p>
+      <a class="inline-link" href="${pagePath("wame", lang)}">${t("about.techCta")}</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-content">
+    <h2>${t("about.commitmentEyebrow")}</h2>
+    <p class="statement statement-ondark">${t("about.commitmentTitle")}</p>
+    <p class="lead lead-after">${t("about.commitmentP1")}</p>
+    <p class="band-closing">${t("about.commitmentClosing")}</p>
   </div>
 </section>
 
 <section class="section" id="faq">
   <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("about.faqEyebrow")}</p>
+    <header class="section-head">
       <h2>${t("about.faqTitle")}</h2>
     </header>
     <div class="faq-list">${faqItems}</div>

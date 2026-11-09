@@ -9,9 +9,9 @@ Written permission for 7 of the 8 club crests and the Wame Sports logo **has bee
 - The other crest/logo files (everything but Club América) were still cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available. See `assets/images/README.md`.
 - **Still pending, not yet actionable:** the client mentioned (1) adding an "Academias Invitadas" (guest academies) section/concept to the Academies page, and (2) per-club venue/location info once each confirmed club's field is known. Neither has concrete content yet — the client said more clubs will be confirmed "next week" — so nothing was added; revisit once there's an actual list of guest academies and/or venues to publish.
 
-## 2. Legal pages — attorney review
+## 2. Legal pages — attorney review done
 
-Every page under **Legal** in the footer (Privacy Policy, Terms & Conditions, Cookie Policy, Refund Policy, Accessibility) currently shows a draft banner: *"Draft: have an attorney review before publishing."* Have an attorney review all five, then remove the banner (`renderLegalPage` in `scripts/lib/ssg.mjs`) and set each page's effective date (`EFFECTIVE_DATE` constant at the top of each `scripts/pages/*-policy.mjs` / `terms-conditions.mjs` / `accessibility.mjs` file).
+The client confirmed their lawyer has reviewed the legal pages, so the draft banner is gone. Still to do: set each page's effective date (`EFFECTIVE_DATE` constant at the top of each `scripts/pages/*-policy.mjs` / `terms-conditions.mjs` / `accessibility.mjs` file).
 
 ## 3. Legal entity name and address — done
 

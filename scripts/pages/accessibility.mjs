@@ -50,7 +50,6 @@ export function render({ t, pagePath, lang }) {
     lang,
     pagePath,
     t,
-    eyebrow: lang === "es" ? "Legal" : "Legal",
     title: lang === "es" ? "Accesibilidad" : "Accessibility",
     effectiveDate: EFFECTIVE_DATE,
     sections,

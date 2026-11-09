@@ -70,7 +70,6 @@ export function render({ t, pagePath, lang }) {
     lang,
     pagePath,
     t,
-    eyebrow: "Legal",
     title: lang === "es" ? "Política de Reembolsos" : "Refund Policy",
     effectiveDate: EFFECTIVE_DATE,
     sections,

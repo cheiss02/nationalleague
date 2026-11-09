@@ -276,6 +276,7 @@ export function renderMarquee({ lang, pagePath, t }) {
 
   return `<section class="marquee-section" data-marquee aria-label="${t("marquee.heading")}">
     <p class="marquee-heading">${t("marquee.heading")}</p>
+    <button type="button" class="marquee-toggle" data-marquee-toggle aria-pressed="false" aria-label="${t("marquee.pause")}" data-label-pause="${t("marquee.pause")}" data-label-play="${t("marquee.play")}"><svg class="icon-pause" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1h3.5v12H2zM8.5 1H12v12H8.5z"/></svg><svg class="icon-play" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1l9 6-9 6z"/></svg></button>
     <div class="marquee-viewport">
       ${track(false)}
     </div>
@@ -285,29 +286,18 @@ export function renderMarquee({ lang, pagePath, t }) {
   </section>`;
 }
 
-/* Shared layout for the five legal pages: a draft-review banner (removed
-   once an attorney signs off), the page heading, and a list of
+/* Shared layout for the five legal pages: the page heading and a list of
    {heading, html} sections. Legal prose is long-form and page-specific, so
    unlike nav/button copy it lives inline in each scripts/pages/*.mjs file
    rather than routed through js/i18n.js — still bilingual, just not
    centralized, since nothing else on the site reuses it. */
-export function renderLegalPage({ lang, pagePath, t, eyebrow, title, effectiveDate, sections }) {
-  const draftText =
-    lang === "es"
-      ? "Borrador: revisar con un abogado antes de publicar."
-      : "Draft: have an attorney review before publishing.";
-
+export function renderLegalPage({ lang, pagePath, t, title, effectiveDate, sections }) {
   const body = sections
     .map((s) => `<h2>${s.heading}</h2>${s.html}`)
     .join("\n");
 
   return `
-<div class="draft-banner" role="note">${draftText}</div>
-${renderPageHero({ t, eyebrow, title })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title })}
 
 <section class="section">
   <div class="wrap legal-content">
@@ -318,16 +308,11 @@ ${renderPageHero({ t, eyebrow, title })}
 `;
 }
 
-/* Standard interior-page hero (navy band, optional dimmed photo or the
-   CSS-only stripe/gradient treatment when no unique photo exists). */
-export function renderPageHero({ t, eyebrow, title, lead = "", image = null, imageAlt = "" }) {
-  const media = image
-    ? `<div class="page-hero-media"><img src="${image}" alt="${imageAlt}" loading="eager" width="1920" height="1100"></div>`
-    : `<div class="page-hero-gradient"></div>`;
+/* Standard interior-page hero: the page title and an optional lead on navy,
+   with the banner's flag slashes drawn in CSS. */
+export function renderPageHero({ title, lead = "" }) {
   return `<section class="page-hero">
-    ${media}
     <div class="wrap">
-      <p class="eyebrow eyebrow-center">${eyebrow}</p>
       <h1>${title}</h1>
       ${lead ? `<p class="lead">${lead}</p>` : ""}
     </div>

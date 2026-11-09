@@ -65,60 +65,64 @@
 <main id="main">
 
 <section class="page-hero">
-    <div class="page-hero-gradient"></div>
     <div class="wrap">
-      <p class="eyebrow eyebrow-center">Get Started</p>
       <h1>Join the National League</h1>
       <p class="lead">Two ways to join: register your academy's team, or register a player. Each opens a short Google Form in a new tab.</p>
     </div>
   </section>
 
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back to home</a>
-</div>
-
-<div class="wrap">
-  <div class="callout">Registration fees aren't published on this site. Once your team's or player's registration form is submitted and you meet the league's eligibility requirements, the applicable fee is communicated to you directly — see the <a href="refund-policy.html">Refund Policy</a> page for how refunds work, or <a href="contact.html">contact us</a> with questions.</div>
-</div>
-
 <section class="section">
-  <div class="wrap join-grid">
-    
-<article class="join-card" id="teams">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>Who's registering?</h2>
+    </header>
+    <nav class="join-chooser" aria-label="Who's registering?">
+      <a class="join-choice" href="#teams" data-join-pick="teams"><strong>I run an academy</strong><span>Register your official academy's teams.</span></a>
+      <a class="join-choice" href="#players" data-join-pick="players"><strong>I'm registering a player</strong><span>Players and guardians start here.</span></a>
+    </nav>
+    <div class="join-grid" data-join-grid>
+      
+<article class="join-card" id="teams" data-join-card="teams">
   <h2>Teams / Academies</h2>
   <p>For official academies of Liga MX or MLS clubs that want to enter the league.</p>
   <p>The form asks for your academy name, affiliated club, city/state, the categories you'll enter, and a contact person's name, role, email, and phone.</p>
   <div class="privacy-notice">We collect this information to review and process your academy's registration. The form is hosted by Google; National League Official Academies receives the responses. Data is kept for up to 24 months after the season ends. See the <a href="privacy-policy.html">Privacy Policy</a> for details. We never sell this information.</div>
   <div class="consent-field">
-    <input type="checkbox" id="teams-consent-privacy" data-consent-group="teams">
+    <input type="checkbox" id="teams-consent-privacy" data-consent-group="teams" data-consent-missing="Accept the Privacy Policy and Terms &amp; Conditions to continue." aria-describedby="teams-consent-error">
     <label for="teams-consent-privacy">I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and the <a href="terms-conditions.html">Terms &amp; Conditions</a>.</label>
   </div>
   <p class="consent-error" id="teams-consent-error" aria-live="polite">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Please check the box above before opening the form.
+    <span data-consent-text>Please check the box above before opening the form.</span>
   </p>
-  <a class="btn" id="teams-submit" href="https://forms.gle/WPyyJBmizJsPh9aq5" target="_blank" rel="noopener noreferrer" aria-disabled="true" data-consent-for="teams" aria-describedby="teams-consent-error"><span class="ball-btn__label" data-ball-label="Open team registration form (opens in a new tab)">Open team registration form (opens in a new tab)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></a>
+  <noscript><p class="consent-error is-visible">Registration needs JavaScript to open the form. Turn it on and reload this page, or <a href="contact.html">contact us</a>.</p></noscript>
+  <button type="button" class="btn" id="teams-submit" data-form-url="https://forms.gle/WPyyJBmizJsPh9aq5" aria-disabled="true" data-consent-for="teams" aria-describedby="teams-consent-error"><span class="ball-btn__label" data-ball-label="Open team registration form (opens in a new tab)">Open team registration form (opens in a new tab)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
+  <p class="join-next" role="status" hidden data-join-next>The form should now be open in a new tab. If you don't see it, <a target="_blank" rel="noopener noreferrer">open it here</a>. After you submit it, the league reviews your registration and contacts you separately.</p>
 </article>
-    
-<article class="join-card" id="players">
+      
+<article class="join-card" id="players" data-join-card="players">
   <h2>Players</h2>
-  <p>For players who want to be registered with a participating academy. A parent or legal guardian must complete this form for anyone under 18.</p>
-  <p>The form asks for the player's name and birth year, current academy/club, position, and the guardian's name, email, and phone — plus the consent questions below. We do not ask for a home address, ID numbers, school, medical information, or photos at sign-up.</p>
+  <p>For players who want to be registered with an invited academy. A parent or legal guardian must complete this form for anyone under 18.</p>
+  <p>The form asks for the player's name and birth year, current academy/club, position, and the guardian's name, email, and phone, plus consent questions. We do not ask for a home address, ID numbers, school, medical information, or photos at sign-up.</p>
   <div class="privacy-notice">We collect this information to place the player in the correct category and register them with the league. The form is hosted by Google; National League Official Academies receives the responses. Data is kept for up to 24 months after the season ends. See the <a href="privacy-policy.html">Privacy Policy</a> for details. We never sell this information.</div>
   <div class="consent-field">
-    <input type="checkbox" id="players-consent-privacy" data-consent-group="players">
+    <input type="checkbox" id="players-consent-privacy" data-consent-group="players" data-consent-missing="Accept the Privacy Policy and Terms &amp; Conditions to continue." aria-describedby="players-consent-error">
     <label for="players-consent-privacy">I have read and accept the <a href="privacy-policy.html">Privacy Policy</a> and the <a href="terms-conditions.html">Terms &amp; Conditions</a>.</label>
   </div>
   <div class="consent-field">
-    <input type="checkbox" id="players-consent-guardian" data-consent-group="players">
+    <input type="checkbox" id="players-consent-guardian" data-consent-group="players" data-consent-missing="Confirm you're the player's parent or legal guardian, or that the player is 18 or older." aria-describedby="players-consent-error">
     <label for="players-consent-guardian">I am the player's parent, mother, father, or legal guardian, or the player is 18 or older.</label>
   </div>
   <p class="consent-error" id="players-consent-error" aria-live="polite">
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Please check both boxes above before opening the form.
+    <span data-consent-text>Please check both boxes above before opening the form.</span>
   </p>
-  <a class="btn" id="players-submit" href="https://forms.gle/qmw9LNgiRo4kurkv8" target="_blank" rel="noopener noreferrer" aria-disabled="true" data-consent-for="players" aria-describedby="players-consent-error"><span class="ball-btn__label" data-ball-label="Open player registration form (opens in a new tab)">Open player registration form (opens in a new tab)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></a>
+  <noscript><p class="consent-error is-visible">Registration needs JavaScript to open the form. Turn it on and reload this page, or <a href="contact.html">contact us</a>.</p></noscript>
+  <button type="button" class="btn" id="players-submit" data-form-url="https://forms.gle/qmw9LNgiRo4kurkv8" aria-disabled="true" data-consent-for="players" aria-describedby="players-consent-error"><span class="ball-btn__label" data-ball-label="Open player registration form (opens in a new tab)">Open player registration form (opens in a new tab)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
+  <p class="join-next" role="status" hidden data-join-next>The form should now be open in a new tab. If you don't see it, <a target="_blank" rel="noopener noreferrer">open it here</a>. After you submit it, the league reviews your registration and contacts you separately.</p>
 </article>
+    </div>
+    <p class="fees-note">Registration fees aren't published on this site. Once your team's or player's registration form is submitted and you meet the league's eligibility requirements, the applicable fee is communicated to you directly — see the <a href="refund-policy.html">Refund Policy</a> page for how refunds work, or <a href="contact.html">contact us</a> with questions.</p>
   </div>
 </section>
 

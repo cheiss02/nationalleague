@@ -201,6 +201,15 @@ async function run() {
     summary[`hero/${out}`] = { width: meta.width, height: meta.height, files: [join(heroDir, `${out}.jpg`), join(heroDir, `${out}.webp`)] };
   }
 
+  /* ---- homepage hero: only the pitch and crowd from the banner, below its
+     baked-in wordmark and clear of the corner slashes ---- */
+  const pitch = sharp(join(SRC, "banner-national-league.jpg"))
+    .extract({ left: 250, top: 512, width: 970, height: 315 })
+    .resize({ width: 1440, kernel: "lanczos3" });
+  await pitch.clone().jpeg({ quality: 80, mozjpeg: true }).toFile(join(heroDir, "hero-pitch.jpg"));
+  await pitch.clone().webp({ quality: 78 }).toFile(join(heroDir, "hero-pitch.webp"));
+  summary["hero/hero-pitch"] = { width: 1440, height: 468, files: [join(heroDir, "hero-pitch.jpg"), join(heroDir, "hero-pitch.webp")] };
+
   /* ---- 1200x630 social share image ----
      The convocatoria banner carries the crest + wordmark + the 8 club
      crests baked into its pixels as a flat photo — so unlike the live

@@ -19,11 +19,7 @@ function renderMain({ t, pagePath, lang, config }) {
   const cardsHtml = cards.length ? cards.join("") : `<p class="fine-print">${t("contact.noneYet")}</p>`;
 
   return `
-${renderPageHero({ t, eyebrow: t("contact.eyebrow"), title: t("contact.title"), lead: t("contact.lead") })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title: t("contact.title"), lead: t("contact.lead") })}
 
 <section class="section">
   <div class="wrap">
@@ -33,8 +29,8 @@ ${renderPageHero({ t, eyebrow: t("contact.eyebrow"), title: t("contact.title"), 
 
 <section class="section section-alt">
   <div class="wrap">
-    <div class="callout">${t("contact.joinTitle")}</div>
-    <p class="lead lead-wide">${t("contact.joinText")}</p>
+    <h2>${t("contact.joinTitle")}</h2>
+    <p class="lead">${t("contact.joinText")}</p>
     <a class="inline-link" href="${pagePath("join", lang)}">${t("contact.joinCta")}</a>
   </div>
 </section>

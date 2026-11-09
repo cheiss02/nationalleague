@@ -47,6 +47,22 @@
     });
   }
 
+  sections.forEach(function (section) {
+    var toggle = section.querySelector("[data-marquee-toggle]");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var paused = section.classList.toggle("is-paused");
+        toggle.setAttribute("aria-pressed", String(paused));
+        toggle.setAttribute("aria-label", toggle.getAttribute(paused ? "data-label-play" : "data-label-pause"));
+      });
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        section.classList.toggle("is-offscreen", !entries[0].isIntersecting);
+      }).observe(section);
+    }
+  });
+
   var resizeTimer;
   window.addEventListener("resize", function () {
     window.clearTimeout(resizeTimer);

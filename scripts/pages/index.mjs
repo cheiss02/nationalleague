@@ -1,15 +1,19 @@
 import { renderMarquee, ballButtonInner, keyDateEvents, SITE_URL } from "../lib/ssg.mjs";
 
 function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
-  const heroJpg = pagePath.asset("assets/images/hero/hero-national-league.jpg");
-  const heroWebp = pagePath.asset("assets/images/hero/hero-national-league.webp");
-  const heroAlt =
-    lang === "es"
-      ? "Estadio al anochecer con la bandera de Estados Unidos y el escudo de la National League"
-      : "A stadium at night with the American flag and the National League crest";
+  const heroJpg = pagePath.asset("assets/images/hero/hero-pitch.jpg");
+  const heroWebp = pagePath.asset("assets/images/hero/hero-pitch.webp");
+  const sloganLines = t("hero.title")
+    .split(/(?<=\.)\s+/)
+    .map((line) => `<span>${line}</span>`)
+    .join(" ");
 
   const categories = t("hero.categories")
     .map((c) => `<li class="category-chip">${c}</li>`)
+    .join("");
+
+  const pillars = t("home.pillars")
+    .map((p) => `<li class="pillar"><div class="pillar-inner"><h3>${p.title}</h3><p>${p.body}</p></div></li>`)
     .join("");
 
   const exploreTargets = ["about", "academies", "wame", "news", "documents", "join"];
@@ -31,7 +35,7 @@ function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
         ? `<div class="news-card-media"><img src="${pagePath.asset("assets/images/news/" + post.image)}" alt="${post[`image_alt_${lang}`] || ""}" loading="lazy" width="640" height="400"></div>`
         : "";
       const href = lang === "es" ? pagePath.asset(`es/news/${post.slug_es}.html`) : pagePath.asset(`news/${post.slug_en}.html`);
-      return `<li><a class="news-card" href="${href}">${img}<div class="news-card-body"><span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p></div></a></li>`;
+      return `<li><a class="news-card" href="${href}">${img}<div class="news-card-body"><span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p>${post.sample ? `<span class="news-sample-tag">${t("news.sample")}</span>` : ""}</div></a></li>`;
     })
     .join("");
 
@@ -42,13 +46,14 @@ ${renderMarquee({ lang, pagePath, t })}
   <div class="hero-media">
     <picture>
       <source srcset="${heroWebp}" type="image/webp">
-      <img src="${heroJpg}" alt="${heroAlt}" width="1440" height="827" loading="eager" fetchpriority="high">
+      <img src="${heroJpg}" alt="" width="1440" height="468" loading="eager">
     </picture>
   </div>
   <div class="hero-shade"></div>
-  <div class="wrap hero-content">
-    <h1 class="eyebrow eyebrow-ondark eyebrow-center">${t("hero.h1")}</h1>
-    <p class="hero-title">${t("hero.title")}</p>
+  <div class="wrap hero-grid">
+  <div class="hero-content">
+    <h1 class="hero-strap"><span>${t("hero.h1")}</span></h1>
+    <p class="hero-title">${sloganLines}</p>
     <p class="lead">${t("hero.body")}</p>
     <div class="hero-badge-row">
       <a class="btn btn-lg" href="${pagePath("join", lang)}">${ballButtonInner(t("hero.cta"))}</a>
@@ -56,28 +61,26 @@ ${renderMarquee({ lang, pagePath, t })}
         <span class="date-badge-line1">${t("hero.badgeLine1")}</span>
         <span class="date-badge-line2">${t("hero.badgeLine2")}</span>
       </div>
+      <ul class="category-chips">${categories}</ul>
     </div>
-    <ul class="category-chips">${categories}</ul>
+  </div>
+  <img class="hero-crest" src="${pagePath.asset("assets/images/brand/nl-crest.png")}" alt="" width="582" height="640">
   </div>
 </section>
 
-<section class="section home-intro">
+<section class="pillars">
   <div class="wrap">
-    <div class="home-intro-inner">
-      <p class="eyebrow eyebrow-center">${t("home.introEyebrow")}</p>
-      <h2>${t("home.introTitle")}</h2>
-      <p>${t("home.introText")}</p>
-    </div>
+    <h2>${t("home.commitmentHeading")}</h2>
   </div>
+  <ul class="pillars-row">${pillars}</ul>
 </section>
 
 <section class="section section-alt">
   <div class="wrap split">
     <div class="split-media split-media-logo">
-      <img src="${pagePath.asset("assets/images/partners/wame-sports-dark.png")}" alt="Wame Sports" loading="lazy" width="400" height="98">
+      <img src="${pagePath.asset("assets/images/partners/wame-sports-light.png")}" alt="Wame Sports" loading="lazy" width="560" height="138">
     </div>
     <div class="split-copy">
-      <p class="eyebrow">${t("home.wameEyebrow")}</p>
       <h2>${t("home.wameTitle")}</h2>
       <p>${t("home.wameText")}</p>
       <a class="inline-link" href="${pagePath("wame", lang)}">${t("home.wameCta")}</a>
@@ -85,16 +88,9 @@ ${renderMarquee({ lang, pagePath, t })}
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    <div class="callout">${t("home.commitmentText")}</div>
-  </div>
-</section>
-
 <section class="section section-alt">
   <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("home.exploreEyebrow")}</p>
+    <header class="section-head">
       <h2>${t("home.exploreTitle")}</h2>
     </header>
     <ul class="explore-grid">${exploreItems}</ul>
@@ -105,8 +101,7 @@ ${
   newsCards
     ? `<section class="section">
   <div class="wrap">
-    <header class="section-head section-head-center">
-      <p class="eyebrow eyebrow-center">${t("home.newsEyebrow")}</p>
+    <header class="section-head">
       <h2>${t("home.newsTitle")}</h2>
     </header>
     <ul class="news-grid">${newsCards}</ul>
@@ -116,9 +111,7 @@ ${
 }
 
 <section class="band band-cta">
-  <div class="band-shade"></div>
   <div class="wrap band-content">
-    <p class="eyebrow eyebrow-ondark eyebrow-center">${t("home.ctaEyebrow")}</p>
     <h2>${t("home.ctaTitle")}</h2>
     <p class="lead">${t("home.ctaBody")}</p>
     <div class="band-cta-row">

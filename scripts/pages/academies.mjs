@@ -18,11 +18,7 @@ function renderMain({ t, pagePath, lang }) {
   const cards = clubs.map((c) => clubCard(c, lang, pagePath, t)).join("");
 
   return `
-${renderPageHero({ t, eyebrow: t("academies.eyebrow"), title: t("academies.title"), lead: t("academies.lead") })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title: t("academies.title"), lead: t("academies.lead") })}
 
 <section class="section">
   <div class="wrap">

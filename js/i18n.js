@@ -84,7 +84,6 @@ export const translations = {
     },
 
     news: {
-      eyebrow: "News",
       title: "News",
       lead: "Updates from the National League Official Academies.",
       keyDatesTitle: "Key dates",
@@ -94,18 +93,26 @@ export const translations = {
     },
 
     documents: {
-      eyebrow: "Documents",
       title: "Documents",
       lead: "Rules, calls for registration, and calendars. Files are added here as they're published — no separate login required.",
       searchPlaceholder: "Search documents…",
       categories: { reglamentos: "Rules & Regulations", convocatorias: "Calls for Registration", calendarios: "Calendars", formatos: "Forms" },
-      empty: "No documents have been published in this category yet.",
+      empty: "No documents match your search.",
+      comingSoon: "Coming soon.",
     },
 
     join: {
-      eyebrow: "Get Started",
       title: "Join the National League",
       lead: "Two ways to join: register your academy's team, or register a player. Each opens a short Google Form in a new tab.",
+      chooserTitle: "Who's registering?",
+      missingTerms: "Accept the Privacy Policy and Terms &amp; Conditions to continue.",
+      missingGuardian: "Confirm you're the player's parent or legal guardian, or that the player is 18 or older.",
+      nextSteps: "The form should now be open in a new tab. If you don't see it, <a target=\"_blank\" rel=\"noopener noreferrer\">open it here</a>. After you submit it, the league reviews your registration and contacts you separately.",
+      chooseAcademy: "I run an academy",
+      chooseAcademyHint: "Register your official academy's teams.",
+      choosePlayer: "I'm registering a player",
+      choosePlayerHint: "Players and guardians start here.",
+      noJs: "Registration needs JavaScript to open the form. Turn it on and reload this page, or <a href=\"CONTACT_HREF\">contact us</a>.",
       feesNote: "Registration fees aren't published on this site. Once your team's or player's registration form is submitted and you meet the league's eligibility requirements, the applicable fee is communicated to you directly — see the <a href=\"REFUND_HREF\">Refund Policy</a> page for how refunds work, or <a href=\"CONTACT_HREF\">contact us</a> with questions.",
       teams: {
         title: "Teams / Academies",
@@ -118,8 +125,8 @@ export const translations = {
       },
       players: {
         title: "Players",
-        audience: "For players who want to be registered with a participating academy. A parent or legal guardian must complete this form for anyone under 18.",
-        asksFor: "The form asks for the player's name and birth year, current academy/club, position, and the guardian's name, email, and phone — plus the consent questions below. We do not ask for a home address, ID numbers, school, medical information, or photos at sign-up.",
+        audience: "For players who want to be registered with an invited academy. A parent or legal guardian must complete this form for anyone under 18.",
+        asksFor: "The form asks for the player's name and birth year, current academy/club, position, and the guardian's name, email, and phone, plus consent questions. We do not ask for a home address, ID numbers, school, medical information, or photos at sign-up.",
         privacyNotice: "We collect this information to place the player in the correct category and register them with the league. The form is hosted by Google; National League Official Academies receives the responses. Data is kept for up to 24 months after the season ends. See the <a href=\"PRIVACY_HREF\">Privacy Policy</a> for details. We never sell this information.",
         consentLabel: "I have read and accept the <a href=\"PRIVACY_HREF\">Privacy Policy</a> and the <a href=\"TERMS_HREF\">Terms &amp; Conditions</a>.",
         guardianLabel: "I am the player's parent, mother, father, or legal guardian, or the player is 18 or older.",
@@ -130,7 +137,6 @@ export const translations = {
     },
 
     contact: {
-      eyebrow: "Contact",
       title: "Get in touch",
       lead: "Questions about registration, categories, or the league in general — reach out through any of the channels below.",
       emailTitle: "Email",
@@ -143,7 +149,6 @@ export const translations = {
     },
 
     wame: {
-      eyebrow: "Technology Partner",
       title: "Built with Wame Sports.",
       lead: "Wame Sports is the league's technology partner, bringing data and visibility tools to every academy and player in the National League.",
       introText: "Through technological innovation and our partnership with Wame Sports, we bring in analytics tools, match video, and player profiles that aim to expand the visibility of young talent and open new paths for projection.",
@@ -152,13 +157,13 @@ export const translations = {
         { title: "Match Video", body: "Video from league matches, so a player's performances can be reviewed, shared, and used to support their development." },
         { title: "Player Profiles", body: "A profile for each registered player that brings together their category, academy, and match history in one place." },
       ],
+      featuresTitle: "What Wame brings to the league",
       noteTitle: "What this means for families",
       noteText: "Wame Sports tools are provided through the league's technology partnership and are used to support player development and visibility. Any use of a player's photo, video, or profile beyond league operations requires the separate, optional media consent described on the Join page and in the Privacy Policy — it is never required to register.",
       cta: "See how to join",
     },
 
     academies: {
-      eyebrow: "Academies",
       title: "Invited academies",
       lead: "National League Official Academies brings together the official youth academies of these Liga MX and MLS clubs. Participation refers to each club's official academy program, not the first team.",
       ligaMxLabel: "Liga MX Academy",
@@ -167,7 +172,6 @@ export const translations = {
     },
 
     about: {
-      eyebrow: "About Us",
       title: "More than a league. A platform for development, competition, and opportunity.",
       lead: "National League Official Academies is a formative soccer league created to bring together, organize, and strengthen the official academies of Liga MX and MLS clubs under one regional and national competitive structure.",
       whoEyebrow: "Who We Are",
@@ -195,7 +199,7 @@ export const translations = {
         { title: "Four Mandatory Categories", body: "U17, U15, U13, and U11 — every official academy is required to enter all four, so players compete against others at the right age and stage of development." },
       ],
       categoriesEyebrow: "A Solid Competitive Structure",
-      categoriesTitle: "Sub 17 · Sub 15 · Sub 13 · Sub 11",
+      categoriesTitle: "U17 · U15 · U13 · U11",
       categoriesText: "A league's solidity is built through the commitment of its participants. That's why our model requires every official academy to enter all four age categories: this guarantees continuous competitive growth for the academy's teams and makes the academy itself more solid and stronger, season after season.",
       categoryYears: [
         { code: "U17", title: "Sub 17", years: "2010–2011" },
@@ -212,7 +216,6 @@ export const translations = {
       commitmentTitle: "One league. Great academies. One shared vision.",
       commitmentP1: "We believe in soccer as a tool for development, formation, and growth. We believe in the academies working every day to build players — and people. We believe in competition as a way to raise the level of play, and in technology as a way to open new possibilities.",
       commitmentClosing: "Talent unites us. Competition drives us. The future belongs to us.",
-      faqEyebrow: "Questions",
       faqTitle: "Frequently asked questions",
       faqItems: [
         { q: "Who can join the National League?", a: "Participation is open to the official youth academies of Liga MX and MLS clubs. Individual players register through their academy's team; players who are not yet part of an official academy can start at the player registration link on the Join page, which is reviewed on a case-by-case basis." },
@@ -226,7 +229,6 @@ export const translations = {
 
     common: {
       skipToContent: "Skip to content",
-      backHome: "Back to home",
       readMore: "Read more",
       opensNewTab: "(opens in a new tab)",
     },
@@ -255,20 +257,20 @@ export const translations = {
 
     marquee: {
       heading: "Invited academies",
+      pause: "Pause the logos",
+      play: "Play the logos",
     },
 
     home: {
-      introEyebrow: "Who We Are",
-      introTitle: "One league. Great academies. One shared vision.",
-      introText: "National League Official Academies brings together the official academies of Liga MX and MLS clubs under a single regional and national competitive structure, raising the level of play and creating a clear path for player development.",
-      wameEyebrow: "Technology & Projection",
+      commitmentHeading: "Our commitment",
+      pillars: [
+        { title: "One league.", body: "Raise the competitive level." },
+        { title: "Great academies.", body: "Drive the growth of official academies." },
+        { title: "One shared vision.", body: "Build a platform where talent, development, and technology come together to contribute to the future of soccer." },
+      ],
       wameTitle: "Built with Wame Sports.",
       wameText: "Through technological innovation and our partnership with Wame Sports, we bring in analytics tools, match video, and player profiles that aim to expand the visibility of young talent and open new paths for projection.",
       wameCta: "More about Wame Sports",
-      commitmentEyebrow: "Our Commitment",
-      commitmentTitle: "Academies, competition, and technology — working toward the same future.",
-      commitmentText: "Our commitment is to drive the growth of official academies, raise the competitive level, and build a platform where talent, development, and technology come together to contribute to the future of soccer.",
-      exploreEyebrow: "Explore",
       exploreTitle: "Get to know the National League",
       exploreItems: [
         { title: "About", text: "Our mission, vision, and how the league works." },
@@ -278,9 +280,7 @@ export const translations = {
         { title: "Documents", text: "Rules, calls for registration, and calendars." },
         { title: "Join", text: "Register a team or a player." },
       ],
-      newsEyebrow: "Latest News",
       newsTitle: "What's happening in the league",
-      ctaEyebrow: "Get Started",
       ctaTitle: "Ready to be part of the National League?",
       ctaBody: "Register your academy's team or register a player to take the first step toward joining the National League Official Academies.",
       registerTeam: "Register my team",
@@ -379,7 +379,6 @@ export const translations = {
     },
 
     news: {
-      eyebrow: "Noticias",
       title: "Noticias",
       lead: "Novedades de National League Official Academies.",
       keyDatesTitle: "Fechas importantes",
@@ -389,18 +388,26 @@ export const translations = {
     },
 
     documents: {
-      eyebrow: "Documentos",
       title: "Documentos",
       lead: "Reglamentos, convocatorias y calendarios. Los archivos se agregan aquí conforme se publican — no requiere inicio de sesión aparte.",
       searchPlaceholder: "Buscar documentos…",
       categories: { reglamentos: "Reglamentos", convocatorias: "Convocatorias", calendarios: "Calendarios", formatos: "Formatos" },
-      empty: "Todavía no se han publicado documentos en esta categoría.",
+      empty: "Ningún documento coincide con tu búsqueda.",
+      comingSoon: "Próximamente.",
     },
 
     join: {
-      eyebrow: "Comienza Hoy",
       title: "Forma parte de la National League",
       lead: "Dos formas de unirte: registra el equipo de tu academia, o registra a un jugador. Cada una abre un formulario corto de Google en una pestaña nueva.",
+      chooserTitle: "¿Quién se registra?",
+      missingTerms: "Acepta el Aviso de Privacidad y los Términos y Condiciones para continuar.",
+      missingGuardian: "Confirma que eres el padre, madre o tutor legal del jugador, o que el jugador es mayor de 18 años.",
+      nextSteps: "El formulario debería estar abierto en una pestaña nueva. Si no lo ves, <a target=\"_blank\" rel=\"noopener noreferrer\">ábrelo aquí</a>. Después de enviarlo, la liga revisa tu registro y te contacta por separado.",
+      chooseAcademy: "Dirijo una academia",
+      chooseAcademyHint: "Registra los equipos de tu academia oficial.",
+      choosePlayer: "Voy a registrar a un jugador",
+      choosePlayerHint: "Jugadores, padres y tutores empiezan aquí.",
+      noJs: "El registro necesita JavaScript para abrir el formulario. Actívalo y recarga esta página, o <a href=\"CONTACT_HREF\">contáctanos</a>.",
       feesNote: "Las cuotas de registro no se publican en este sitio. Una vez que se envíe el formulario de registro de tu equipo o jugador y cumplas los requisitos de elegibilidad de la liga, la cuota correspondiente se te comunicará directamente — consulta la página de <a href=\"REFUND_HREF\">Política de Reembolsos</a> para saber cómo funcionan los reembolsos, o <a href=\"CONTACT_HREF\">contáctanos</a> si tienes preguntas.",
       teams: {
         title: "Equipos / Academias",
@@ -413,8 +420,8 @@ export const translations = {
       },
       players: {
         title: "Jugadores",
-        audience: "Para jugadores que quieran registrarse con una academia participante. Un padre, madre o tutor legal debe completar este formulario para cualquier persona menor de 18 años.",
-        asksFor: "El formulario pide el nombre del jugador y su año de nacimiento, academia/club actual, posición, y el nombre, correo y teléfono del tutor — además de las preguntas de consentimiento de abajo. No pedimos dirección particular, números de identificación, escuela, información médica ni fotos al momento del registro.",
+        audience: "Para jugadores que quieran registrarse con una academia invitada. Un padre, madre o tutor legal debe completar este formulario para cualquier persona menor de 18 años.",
+        asksFor: "El formulario pide el nombre del jugador y su año de nacimiento, academia/club actual, posición, y el nombre, correo y teléfono del tutor, además de preguntas de consentimiento. No pedimos dirección particular, números de identificación, escuela, información médica ni fotos al momento del registro.",
         privacyNotice: "Recopilamos esta información para ubicar al jugador en la categoría correcta y registrarlo en la liga. El formulario está alojado en Google; National League Official Academies recibe las respuestas. Los datos se conservan hasta 24 meses después de que termine la temporada. Consulta el <a href=\"PRIVACY_HREF\">Aviso de Privacidad</a> para más detalles. Nunca vendemos esta información.",
         consentLabel: "He leído y acepto el <a href=\"PRIVACY_HREF\">Aviso de Privacidad</a> y los <a href=\"TERMS_HREF\">Términos y Condiciones</a>.",
         guardianLabel: "Soy el padre, madre o tutor legal del jugador, o el jugador es mayor de 18 años.",
@@ -425,7 +432,6 @@ export const translations = {
     },
 
     contact: {
-      eyebrow: "Contacto",
       title: "Ponte en contacto",
       lead: "Preguntas sobre el registro, las categorías o la liga en general — contáctanos por cualquiera de estos medios.",
       emailTitle: "Correo electrónico",
@@ -438,7 +444,6 @@ export const translations = {
     },
 
     wame: {
-      eyebrow: "Socio Tecnológico",
       title: "Construida junto a Wame Sports.",
       lead: "Wame Sports es el socio tecnológico de la liga y aporta herramientas de datos y visibilidad a cada academia y jugador de la National League.",
       introText: "Mediante la innovación tecnológica y nuestra alianza con Wame Sports, incorporamos herramientas de análisis, videos de partidos y perfiles deportivos que buscan ampliar la visibilidad del talento juvenil y generar nuevas oportunidades de proyección.",
@@ -447,13 +452,13 @@ export const translations = {
         { title: "Video de Partidos", body: "Video de los partidos de la liga, para que el rendimiento de un jugador pueda revisarse, compartirse y usarse para apoyar su desarrollo." },
         { title: "Perfiles de Jugador", body: "Un perfil para cada jugador registrado que reúne su categoría, academia e historial de partidos en un solo lugar." },
       ],
+      featuresTitle: "Lo que Wame aporta a la liga",
       noteTitle: "Qué significa esto para las familias",
       noteText: "Las herramientas de Wame Sports se brindan a través de la alianza tecnológica de la liga y se usan para apoyar el desarrollo y la visibilidad del jugador. Cualquier uso de la foto, video o perfil de un jugador más allá de la operación de la liga requiere el consentimiento de medios por separado y opcional descrito en la página Forma Parte y en el Aviso de Privacidad — nunca es obligatorio para registrarse.",
       cta: "Ver cómo unirte",
     },
 
     academies: {
-      eyebrow: "Academias",
       title: "Academias invitadas",
       lead: "National League Official Academies reúne a las academias juveniles oficiales de estos clubes de Liga MX y MLS. La participación se refiere al programa de academia oficial de cada club, no al primer equipo.",
       ligaMxLabel: "Academia de Liga MX",
@@ -462,7 +467,6 @@ export const translations = {
     },
 
     about: {
-      eyebrow: "Nosotros",
       title: "Más que una liga. Una plataforma de desarrollo, competencia y oportunidad.",
       lead: "National League Official Academies es una liga de fútbol formativo creada para reunir, organizar y fortalecer a las academias oficiales de clubes de Liga MX y MLS mediante una estructura de competencia regional y nacional.",
       whoEyebrow: "¿Quiénes Somos?",
@@ -507,7 +511,6 @@ export const translations = {
       commitmentTitle: "Una liga. Grandes academias. Una misma visión.",
       commitmentP1: "Creemos en el fútbol como una herramienta de desarrollo, formación y crecimiento. Creemos en las academias que trabajan día a día para formar jugadores y personas. Creemos en la competencia como un medio para elevar el nivel deportivo, y en la tecnología como una herramienta para abrir nuevas posibilidades.",
       commitmentClosing: "El talento nos une. La competencia nos impulsa. El futuro nos pertenece.",
-      faqEyebrow: "Preguntas",
       faqTitle: "Preguntas frecuentes",
       faqItems: [
         { q: "¿Quién puede unirse a la National League?", a: "La participación está abierta a las academias juveniles oficiales de clubes de Liga MX y MLS. Los jugadores se registran a través del equipo de su academia; los jugadores que aún no son parte de una academia oficial pueden comenzar en el enlace de registro de jugadores en la página Forma Parte, el cual se revisa caso por caso." },
@@ -521,7 +524,6 @@ export const translations = {
 
     common: {
       skipToContent: "Saltar al contenido",
-      backHome: "Volver al inicio",
       readMore: "Leer más",
       opensNewTab: "(se abre en una pestaña nueva)",
     },
@@ -550,20 +552,20 @@ export const translations = {
 
     marquee: {
       heading: "Academias invitadas",
+      pause: "Pausar los logotipos",
+      play: "Reproducir los logotipos",
     },
 
     home: {
-      introEyebrow: "Quiénes Somos",
-      introTitle: "Una liga. Grandes academias. Una misma visión.",
-      introText: "National League Official Academies reúne a las academias oficiales de clubes de la Liga MX y la MLS bajo una misma estructura competitiva regional y nacional, elevando el nivel de juego y creando un camino claro para el desarrollo de los jugadores.",
-      wameEyebrow: "Tecnología y Proyección",
+      commitmentHeading: "Nuestro compromiso",
+      pillars: [
+        { title: "Una liga.", body: "Elevar el nivel competitivo." },
+        { title: "Grandes academias.", body: "Impulsar el crecimiento de las academias oficiales." },
+        { title: "Una misma visión.", body: "Construir una plataforma donde el talento, la formación y la tecnología se unan para contribuir al futuro del fútbol." },
+      ],
       wameTitle: "Construida junto a Wame Sports.",
       wameText: "Mediante la innovación tecnológica y nuestra alianza con Wame Sports, incorporamos herramientas de análisis, videos de partidos y perfiles deportivos que buscan ampliar la visibilidad del talento juvenil y generar nuevas oportunidades de proyección.",
       wameCta: "Más sobre Wame Sports",
-      commitmentEyebrow: "Nuestro Compromiso",
-      commitmentTitle: "Academias, competencia y tecnología — hacia el mismo futuro.",
-      commitmentText: "Nuestro compromiso es impulsar el crecimiento de las academias oficiales, elevar el nivel competitivo y construir una plataforma donde el talento, la formación y la tecnología se unan para contribuir al futuro del fútbol.",
-      exploreEyebrow: "Explora",
       exploreTitle: "Conoce la National League",
       exploreItems: [
         { title: "La Liga", text: "Nuestra misión, visión y cómo funciona la liga." },
@@ -573,9 +575,7 @@ export const translations = {
         { title: "Documentos", text: "Reglamentos, convocatorias y calendarios." },
         { title: "Forma Parte", text: "Registra un equipo o a un jugador." },
       ],
-      newsEyebrow: "Últimas Noticias",
       newsTitle: "Lo que pasa en la liga",
-      ctaEyebrow: "Comienza Hoy",
       ctaTitle: "¿Listo para ser parte de la National League?",
       ctaBody: "Registra el equipo de tu academia o registra a un jugador para dar el primer paso hacia la National League Official Academies.",
       registerTeam: "Registrar mi equipo",

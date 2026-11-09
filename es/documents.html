@@ -62,27 +62,21 @@
 <main id="main">
 
 <section class="page-hero">
-    <div class="page-hero-gradient"></div>
     <div class="wrap">
-      <p class="eyebrow eyebrow-center">Documentos</p>
       <h1>Documentos</h1>
       <p class="lead">Reglamentos, convocatorias y calendarios. Los archivos se agregan aquí conforme se publican — no requiere inicio de sesión aparte.</p>
     </div>
   </section>
 
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Volver al inicio</a>
-</div>
-
 <section class="section">
-  <div class="wrap" data-documents data-lang="es" data-src="../assets/documents/documents.json" data-asset-base="../">
+  <div class="wrap" data-documents data-lang="es" data-src="../assets/documents/documents.json" data-asset-base="../" data-coming-soon="Próximamente.">
     <span hidden data-doc-category-label="reglamentos">Reglamentos</span><span hidden data-doc-category-label="convocatorias">Convocatorias</span><span hidden data-doc-category-label="calendarios">Calendarios</span><span hidden data-doc-category-label="formatos">Formatos</span>
     <label class="doc-search" for="doc-search-input">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <input type="search" id="doc-search-input" data-doc-search placeholder="Buscar documentos…">
     </label>
     <div data-doc-groups></div>
-    <p class="doc-empty" data-doc-empty hidden>Todavía no se han publicado documentos en esta categoría.</p>
+    <p class="doc-empty" data-doc-empty hidden>Ningún documento coincide con tu búsqueda.</p>
   </div>
 </section>
 

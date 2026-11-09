@@ -12,6 +12,7 @@
   var assetBase = root.getAttribute("data-asset-base") || "";
   var src = root.getAttribute("data-src") || "assets/documents/documents.json";
   var search = root.querySelector("[data-doc-search]");
+  var searchLabel = root.querySelector(".doc-search");
   var groupsEl = root.querySelector("[data-doc-groups]");
   var emptyEl = root.querySelector("[data-doc-empty]");
   var categoryLabels = {};
@@ -53,19 +54,25 @@
 
   function render(query) {
     var q = query.trim().toLowerCase();
+    var comingSoon = root.getAttribute("data-coming-soon") || "";
+    var hasDocuments = Object.keys(data).some(function (category) {
+      return (data[category] || []).length > 0;
+    });
+    if (searchLabel) searchLabel.hidden = !hasDocuments;
     groupsEl.innerHTML = "";
+    groupsEl.classList.toggle("doc-groups-soon", !hasDocuments);
     var anyResults = false;
 
-    Object.keys(data).forEach(function (category) {
+    Object.keys(categoryLabels).forEach(function (category) {
       var files = (data[category] || []).filter(function (f) {
         return !q || titleFromFile(f.file).toLowerCase().indexOf(q) !== -1;
       });
-      if (!files.length) return;
-      anyResults = true;
+      if (!files.length && q) return;
+      if (files.length) anyResults = true;
 
       var section = document.createElement("div");
       section.className = "doc-group";
-      var label = categoryLabels[category] || category;
+      var label = categoryLabels[category];
       var items = files
         .map(function (f) {
           var title = titleFromFile(f.file);
@@ -80,11 +87,13 @@
         })
         .join("");
 
-      section.innerHTML = "<h2>" + label + '</h2><ul class="doc-list">' + items + "</ul>";
+      section.innerHTML =
+        "<h2>" + label + "</h2>" +
+        (files.length ? '<ul class="doc-list">' + items + "</ul>" : '<p class="doc-empty">' + comingSoon + "</p>");
       groupsEl.appendChild(section);
     });
 
-    if (emptyEl) emptyEl.hidden = anyResults;
+    if (emptyEl) emptyEl.hidden = !q || anyResults;
   }
 
   if (search) {

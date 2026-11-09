@@ -58,7 +58,6 @@ export function render({ t, pagePath, lang }) {
     lang,
     pagePath,
     t,
-    eyebrow: "Legal",
     title: lang === "es" ? "Política de Cookies" : "Cookie Policy",
     effectiveDate: EFFECTIVE_DATE,
     sections,

@@ -7,14 +7,10 @@ function renderMain({ t, pagePath, lang }) {
     .join("");
 
   return `
-${renderPageHero({ t, eyebrow: t("documents.eyebrow"), title: t("documents.title"), lead: t("documents.lead") })}
-
-<div class="wrap back-top-bar">
-  <a class="back-home-top" href="${pagePath("index", lang)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${t("common.backHome")}</a>
-</div>
+${renderPageHero({ title: t("documents.title"), lead: t("documents.lead") })}
 
 <section class="section">
-  <div class="wrap" data-documents data-lang="${lang}" data-src="${pagePath.asset("assets/documents/documents.json")}" data-asset-base="${pagePath.base()}">
+  <div class="wrap" data-documents data-lang="${lang}" data-src="${pagePath.asset("assets/documents/documents.json")}" data-asset-base="${pagePath.base()}" data-coming-soon="${t("documents.comingSoon")}">
     ${categoryLabels}
     <label class="doc-search" for="doc-search-input">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>

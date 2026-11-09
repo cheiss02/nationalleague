@@ -132,7 +132,6 @@ export function render({ t, pagePath, lang, config }) {
     lang,
     pagePath,
     t,
-    eyebrow: lang === "es" ? "Legal" : "Legal",
     title: lang === "es" ? "Aviso de Privacidad" : "Privacy Policy",
     effectiveDate: EFFECTIVE_DATE,
     sections,
