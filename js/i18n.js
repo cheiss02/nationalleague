@@ -75,7 +75,7 @@ export const translations = {
       },
       "refund-policy": {
         title: "Refund Policy | National League Official Academies",
-        description: "Registration fees, refund windows, and cancellation terms for National League Official Academies.",
+        description: "Registration fees, refund terms, and season cancellations for National League Official Academies.",
       },
       accessibility: {
         title: "Accessibility | National League Official Academies",
@@ -370,7 +370,7 @@ export const translations = {
       },
       "refund-policy": {
         title: "Política de Reembolsos | National League Official Academies",
-        description: "Cuotas de registro, ventanas de reembolso y condiciones de cancelación de National League Official Academies.",
+        description: "Cuotas de registro, condiciones de reembolso y cancelación de temporadas de National League Official Academies.",
       },
       accessibility: {
         title: "Accesibilidad | National League Official Academies",

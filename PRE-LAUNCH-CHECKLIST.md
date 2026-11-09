@@ -17,11 +17,11 @@ The client confirmed their lawyer has reviewed the legal pages, so the draft ban
 
 `ENTITY` is "National League USA" and `ADDRESS` is "2884 Marie Dr, Riverside, CA 92509", in both `scripts/pages/privacy-policy.mjs` and `scripts/pages/terms-conditions.mjs`. (Earlier the client said the league's own registration/trademark was still in progress — worth double-checking with them that "National League USA" is the name they want on legal pages specifically, as opposed to just a working/brand name, since trademark registration being separate from "has a legal name to operate under" is a nuance an attorney should confirm during the item 2 review.)
 
-## 4. Registration fees and refund terms — model confirmed, amounts still pending
+## 4. Registration fees and refund terms — done
 
 The client confirmed the model: **fees are never published publicly on the site.** Once a team's or player's registration form is submitted and they meet the league's eligibility requirements, the fee is communicated to them directly. The Join page, About FAQ, and Refund Policy's "Registration fees" section all reflect this now.
 
-Still outstanding — the actual numbers, still marked as visible fill-ins on the Refund Policy page: `[REFUND DEADLINE]`, `[PARTIAL-REFUND WINDOW]`, `[HOW TO REQUEST A REFUND]`, `[REFUND PROCESSING TIME]`. Fill these in in `scripts/pages/refund-policy.mjs` (both languages) once the league decides on the refund window and process.
+Refund terms follow the same model: the client confirmed they're shared and discussed personally with each team or player at enrollment, so the Refund Policy publishes no deadlines or amounts. The cancellation and weather sections are unchanged.
 
 ## 5. Contact info and social links — done
 
