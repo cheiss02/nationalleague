@@ -1,7 +1,6 @@
 import { renderLegalPage } from "../lib/ssg.mjs";
 
 const EFFECTIVE_DATE = "[TODO: set before publishing]";
-const FEE = '<mark class="todo">[REGISTRATION FEE]</mark>';
 const DEADLINE = '<mark class="todo">[REFUND DEADLINE: __ days before season start]</mark>';
 const PARTIAL_WINDOW = '<mark class="todo">[PARTIAL-REFUND WINDOW: __ to __ days before season start]</mark>';
 const HOW_TO_REQUEST = '<mark class="todo">[HOW TO REQUEST A REFUND — e.g. email address or form link]</mark>';
@@ -11,7 +10,7 @@ function sectionsEn(t, pagePath, lang) {
   return [
     {
       heading: "Registration fees",
-      html: `<p>The registration fee for team/academy entry is ${FEE}. Player registration fee, if any, is ${FEE}. Fees will be confirmed on this page and communicated before registration opens.</p>`,
+      html: `<p>Registration fees are not published on this website. Once your team's or player's registration form is submitted and reviewed, and you meet the league's eligibility requirements, the applicable fee is communicated to you directly.</p>`,
     },
     {
       heading: "Refund window",
@@ -30,10 +29,6 @@ function sectionsEn(t, pagePath, lang) {
       html: `<p>To request a refund, contact ${HOW_TO_REQUEST}. Please include the academy or player name used at registration. Approved refunds are processed within ${PROCESSING_TIME}.</p>`,
     },
     {
-      heading: "No fees published yet",
-      html: `<p>Registration fees have not been published on the rest of the site. This page will be updated with final amounts and dates before registration fees are collected.</p>`,
-    },
-    {
       heading: "Contact",
       html: `<p>Questions about this policy can be sent through the <a href="${pagePath("contact", lang)}">Contact page</a>.</p>`,
     },
@@ -44,7 +39,7 @@ function sectionsEs(t, pagePath, lang) {
   return [
     {
       heading: "Cuotas de registro",
-      html: `<p>La cuota de registro para la inscripción de equipo/academia es ${FEE}. La cuota de registro de jugador, si aplica, es ${FEE}. Las cuotas se confirmarán en esta página y se comunicarán antes de que abra el registro.</p>`,
+      html: `<p>Las cuotas de registro no se publican en este sitio web. Una vez que se envíe y revise el formulario de registro de tu equipo o jugador, y cumplas con los requisitos de elegibilidad de la liga, la cuota correspondiente se te comunicará directamente.</p>`,
     },
     {
       heading: "Ventana de reembolso",
@@ -61,10 +56,6 @@ function sectionsEs(t, pagePath, lang) {
     {
       heading: "Cómo solicitar un reembolso",
       html: `<p>Para solicitar un reembolso, contacta a ${HOW_TO_REQUEST}. Incluye el nombre de la academia o del jugador usado al registrarse. Los reembolsos aprobados se procesan en ${PROCESSING_TIME}.</p>`,
-    },
-    {
-      heading: "Cuotas aún no publicadas",
-      html: `<p>Las cuotas de registro todavía no se han publicado en el resto del sitio. Esta página se actualizará con los montos y fechas finales antes de que se cobren las cuotas de registro.</p>`,
     },
     {
       heading: "Contacto",

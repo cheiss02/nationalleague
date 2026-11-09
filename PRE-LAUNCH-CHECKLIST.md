@@ -1,27 +1,27 @@
 # Pre-launch checklist
 
-## 1. Club and partner logo permission
+## 1. Club and partner logo permission — done
 
-Written permission for 7 of the 8 club crests and the Wame Sports logo **has been confirmed by the client.** The footer and Terms & Conditions no longer assert "...are used with permission," though — that claim was removed site-wide (see the commit that did it) rather than left in place, so there's nothing left to keep in sync here if a club's permission status changes later.
+Written permission for 7 of the 8 club crests and the Wame Sports logo **has been confirmed by the client.** The footer and Terms & Conditions no longer assert "...are used with permission" at all — that claim was removed site-wide rather than kept in sync per club.
 
-- **Club América is the exception.** Its logo-use permission is still unconfirmed, so its slug (`club-america`) has been added to `hiddenClubLogos` in `js/site-config.js`. It now shows as a text-only chip (same size/position as a crest) in the homepage marquee and on the Academies page, in both languages, and is excluded from the sitemap and JSON-LD.
-- **To re-enable it** once permission comes through: remove `"club-america"` from `hiddenClubLogos` in `js/site-config.js`, run `node scripts/build-site.mjs` to rebuild every page, then run `node scripts/process-assets.mjs` (needs `sharp`: `npm install --no-save sharp` if it's not already installed) to regenerate `assets/images/brand/nl-share.jpg` with the full 8-crest banner again.
-- Hiding a crest this way does **not** delete the file — `assets/images/clubs/club-america.*`, `_source-assets/banner-convocatoria.jpg`, and `assets/images/hero/hero-convocatoria.*` all still contain the crest and remain reachable by anyone who has or guesses the direct URL. That's expected and fine while permission is pending (nothing links to them), but delete those files yourself if Club América's permission is denied outright rather than just pending.
-- The crest/logo files themselves were cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available, Club América included if/when it's re-enabled. See `assets/images/README.md`.
+- **Club América** now shows its official academy crest ("Nido Águila") instead of the first-team crest, supplied by the client (`_source-assets/club-america-nido-aguila.jpg`, processed by `processCrestFromWhiteBg()` in `scripts/process-assets.mjs`). It's unhidden (`hiddenClubLogos` is empty in `js/site-config.js`) and shows normally everywhere.
+- The social-share image (`nl-share.jpg`) intentionally always uses the crest-free `banner-national-league.jpg` now rather than the old `banner-convocatoria.jpg` group photo, because that photo still has Club América's old first-team crest baked into its pixels and can't be selectively updated. If/when the client provides a new group photo with the current crest set, `process-assets.mjs`'s share-image logic can go back to using a real banner photo.
+- The other crest/logo files (everything but Club América) were still cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available. See `assets/images/README.md`.
+- **Still pending, not yet actionable:** the client mentioned (1) adding an "Academias Invitadas" (guest academies) section/concept to the Academies page, and (2) per-club venue/location info once each confirmed club's field is known. Neither has concrete content yet — the client said more clubs will be confirmed "next week" — so nothing was added; revisit once there's an actual list of guest academies and/or venues to publish.
 
 ## 2. Legal pages — attorney review
 
 Every page under **Legal** in the footer (Privacy Policy, Terms & Conditions, Cookie Policy, Refund Policy, Accessibility) currently shows a draft banner: *"Draft: have an attorney review before publishing."* Have an attorney review all five, then remove the banner (`renderLegalPage` in `scripts/lib/ssg.mjs`) and set each page's effective date (`EFFECTIVE_DATE` constant at the top of each `scripts/pages/*-policy.mjs` / `terms-conditions.mjs` / `accessibility.mjs` file).
 
-## 3. Legal entity name and address
+## 3. Legal entity name and address — address done, entity name still pending
 
-Search the codebase for `[TODO: legal entity name]` and `[TODO: mailing address]` (they appear as highlighted `<mark>` text on the Privacy Policy and Terms & Conditions pages) and fill them in. They currently appear in:
-- `scripts/pages/privacy-policy.mjs`
-- `scripts/pages/terms-conditions.mjs`
+The mailing address is filled in (`2884 Marie Dr, Riverside, CA 92509`, in `scripts/pages/privacy-policy.mjs`). The **legal entity name is still a `[TODO:` placeholder** in both `scripts/pages/privacy-policy.mjs` and `scripts/pages/terms-conditions.mjs` — the client said the league itself isn't formally registered/trademarked yet (Wame Sports, their tech partner, is already legally constituted as WAAKAT, SL; the league is still working on its own registration), and specifically asked not to put anything not yet confirmed. Fill in `ENTITY` in both files once that's done.
 
-## 4. Registration fees and refund terms
+## 4. Registration fees and refund terms — model confirmed, amounts still pending
 
-The Refund Policy page is a complete template with every number and deadline marked as a visible fill-in: `[REGISTRATION FEE]`, `[REFUND DEADLINE]`, `[PARTIAL-REFUND WINDOW]`, `[HOW TO REQUEST A REFUND]`, `[REFUND PROCESSING TIME]`. Fill these in in `scripts/pages/refund-policy.mjs` (both the English and Spanish sections) once the league decides on amounts and windows. No prices appear anywhere else on the site until this page is complete.
+The client confirmed the model: **fees are never published publicly on the site.** Once a team's or player's registration form is submitted and they meet the league's eligibility requirements, the fee is communicated to them directly. The Join page, About FAQ, and Refund Policy's "Registration fees" section all reflect this now.
+
+Still outstanding — the actual numbers, still marked as visible fill-ins on the Refund Policy page: `[REFUND DEADLINE]`, `[PARTIAL-REFUND WINDOW]`, `[HOW TO REQUEST A REFUND]`, `[REFUND PROCESSING TIME]`. Fill these in in `scripts/pages/refund-policy.mjs` (both languages) once the league decides on the refund window and process.
 
 ## 5. Contact info and social links — done
 

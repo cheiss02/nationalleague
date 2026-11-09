@@ -7,7 +7,8 @@
        and reciprocal (the EN and ES pages of a pair agree on both URLs)
      - every JSON-LD <script> block parses as valid JSON
      - no internal .html link (in an <a href>) points to a missing file
-     - no page references club-america.* (it's hidden pending permission)
+     - no page references the crest file of a club listed in
+       SITE_CONFIG.hiddenClubLogos
 
    Exits 1 and prints every issue found; exits 0 and prints a one-line
    summary when the site is clean.
@@ -115,7 +116,9 @@ for (const relPath of files) {
     if (!fileSet.has(resolved)) warn(`${relPath}: link to missing file (${href} -> ${resolved})`);
   }
 
-  if (html.includes("club-america")) warn(`${relPath}: references club-america (should be hidden pending permission)`);
+  for (const slug of SITE_CONFIG.hiddenClubLogos) {
+    if (html.includes(slug)) warn(`${relPath}: references "${slug}" (should be hidden — it's in hiddenClubLogos)`);
+  }
 }
 
 for (const [title, list] of titleMap) {

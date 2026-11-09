@@ -2,7 +2,7 @@ import { renderLegalPage } from "../lib/ssg.mjs";
 
 const EFFECTIVE_DATE = "[TODO: set before publishing]";
 const ENTITY = '<mark class="todo">[TODO: legal entity name]</mark>';
-const ADDRESS = '<mark class="todo">[TODO: mailing address]</mark>';
+const ADDRESS = "2884 Marie Dr, Riverside, CA 92509";
 
 function sectionsEn(t, pagePath, lang, config) {
   const termsHref = pagePath("terms-conditions", lang);
@@ -30,7 +30,7 @@ function sectionsEn(t, pagePath, lang, config) {
     },
     {
       heading: "Wame Sports",
-      html: `<p>Wame Sports is the League's technology partner, providing analytics tools, match video, and player profiles. Player information needed for league operations (category, academy, match history) may be shared with Wame Sports to provide these tools. Any use of a player's photo or video beyond league operations requires the separate, optional media-consent checkbox described on the Join page — it is never required to register.</p>`,
+      html: `<p>Wame Sports is the League's technology partner, providing the analytics tools, match video, and player-profile infrastructure behind ProyecTal, the League's own player-development platform. Player information needed for league operations (category, academy, match history) may be shared with Wame Sports to provide these tools. Wame Sports is operated by WAAKAT, SL, a legally constituted company based in Madrid, Spain; once a player's data is in Wame Sports' systems to build their sports profile, it is also governed by Wame Sports' own privacy policy, available at <a href="https://www.wamesports.com" target="_blank" rel="noopener noreferrer">wamesports.com</a>. Any use of a player's photo or video beyond league operations requires the separate, optional media-consent checkbox described on the Join page — it is never required to register.</p>`,
     },
     {
       heading: "Retention",
@@ -89,7 +89,7 @@ function sectionsEs(t, pagePath, lang, config) {
     },
     {
       heading: "Wame Sports",
-      html: `<p>Wame Sports es el socio tecnológico de la Liga y proporciona herramientas de análisis, video de partidos y perfiles de jugador. La información del jugador necesaria para la operación de la liga (categoría, academia, historial de partidos) puede compartirse con Wame Sports para brindar estas herramientas. Cualquier uso de la foto o video de un jugador más allá de la operación de la liga requiere la casilla de consentimiento de medios, separada y opcional, descrita en la página Forma Parte — nunca es obligatoria para registrarse.</p>`,
+      html: `<p>Wame Sports es el socio tecnológico de la Liga y proporciona las herramientas de análisis, video de partidos y la infraestructura de perfiles de jugador detrás de ProyecTal, la plataforma propia de la Liga para el desarrollo de jugadores. La información del jugador necesaria para la operación de la liga (categoría, academia, historial de partidos) puede compartirse con Wame Sports para brindar estas herramientas. Wame Sports es operada por WAAKAT, SL, una empresa legalmente constituida con sede en Madrid, España; una vez que los datos de un jugador están en los sistemas de Wame Sports para construir su perfil deportivo, también se rigen por el aviso de privacidad propio de Wame Sports, disponible en <a href="https://www.wamesports.com" target="_blank" rel="noopener noreferrer">wamesports.com</a>. Cualquier uso de la foto o video de un jugador más allá de la operación de la liga requiere la casilla de consentimiento de medios, separada y opcional, descrita en la página Forma Parte — nunca es obligatoria para registrarse.</p>`,
     },
     {
       heading: "Conservación de datos",

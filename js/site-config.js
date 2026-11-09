@@ -39,7 +39,7 @@ export const SITE_CONFIG = {
     clubs: true,
     wame: true,
   },
-  hiddenClubLogos: ["club-america"], // pending Club América's logo-use permission — see PRE-LAUNCH-CHECKLIST.md item 1
+  hiddenClubLogos: [], // Club América now shows its "Nido Águila" academy crest instead of the first-team crest — see PRE-LAUNCH-CHECKLIST.md item 1
 };
 
 /* The full club roster. "slug" matches the crest file name in

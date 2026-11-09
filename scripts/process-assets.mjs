@@ -18,7 +18,6 @@ import sharp from "sharp";
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SITE_CONFIG } from "../js/site-config.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const IMAGES = join(ROOT, "assets", "images");
@@ -75,13 +74,35 @@ async function processCrest(file, maxDim, outBase, label) {
   await writePngWebp(sharp(buffer), outBase, label);
 }
 
+/* Same trim-and-cap treatment as processCrest(), but for a source with a
+   flat white background instead of real alpha (e.g. a JPEG export) — keys
+   near-white pixels out to transparent first, then trims/resizes exactly
+   like the other crests so the output matches them. */
+async function processCrestFromWhiteBg(file, maxDim, outBase, label) {
+  const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const keyed = Buffer.from(data);
+  for (let i = 0; i < data.length; i += info.channels) {
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    if (r > 244 && g > 244 && b > 244) keyed[i + 3] = 0;
+  }
+  const keyedBuffer = await sharp(keyed, { raw: { width: info.width, height: info.height, channels: info.channels } })
+    .png()
+    .toBuffer();
+  await processCrest(keyedBuffer, maxDim, outBase, label);
+}
+
 async function run() {
-  /* ---- club crests: trim to content, cap at 480px on the long edge ---- */
+  /* ---- club crests: trim to content, cap at 480px on the long edge ----
+     Club América uses its official academy crest ("Nido Águila"), supplied
+     as a white-background JPEG, not the flyer-cutout treatment the other
+     seven get — see processCrestFromWhiteBg(). */
   const clubsDir = join(IMAGES, "clubs");
-  const clubs = ["chivas-guadalajara", "club-america", "la-galaxy", "lafc", "monterrey", "san-jose-earthquakes", "tijuana"];
-  for (const slug of clubs) {
+  const flyerCutoutClubs = ["chivas-guadalajara", "la-galaxy", "lafc", "monterrey", "san-jose-earthquakes", "tijuana"];
+  for (const slug of flyerCutoutClubs) {
     await processCrest(join(clubsDir, `${slug}.png`), 480, join(clubsDir, slug), `clubs/${slug}`);
   }
+  await processCrestFromWhiteBg(join(SRC, "club-america-nido-aguila.jpg"), 480, join(clubsDir, "club-america"), "clubs/club-america");
+
   /* atlas is a real SVG — just report its intrinsic size, nothing to raster */
   const atlasSvg = readFileSync(join(clubsDir, "atlas.svg"), "utf8");
   const vb = atlasSvg.match(/viewBox="[\d.\s-]*\s([\d.]+)\s+([\d.]+)"/);
@@ -184,12 +205,15 @@ async function run() {
      The convocatoria banner carries the crest + wordmark + the 8 club
      crests baked into its pixels as a flat photo — so unlike the live
      marquee/academies grid, SITE_CONFIG.logos.clubs/hiddenClubLogos can't
-     selectively "remove" one club from it. Whenever any club crest is
-     hidden (clubs:false, or any slug in hiddenClubLogos) fall back to the
-     national-league banner instead, which has no club crests in it at
-     all, so a hidden/unconfirmed club never appears in link previews. */
-  const anyClubHidden = !SITE_CONFIG.logos.clubs || SITE_CONFIG.hiddenClubLogos.length > 0;
-  const shareSrc = join(SRC, anyClubHidden ? "banner-national-league.jpg" : "banner-convocatoria.jpg");
+     selectively add/remove one club from it, and it can't be updated to
+     reflect Club América's crest now being the "Nido Águila" academy badge
+     instead of the first-team crest it still shows. Until someone produces
+     an updated group photo with the current crest set, always use the
+     national-league banner instead, which has no club crests in it at all
+     (also the right fallback whenever any club crest is hidden via
+     clubs:false or hiddenClubLogos, so a hidden/unconfirmed club never
+     appears in link previews either). */
+  const shareSrc = join(SRC, "banner-national-league.jpg");
   const shareMeta = await sharp(shareSrc).metadata();
   const srcRatio = shareMeta.width / shareMeta.height;
   const targetRatio = 1200 / 630;
