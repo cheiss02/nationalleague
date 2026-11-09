@@ -38,8 +38,8 @@ export const translations = {
         description: "Our mission, vision, categories, and how the National League Official Academies competitive structure works.",
       },
       academies: {
-        title: "Participating Academies | National League Official Academies",
-        description: "The official Liga MX and MLS club academies participating in the National League.",
+        title: "Invited Academies | National League Official Academies",
+        description: "The official Liga MX and MLS club academies invited to the National League.",
       },
       wame: {
         title: "Wame Sports Partnership | National League Official Academies",
@@ -159,11 +159,11 @@ export const translations = {
 
     academies: {
       eyebrow: "Academies",
-      title: "Participating academies",
+      title: "Invited academies",
       lead: "National League Official Academies brings together the official youth academies of these Liga MX and MLS clubs. Participation refers to each club's official academy program, not the first team.",
       ligaMxLabel: "Liga MX Academy",
       mlsLabel: "MLS Academy",
-      note: "Club names and crests are shown to identify each participating academy. This list does not imply that Liga MX, MLS, or any club sponsors, endorses, or operates the National League.",
+      note: "Club names and crests are shown to identify each invited academy. This list does not imply that Liga MX, MLS, or any club sponsors, endorses, or operates the National League.",
     },
 
     about: {
@@ -254,7 +254,7 @@ export const translations = {
     },
 
     marquee: {
-      heading: "Participating academies",
+      heading: "Invited academies",
     },
 
     home: {
@@ -272,7 +272,7 @@ export const translations = {
       exploreTitle: "Get to know the National League",
       exploreItems: [
         { title: "About", text: "Our mission, vision, and how the league works." },
-        { title: "Academies", text: "The participating Liga MX and MLS academies." },
+        { title: "Academies", text: "The invited Liga MX and MLS academies." },
         { title: "Wame Sports", text: "Analytics, match video, and player profiles." },
         { title: "News", text: "Tournament updates, calls, and results." },
         { title: "Documents", text: "Rules, calls for registration, and calendars." },
@@ -333,8 +333,8 @@ export const translations = {
         description: "Nuestra misión, visión, categorías y cómo funciona la estructura competitiva de National League Official Academies.",
       },
       academies: {
-        title: "Academias Participantes | National League Official Academies",
-        description: "Las academias oficiales de clubes de Liga MX y MLS que participan en la National League.",
+        title: "Academias Invitadas | National League Official Academies",
+        description: "Las academias oficiales de clubes de Liga MX y MLS invitadas a la National League.",
       },
       wame: {
         title: "Alianza con Wame Sports | National League Official Academies",
@@ -454,11 +454,11 @@ export const translations = {
 
     academies: {
       eyebrow: "Academias",
-      title: "Academias participantes",
+      title: "Academias invitadas",
       lead: "National League Official Academies reúne a las academias juveniles oficiales de estos clubes de Liga MX y MLS. La participación se refiere al programa de academia oficial de cada club, no al primer equipo.",
       ligaMxLabel: "Academia de Liga MX",
       mlsLabel: "Academia de MLS",
-      note: "Los nombres y escudos de los clubes se muestran para identificar a cada academia participante. Esta lista no implica que la Liga MX, la MLS o algún club patrocinen, avalen u operen la National League.",
+      note: "Los nombres y escudos de los clubes se muestran para identificar a cada academia invitada. Esta lista no implica que la Liga MX, la MLS o algún club patrocinen, avalen u operen la National League.",
     },
 
     about: {
@@ -549,7 +549,7 @@ export const translations = {
     },
 
     marquee: {
-      heading: "Academias participantes",
+      heading: "Academias invitadas",
     },
 
     home: {
@@ -567,7 +567,7 @@ export const translations = {
       exploreTitle: "Conoce la National League",
       exploreItems: [
         { title: "La Liga", text: "Nuestra misión, visión y cómo funciona la liga." },
-        { title: "Academias", text: "Las academias participantes de Liga MX y MLS." },
+        { title: "Academias", text: "Las academias invitadas de Liga MX y MLS." },
         { title: "Wame Sports", text: "Análisis, video de partidos y perfiles de jugadores." },
         { title: "Noticias", text: "Novedades del torneo, convocatorias y resultados." },
         { title: "Documentos", text: "Reglamentos, convocatorias y calendarios." },

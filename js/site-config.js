@@ -46,7 +46,7 @@ export const SITE_CONFIG = {
    assets/images/clubs/ (slug + ".png" or ".svg"). League is "liga-mx" or
    "mls" — used only for factual grouping, never phrased as an endorsement. */
 export const CLUBS = [
-  { slug: "club-america", name: "Club América", league: "liga-mx", ext: "png" },
+  { slug: "club-america", name: "Nido Águila", league: "liga-mx", ext: "png" },
   { slug: "chivas-guadalajara", name: "Chivas Guadalajara", league: "liga-mx", ext: "png" },
   { slug: "atlas", name: "Atlas FC", league: "liga-mx", ext: "svg" },
   { slug: "monterrey", name: "CF Monterrey", league: "liga-mx", ext: "png" },
