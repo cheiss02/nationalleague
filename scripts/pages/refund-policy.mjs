@@ -1,6 +1,6 @@
 import { renderLegalPage } from "../lib/ssg.mjs";
 
-const EFFECTIVE_DATE = "[TODO: set before publishing]";
+const EFFECTIVE_DATE = { en: "January 1, 2027", es: "1 de enero de 2027" };
 
 function sectionsEn(t, pagePath, lang) {
   return [
@@ -10,15 +10,7 @@ function sectionsEn(t, pagePath, lang) {
     },
     {
       heading: "Refund terms",
-      html: `<p>Refund terms, including deadlines and how to request a refund, are shared and discussed with each team or player personally at the time of enrollment.</p>`,
-    },
-    {
-      heading: "If the League cancels a season or tournament",
-      html: `<p>If the League cancels a season or a specific tournament before it begins, registered teams and players will be offered a full refund or credit toward a future season, at the registrant's choice.</p>`,
-    },
-    {
-      heading: "Weather and other disruptions",
-      html: `<p>Matches postponed or affected by weather or similar circumstances will be rescheduled when possible. This does not, on its own, entitle a registrant to a refund.</p>`,
+      html: `<p>All refunds are handled in person with each team or player at the time of enrollment. This includes deadlines, how to request a refund, and what happens if a season, tournament, or match is cancelled or postponed.</p>`,
     },
     {
       heading: "Contact",
@@ -35,15 +27,7 @@ function sectionsEs(t, pagePath, lang) {
     },
     {
       heading: "Condiciones de reembolso",
-      html: `<p>Las condiciones de reembolso, incluidos los plazos y la forma de solicitarlo, se comparten y conversan personalmente con cada equipo o jugador al momento de su inscripción.</p>`,
-    },
-    {
-      heading: "Si la Liga cancela una temporada o torneo",
-      html: `<p>Si la Liga cancela una temporada o un torneo específico antes de que comience, a los equipos y jugadores registrados se les ofrecerá un reembolso completo o un crédito para una temporada futura, a elección de quien se registró.</p>`,
-    },
-    {
-      heading: "Clima y otras interrupciones",
-      html: `<p>Los partidos pospuestos o afectados por el clima u otras circunstancias similares se reprogramarán cuando sea posible. Esto, por sí solo, no da derecho a un reembolso.</p>`,
+      html: `<p>Todos los reembolsos se manejan en persona con cada equipo o jugador al momento de su inscripción. Esto incluye los plazos, la forma de solicitar un reembolso y lo que sucede si se cancela o pospone una temporada, un torneo o un partido.</p>`,
     },
     {
       heading: "Contacto",

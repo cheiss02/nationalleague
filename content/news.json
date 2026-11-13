@@ -1,30 +1,44 @@
 [
   {
-    "slug_en": "wame-sports-partnership",
-    "slug_es": "wame-sports-alianza",
-    "date": "2026-11-15",
-    "category": "general",
-    "title_en": "National League names Wame Sports its technology partner",
-    "title_es": "National League y Wame Sports anuncian alianza tecnológica",
-    "excerpt_en": "National League Official Academies confirmed its partnership with Wame Sports as the league's official technology partner. Through this partnership, registered academies and players will have access to analytics tools, match video, and player profiles as the season progresses.",
-    "excerpt_es": "National League Official Academies confirmó su alianza con Wame Sports como socio tecnológico oficial de la liga. A través de esta alianza, las academias y jugadores registrados tendrán acceso a herramientas de análisis, video de partidos y perfiles de jugador conforme avance la temporada.",
+    "slug_en": "official-call-for-teams-open",
+    "slug_es": "convocatoria-oficial-abierta",
+    "date": "2026-11-12",
+    "category": "convocatoria",
+    "title_en": "The official call for teams is open",
+    "title_es": "Abierta la convocatoria oficial para equipos",
+    "excerpt_en": "National League Official Academies is officially opening its call for teams. The league is for the official academies of Liga MX and MLS clubs.",
+    "excerpt_es": "National League Official Academies abre oficialmente su convocatoria para recibir equipos. La liga está dirigida a las academias oficiales de clubes de la Liga MX y la MLS.",
     "image": "",
     "image_alt_en": "",
     "image_alt_es": "",
-    "sample": true
+    "sample": false
   },
   {
-    "slug_en": "welcome-2027-season",
-    "slug_es": "bienvenida-temporada-2027",
-    "date": "2026-11-01",
+    "slug_en": "welcome-invited-academies",
+    "slug_es": "bienvenida-academias-invitadas",
+    "date": "2026-11-12",
     "category": "general",
-    "title_en": "Welcome to the National League's 2027 season",
-    "title_es": "Bienvenida a la temporada 2027 de la National League",
-    "excerpt_en": "National League Official Academies welcomes the official Liga MX and MLS academies preparing for the season starting in February 2027. Over the coming weeks we'll share calls for registration, tournament dates, and the calendar for the U17, U15, U13, and U11 categories here.",
-    "excerpt_es": "National League Official Academies da la bienvenida a las academias oficiales de Liga MX y MLS que se preparan para la temporada que inicia en febrero de 2027. En las próximas semanas compartiremos aquí las convocatorias, fechas de torneo y el calendario de categorías Sub 17, Sub 15, Sub 13 y Sub 11.",
+    "title_en": "Welcome to our invited academies",
+    "title_es": "Bienvenidas, academias invitadas",
+    "excerpt_en": "National League Official Academies welcomes the first academies invited to the league: Nido Águila, Chivas Guadalajara, Atlas FC, CF Monterrey, and Club Tijuana from Liga MX, and LAFC, LA Galaxy, and San Jose Earthquakes from MLS.",
+    "excerpt_es": "National League Official Academies da la bienvenida a las primeras academias invitadas a la liga: Nido Águila, Chivas Guadalajara, Atlas FC, CF Monterrey y Club Tijuana, de la Liga MX, y LAFC, LA Galaxy y San Jose Earthquakes, de la MLS.",
     "image": "",
     "image_alt_en": "",
     "image_alt_es": "",
-    "sample": true
+    "sample": false
+  },
+  {
+    "slug_en": "how-we-use-wame-sports",
+    "slug_es": "asi-usamos-wame-sports",
+    "date": "2026-11-12",
+    "category": "general",
+    "title_en": "How the National League uses Wame Sports",
+    "title_es": "Así usamos la tecnología de Wame Sports",
+    "excerpt_en": "National League Official Academies works with Wame Sports as its technology partner. Together we built ProyecTal, the league's own program for the development and projection of its players.",
+    "excerpt_es": "National League Official Academies trabaja con Wame Sports como su socio tecnológico. Juntos desarrollamos ProyecTal, el programa propio de la liga para el desarrollo y la proyección de sus jugadores.",
+    "image": "",
+    "image_alt_en": "",
+    "image_alt_es": "",
+    "sample": false
   }
 ]

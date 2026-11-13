@@ -302,7 +302,7 @@ ${renderPageHero({ title })}
 <section class="section">
   <div class="wrap legal-content">
     ${body}
-    <p class="fine-print">${lang === "es" ? "Fecha de vigencia" : "Effective date"}: ${effectiveDate}</p>
+    <p class="fine-print">${lang === "es" ? "Fecha de vigencia" : "Effective date"}: ${effectiveDate[lang]}</p>
   </div>
 </section>
 `;

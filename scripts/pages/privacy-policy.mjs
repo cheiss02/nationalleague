@@ -1,6 +1,6 @@
 import { renderLegalPage } from "../lib/ssg.mjs";
 
-const EFFECTIVE_DATE = "[TODO: set before publishing]";
+const EFFECTIVE_DATE = { en: "January 1, 2027", es: "1 de enero de 2027" };
 const ENTITY = "National League USA";
 const ADDRESS = "2884 Marie Dr, Riverside, CA 92509";
 

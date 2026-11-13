@@ -26,7 +26,8 @@
     var src = listEl.getAttribute("data-src") || "content/news.json";
     var grid = listEl.querySelector("[data-news-grid]");
     var emptyEl = listEl.querySelector("[data-news-empty]");
-    var filters = Array.prototype.slice.call(listEl.querySelectorAll("[data-news-filter]"));
+    /* the filter buttons sit above the list, not inside it */
+    var filters = Array.prototype.slice.call(document.querySelectorAll("[data-news-filter]"));
     var sampleLabel = listEl.getAttribute("data-sample-label") || "Sample";
 
     var allPostsCache = [];
@@ -36,9 +37,8 @@
         return r.ok ? r.json() : [];
       })
       .then(function (posts) {
-        allPostsCache = (posts || []).slice().sort(function (a, b) {
-          return a.date < b.date ? 1 : -1;
-        });
+        /* already newest-first from the build, with a fixed order for same-day posts */
+        allPostsCache = (posts || []).slice();
         renderList(allPostsCache, "all");
       })
       .catch(function () {

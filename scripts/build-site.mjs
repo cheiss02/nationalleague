@@ -80,7 +80,8 @@ function buildNews() {
       sample: data.sample === "true",
     };
   });
-  posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  /* newest first; same-day posts by file name, descending, so the order never shifts */
+  posts.sort((a, b) => (b.date + b.slug_es).localeCompare(a.date + a.slug_es));
 
   const manifest = posts.map(({ body_en, body_es, ...rest }) => rest);
   writeFileSync(join(ROOT, "content", "news.json"), JSON.stringify(manifest, null, 2) + "\n");

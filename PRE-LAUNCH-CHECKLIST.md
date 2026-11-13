@@ -9,9 +9,9 @@ Written permission for 7 of the 8 club crests and the Wame Sports logo **has bee
 - The other crest/logo files (everything but Club América) were still cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available. See `assets/images/README.md`.
 - **Still pending, not yet actionable:** the client mentioned (1) adding an "Academias Invitadas" (guest academies) section/concept to the Academies page, and (2) per-club venue/location info once each confirmed club's field is known. Neither has concrete content yet — the client said more clubs will be confirmed "next week" — so nothing was added; revisit once there's an actual list of guest academies and/or venues to publish.
 
-## 2. Legal pages — attorney review done
+## 2. Legal pages — done
 
-The client confirmed their lawyer has reviewed the legal pages, so the draft banner is gone. Still to do: set each page's effective date (`EFFECTIVE_DATE` constant at the top of each `scripts/pages/*-policy.mjs` / `terms-conditions.mjs` / `accessibility.mjs` file).
+The client confirmed their lawyer has reviewed the legal pages, so the draft banner is gone. Effective date is January 1, 2027 on all five legal pages (`EFFECTIVE_DATE` at the top of each file, one value per language).
 
 ## 3. Legal entity name and address — done
 
@@ -21,13 +21,13 @@ The client confirmed their lawyer has reviewed the legal pages, so the draft ban
 
 The client confirmed the model: **fees are never published publicly on the site.** Once a team's or player's registration form is submitted and they meet the league's eligibility requirements, the fee is communicated to them directly. The Join page, About FAQ, and Refund Policy's "Registration fees" section all reflect this now.
 
-Refund terms follow the same model: the client confirmed they're shared and discussed personally with each team or player at enrollment, so the Refund Policy publishes no deadlines or amounts. The cancellation and weather sections are unchanged.
+Refunds follow the same model: the client confirmed all refunds and prices are handled in person at enrollment, including cancelled or postponed seasons, tournaments and matches. The Refund Policy publishes no deadlines, amounts or cancellation promises.
 
 ## 5. Contact info and social links — done
 
 `js/site-config.js` now has the league's email, phone, Instagram, and Facebook (TikTok/YouTube/X left empty, so those icons stay hidden). They're live in the footer, Contact page, JSON-LD, and `llms.txt` on every rebuild.
 
-## 6. Google Forms — data minimization and consent questions
+## 6. Google Forms — done (client confirmed)
 
 See `FORMS-CHECKLIST.md` for the exact fields and consent checkboxes to add inside both Google Forms before launch. The website's own consent checkboxes are a gate to opening the form, not the legal record of consent — that record has to live in the form itself.
 
