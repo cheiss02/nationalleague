@@ -13,8 +13,8 @@ function sectionsEn(t, pagePath, lang) {
       html: `<p>Semantic landmarks and a logical heading structure on every page; a visible "skip to content" link; full keyboard support, including the Join page's consent checkboxes and gated buttons; a 3:1-minimum focus ring on every interactive element; alt text on every image, in both languages; 44×44px minimum touch targets; text that resizes to 200% without breaking; and full support for <code>prefers-reduced-motion</code>, including the logo marquee and button animations.</p>`,
     },
     {
-      heading: "Known limitations",
-      html: `<p>Team and player registration forms are hosted by Google Forms, a third-party tool outside our direct control. We've linked to them (rather than embedding them) partly so that visitors always interact with Google's own accessible form interface directly, not through an iframe.</p>`,
+      heading: "Forms",
+      html: `<p>The team and player registration forms on the Join page and the message form on the Contact page are built into the site, with a visible label on every field, error messages that screen readers announce, and full keyboard support. If you have trouble with them, email or call us and we'll help another way.</p>`,
     },
     {
       heading: "Reporting a problem",
@@ -34,8 +34,8 @@ function sectionsEs(t, pagePath, lang) {
       html: `<p>Puntos de referencia semánticos y una estructura de encabezados lógica en cada página; un enlace visible "saltar al contenido"; soporte completo de teclado, incluyendo las casillas de consentimiento y los botones condicionados de la página Forma Parte; un anillo de enfoque con contraste mínimo 3:1 en cada elemento interactivo; texto alternativo en cada imagen, en ambos idiomas; objetivos táctiles de al menos 44×44px; texto que se amplía al 200% sin romperse; y soporte completo para <code>prefers-reduced-motion</code>, incluyendo el carrusel de escudos y las animaciones de los botones.</p>`,
     },
     {
-      heading: "Limitaciones conocidas",
-      html: `<p>Los formularios de registro de equipos y jugadores están alojados en Google Forms, una herramienta de terceros fuera de nuestro control directo. Los enlazamos (en lugar de incrustarlos) en parte para que quien visite el sitio siempre interactúe directamente con la propia interfaz accesible de Google, no a través de un iframe.</p>`,
+      heading: "Formularios",
+      html: `<p>Los formularios de registro de equipos y jugadores de la página Forma Parte y el formulario de mensajes de la página de Contacto están integrados en el sitio, con una etiqueta visible en cada campo, mensajes de error que los lectores de pantalla anuncian y uso completo con teclado. Si tienes problemas con ellos, escríbenos o llámanos y te ayudaremos por otro medio.</p>`,
     },
     {
       heading: "Reportar un problema",

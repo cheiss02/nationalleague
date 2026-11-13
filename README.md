@@ -68,9 +68,9 @@ To re-process images (after replacing something in `_source-assets/` or `assets/
 node scripts/process-assets.mjs
 ```
 
-## Changing form links
+## Website forms
 
-Edit `js/site-config.js` → `forms.teams` / `forms.players`, then rebuild. Both the Join page and this file are the only places these URLs live.
+The Join page (Teams and Players) and the Contact page have their own forms, built from `scripts/lib/forms.mjs` and sent by `js/registration-form.js` to FormSubmit (`forms.endpoint` in `js/site-config.js`), which emails them to the league. The address needs a one-time activation after launch: `REGISTRATION-FORM-SETUP.md`.
 
 ## Changing colors / fonts
 
@@ -124,14 +124,14 @@ Only use one hosting path at a time — pointing GoDaddy's DNS at both will conf
 
 ## Security
 
-- Content-Security-Policy meta tag locked to `'self'` for everything (scripts, styles, fonts, connect) — there are no third-party script/style/font hosts anywhere on the site, since fonts are self-hosted and the registration forms are *linked*, never embedded.
+- Content-Security-Policy meta tag locked to `'self'` for everything (scripts, styles, fonts, connect) — there are no third-party script/style/font hosts anywhere on the site, since fonts are self-hosted and the site's forms are its own. `connect-src` also allows the one FormSubmit origin the forms send to (added automatically from `forms.endpoint` by `scripts/lib/ssg.mjs`).
 - `img-src 'self' data:` (the `data:` allowance is for nothing currently in use, kept as a narrow, standard allowance).
 - No `X-Frame-Options`/`frame-ancestors` HTTP header is possible on GitHub Pages, so `js/layout.js` runs a JS clickjacking guard on every page instead (breaks out of a hostile frame, or hides the page if it can't).
 - `rel="noopener noreferrer"` on every `target="_blank"` link.
 
 ## Cookies and third-party requests
 
-Zero cookies, zero third-party requests. See `cookie-policy.html` for the full explanation — the short version: fonts are self-hosted, forms are linked not embedded, there's no analytics or tracking pixel of any kind. `localStorage` holds exactly one thing (the language preference), which is why there's no cookie banner.
+Zero cookies, and the only third-party request is a form submission to FormSubmit, sent without cookies. See `cookie-policy.html` for the full explanation — the short version: fonts are self-hosted, the forms load no third-party scripts, there's no analytics or tracking pixel of any kind. `localStorage` holds exactly one thing (the language preference), which is why there's no cookie banner.
 
 ## Still outstanding before launch
 

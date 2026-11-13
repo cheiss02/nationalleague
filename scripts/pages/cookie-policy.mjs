@@ -6,7 +6,7 @@ function sectionsEn(t, pagePath, lang) {
   return [
     {
       heading: "This site does not use cookies",
-      html: `<p>National League Official Academies does not set any cookies, and does not use Google Analytics, Meta Pixel, or any other tracking technology. Fonts are self-hosted and registration forms are linked (not embedded), so no third-party cookies are set by visiting this site either.</p>`,
+      html: `<p>National League Official Academies does not set any cookies, and does not use Google Analytics, Meta Pixel, or any other tracking technology. Fonts are self-hosted and the site's forms send their answers without loading any third-party scripts or cookies, so no third-party cookies are set by visiting this site either.</p>`,
     },
     {
       heading: "What we do store",
@@ -31,7 +31,7 @@ function sectionsEs(t, pagePath, lang) {
   return [
     {
       heading: "Este sitio no usa cookies",
-      html: `<p>National League Official Academies no instala cookies, y no usa Google Analytics, Meta Pixel ni ninguna otra tecnología de rastreo. Las fuentes están alojadas en nuestro propio servidor y los formularios de registro están enlazados (no incrustados), por lo que tampoco se instalan cookies de terceros al visitar este sitio.</p>`,
+      html: `<p>National League Official Academies no instala cookies, y no usa Google Analytics, Meta Pixel ni ninguna otra tecnología de rastreo. Las fuentes están alojadas en nuestro propio servidor y los formularios del sitio envían sus respuestas sin cargar scripts ni cookies de terceros, por lo que tampoco se instalan cookies de terceros al visitar este sitio.</p>`,
     },
     {
       heading: "Qué sí almacenamos",

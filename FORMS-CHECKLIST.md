@@ -1,5 +1,7 @@
 # Forms checklist
 
+> **No longer used by the site.** The website now has its own forms (see `REGISTRATION-FORM-SETUP.md`), and its fields come from `scripts/pages/join.mjs` and `scripts/pages/contact.mjs`. This list is kept only as a record of the data-minimization rules behind those fields.
+
 The website links to two Google Forms rather than embedding them (see the Cookie Policy for why). The website's consent checkboxes are a **gate to opening the form**, not the legal record — the real consent record has to come from inside the Google Form itself. Make these changes directly in both forms before launch.
 
 ## Teams / Academies form

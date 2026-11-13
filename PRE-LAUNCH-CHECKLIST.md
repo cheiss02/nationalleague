@@ -27,9 +27,12 @@ Refunds follow the same model: the client confirmed all refunds and prices are h
 
 `js/site-config.js` now has the league's email, phone, Instagram, and Facebook (TikTok/YouTube/X left empty, so those icons stay hidden). They're live in the footer, Contact page, JSON-LD, and `llms.txt` on every rebuild.
 
-## 6. Google Forms — done (client confirmed)
+## 6. Website forms — built, activate after launch
 
-See `FORMS-CHECKLIST.md` for the exact fields and consent checkboxes to add inside both Google Forms before launch. The website's own consent checkboxes are a gate to opening the form, not the legal record of consent — that record has to live in the form itself.
+The site no longer links to Google Forms. The Join page has its own Teams form (the same questions as the "Formulario equipos" Google Form) and Players form, and the Contact page has a message form. All three send through FormSubmit straight to info@nationalleagueusa.com.
+
+- **Right after launch:** send one test from the live site and click **Activate Form** in the email FormSubmit sends to info@nationalleagueusa.com. Nothing is delivered until then. Steps: `REGISTRATION-FORM-SETUP.md`.
+- **Lawyer:** the Privacy Policy now names FormSubmit and describes the on-site forms instead of Google Forms. The Cookie Policy, Accessibility page, and the Join page's privacy notices changed to match. Worth a look before launch, especially since player registrations include minors' details.
 
 ## 7. Domain and hosting
 

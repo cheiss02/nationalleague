@@ -1,6 +1,7 @@
 import { renderPageHero, SOCIAL_ICONS } from "../lib/ssg.mjs";
+import { input, textarea, renderForm } from "../lib/forms.mjs";
 
-function renderMain({ t, pagePath, lang, config }) {
+function contactCards({ t, config }) {
   const cards = [];
   if (config.email) {
     cards.push(`<div class="contact-card"><h2>${t("contact.emailTitle")}</h2><a href="mailto:${config.email}">${config.email}</a></div>`);
@@ -15,15 +16,41 @@ function renderMain({ t, pagePath, lang, config }) {
       .join("");
     cards.push(`<div class="contact-card"><h2>${t("contact.socialTitle")}</h2><ul class="social">${links}</ul></div>`);
   }
+  return cards.length ? cards.join("") : `<p class="fine-print">${t("contact.noneYet")}</p>`;
+}
 
-  const cardsHtml = cards.length ? cards.join("") : `<p class="fine-print">${t("contact.noneYet")}</p>`;
+/* message form; see REGISTRATION-FORM-SETUP.md for how it sends */
+function messageForm({ t, lang, pagePath, config }) {
+  const c = t("contact.form");
+  const msgs = { ...t("join.form"), sending: c.sending, failed: c.failed };
+  const kind = "contact";
+  const notice = c.notice.replace(/PRIVACY_HREF/g, pagePath("privacy-policy", lang));
+  const fields = [
+    input({ form: kind, name: "name", label: c.name, autocomplete: "name", wide: true }),
+    input({ form: kind, name: "email", label: c.email, type: "email", autocomplete: "email", maxlength: 254 }),
+    input({ form: kind, name: "phone", label: c.phone, type: "tel", autocomplete: "tel", maxlength: 30, required: false }),
+    textarea({ form: kind, name: "message", label: c.message, maxlength: 2000, rows: 6 }),
+  ];
+  return `
+<div class="join-card contact-form-card">
+  <h2>${c.title}</h2>
+  <div class="privacy-notice">${notice}</div>
+  <noscript><p class="consent-error is-visible">${c.noJs.replace(/EMAIL/g, `<a href="mailto:${config.email}">${config.email}</a>`)}</p></noscript>
+  ${renderForm({ kind, lang, msgs, email: config.email, fields, submitLabel: c.submit, successTitle: c.successTitle, successBody: c.successBody, mailSubject: c.mailSubject })}
+</div>`;
+}
+
+function renderMain(ctx) {
+  const { t, pagePath, lang } = ctx;
+  const cards = contactCards(ctx);
 
   return `
 ${renderPageHero({ title: t("contact.title"), lead: t("contact.lead") })}
 
 <section class="section">
-  <div class="wrap">
-    <div class="contact-grid">${cardsHtml}</div>
+  <div class="wrap contact-layout">
+    ${messageForm(ctx)}
+    <div class="contact-grid is-stacked">${cards}</div>
   </div>
 </section>
 
@@ -47,5 +74,5 @@ export function render(ctx) {
       { "@type": "ListItem", position: 2, name: t("nav.contact"), item: pagePath.abs("contact", lang) },
     ],
   };
-  return { bodyHtml: renderMain(ctx), jsonLd, scripts: [] };
+  return { bodyHtml: renderMain(ctx), jsonLd, scripts: ["js/registration-form.js"] };
 }

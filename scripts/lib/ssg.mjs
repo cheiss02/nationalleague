@@ -104,8 +104,16 @@ function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+/* Where the site's forms send (SITE_CONFIG.forms.endpoint, FormSubmit).
+   The CSP allows connections to that one origin and nothing else. */
+export const FORM_ENDPOINT = (SITE_CONFIG.forms.endpoint || "").trim();
+
+function formOrigins() {
+  return FORM_ENDPOINT ? " " + new URL(FORM_ENDPOINT).origin : "";
+}
+
 const CSP =
-  "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests";
+  `default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'${formOrigins()}; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests`;
 
 /* Renders one full HTML document: <head> boilerplate (CSP, OG/Twitter,
    canonical + hreflang alternates, favicons, self-hosted fonts, JSON-LD) +

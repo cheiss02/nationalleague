@@ -1,61 +1,90 @@
-import { renderPageHero, ballButtonInner } from "../lib/ssg.mjs";
+import { renderPageHero, CLUBS } from "../lib/ssg.mjs";
+import { attr, input, textarea, radios, select, checkbox, renderForm } from "../lib/forms.mjs";
 
 function withHrefs(html, privacyHref, termsHref) {
   return html.replace(/PRIVACY_HREF/g, privacyHref).replace(/TERMS_HREF/g, termsHref);
 }
 
-function renderMain({ t, pagePath, lang, config }) {
+function birthYearOptions(t) {
+  const out = [];
+  for (const cat of t("about.categoryYears")) {
+    const [from, to] = cat.years.split(/[–-]/).map(Number);
+    for (let y = from; y <= to; y++) out.push([String(y), `${y} · ${cat.code}`]);
+  }
+  return out.sort((a, b) => Number(a[0]) - Number(b[0]));
+}
+
+function registrationForm({ t, lang, kind, privacyHref, termsHref, email }) {
+  const f = t("join.form");
+  const k = f[kind];
+  const consentLabel = withHrefs(t(`join.${kind}.consentLabel`), privacyHref, termsHref);
+  const fields =
+    kind === "teams"
+      ? [
+          input({ form: kind, name: "academy", label: k.academy, autocomplete: "organization", wide: true }),
+          input({ form: kind, name: "club", label: k.club, list: "club-names", wide: true }),
+          input({ form: kind, name: "state", label: k.state, autocomplete: "address-level1" }),
+          input({ form: kind, name: "city", label: k.city, autocomplete: "address-level2" }),
+          textarea({ form: kind, name: "facilitiesAddress", label: k.facilitiesAddress }),
+          radios({ form: kind, name: "ownFacilities", label: k.ownFacilities, options: [[k.yes, k.yes], [k.no, k.no]] }),
+          textarea({ form: kind, name: "categoriesPlayers", label: k.categoriesPlayers }),
+          textarea({ form: kind, name: "links", label: k.links, required: false }),
+          input({ form: kind, name: "contactName", label: k.contactName, autocomplete: "name", wide: true }),
+          input({ form: kind, name: "contactRole", label: k.contactRole, autocomplete: "organization-title", wide: true }),
+          input({ form: kind, name: "contactPhone", label: k.contactPhone, type: "tel", autocomplete: "tel", maxlength: 30 }),
+          input({ form: kind, name: "contactEmail", label: k.contactEmail, type: "email", autocomplete: "email", maxlength: 254 }),
+        ]
+      : [
+          input({ form: kind, name: "playerName", label: k.playerName, wide: true }),
+          select({ form: kind, name: "birthYear", label: k.birthYear, options: birthYearOptions(t), choose: f.choose }),
+          select({ form: kind, name: "position", label: k.position, options: k.positions.map((p) => [p, p]), choose: f.choose }),
+          input({ form: kind, name: "currentClub", label: k.currentClub, list: "club-names", wide: true }),
+          input({ form: kind, name: "guardianName", label: k.guardianName, autocomplete: "name", wide: true }),
+          input({ form: kind, name: "guardianEmail", label: k.guardianEmail, type: "email", autocomplete: "email", maxlength: 254 }),
+          input({ form: kind, name: "guardianPhone", label: k.guardianPhone, type: "tel", autocomplete: "tel", maxlength: 30 }),
+        ];
+  const checks =
+    kind === "teams"
+      ? [
+          checkbox({ form: kind, name: "consentTerms", label: consentLabel, missing: t("join.missingTerms") }),
+          checkbox({ form: kind, name: "contactByPhone", label: k.contactByPhone, required: false }),
+        ]
+      : [
+          checkbox({ form: kind, name: "consentTerms", label: consentLabel, missing: t("join.missingTerms") }),
+          checkbox({ form: kind, name: "consentGuardian", label: t("join.players.guardianLabel"), missing: t("join.missingGuardian") }),
+          checkbox({ form: kind, name: "consentMedia", label: k.mediaLabel, required: false }),
+        ];
+
+  return renderForm({ kind, lang, msgs: f, email, fields, checks, submitLabel: k.submit, successTitle: f.successTitle, successBody: f.successBody, mailSubject: k.mailSubject });
+}
+
+function renderCards({ t, lang, privacyHref, termsHref, contactHref, config }) {
+  const noJs = `<noscript><p class="consent-error is-visible">${t("join.noJs").replace(/CONTACT_HREF/g, contactHref)}</p></noscript>`;
+  const card = (kind) => {
+    const c = t(`join.${kind}`);
+    return `
+<article class="join-card" id="${kind}" data-join-card="${kind}">
+  <h2>${c.title}</h2>
+  <p>${c.audience}</p>
+  ${c.formIntro ? `<p>${c.formIntro}</p>` : ""}
+  <div class="privacy-notice">${withHrefs(c.privacyNotice, privacyHref, termsHref)}</div>
+  ${noJs}
+  ${registrationForm({ t, lang, kind, privacyHref, termsHref, email: config.email })}
+</article>`;
+  };
+  const clubList = `<datalist id="club-names">${CLUBS.map((c) => `<option value="${attr(c.name)}"></option>`).join("")}</datalist>`;
+  return card("teams") + card("players") + clubList;
+}
+
+function renderMain(ctx) {
+  const { t, pagePath, lang } = ctx;
   const privacyHref = pagePath("privacy-policy", lang);
   const termsHref = pagePath("terms-conditions", lang);
   const refundHref = pagePath("refund-policy", lang);
   const contactHref = pagePath("contact", lang);
   const feesNote = t("join.feesNote").replace(/REFUND_HREF/g, refundHref).replace(/CONTACT_HREF/g, contactHref);
-  const noJs = `<noscript><p class="consent-error is-visible">${t("join.noJs").replace(/CONTACT_HREF/g, contactHref)}</p></noscript>`;
-
-  const teams = t("join.teams");
-  const players = t("join.players");
-
-  const teamsCard = `
-<article class="join-card" id="teams" data-join-card="teams">
-  <h2>${teams.title}</h2>
-  <p>${teams.audience}</p>
-  <p>${teams.asksFor}</p>
-  <div class="privacy-notice">${withHrefs(teams.privacyNotice, privacyHref, termsHref)}</div>
-  <div class="consent-field">
-    <input type="checkbox" id="teams-consent-privacy" data-consent-group="teams" data-consent-missing="${t("join.missingTerms")}" aria-describedby="teams-consent-error">
-    <label for="teams-consent-privacy">${withHrefs(teams.consentLabel, privacyHref, termsHref)}</label>
-  </div>
-  <p class="consent-error" id="teams-consent-error" aria-live="polite">
-    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span data-consent-text>${teams.errorMessage}</span>
-  </p>
-  ${noJs}
-  <button type="button" class="btn" id="teams-submit" data-form-url="${config.forms.teams}" aria-disabled="true" data-consent-for="teams" aria-describedby="teams-consent-error">${ballButtonInner(`${teams.openLabel} ${t("common.opensNewTab")}`)}</button>
-  <p class="join-next" role="status" hidden data-join-next>${t("join.nextSteps")}</p>
-</article>`;
-
-  const playersCard = `
-<article class="join-card" id="players" data-join-card="players">
-  <h2>${players.title}</h2>
-  <p>${players.audience}</p>
-  <p>${players.asksFor}</p>
-  <div class="privacy-notice">${withHrefs(players.privacyNotice, privacyHref, termsHref)}</div>
-  <div class="consent-field">
-    <input type="checkbox" id="players-consent-privacy" data-consent-group="players" data-consent-missing="${t("join.missingTerms")}" aria-describedby="players-consent-error">
-    <label for="players-consent-privacy">${withHrefs(players.consentLabel, privacyHref, termsHref)}</label>
-  </div>
-  <div class="consent-field">
-    <input type="checkbox" id="players-consent-guardian" data-consent-group="players" data-consent-missing="${t("join.missingGuardian")}" aria-describedby="players-consent-error">
-    <label for="players-consent-guardian">${players.guardianLabel}</label>
-  </div>
-  <p class="consent-error" id="players-consent-error" aria-live="polite">
-    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span data-consent-text>${players.errorMessage}</span>
-  </p>
-  ${noJs}
-  <button type="button" class="btn" id="players-submit" data-form-url="${config.forms.players}" aria-disabled="true" data-consent-for="players" aria-describedby="players-consent-error">${ballButtonInner(`${players.openLabel} ${t("common.opensNewTab")}`)}</button>
-  <p class="join-next" role="status" hidden data-join-next>${t("join.nextSteps")}</p>
-</article>`;
+  const hrefs = { privacyHref, termsHref, contactHref };
+  const cards = renderCards({ ...ctx, ...hrefs });
 
   return `
 ${renderPageHero({ title: t("join.title"), lead: t("join.lead") })}
@@ -70,8 +99,7 @@ ${renderPageHero({ title: t("join.title"), lead: t("join.lead") })}
       <a class="join-choice" href="#players" data-join-pick="players"><strong>${t("join.choosePlayer")}</strong><span>${t("join.choosePlayerHint")}</span></a>
     </nav>
     <div class="join-grid" data-join-grid>
-      ${teamsCard}
-      ${playersCard}
+      ${cards}
     </div>
     <p class="fees-note">${feesNote}</p>
   </div>
@@ -89,5 +117,5 @@ export function render(ctx) {
       { "@type": "ListItem", position: 2, name: t("nav.join"), item: pagePath.abs("join", lang) },
     ],
   };
-  return { bodyHtml: renderMain(ctx), jsonLd, scripts: [] };
+  return { bodyHtml: renderMain(ctx), jsonLd, scripts: ["js/registration-form.js"] };
 }

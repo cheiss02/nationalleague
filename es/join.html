@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <title>Forma Parte | National League Official Academies</title>
@@ -64,7 +64,7 @@
 <section class="page-hero">
     <div class="wrap">
       <h1>Forma parte de la National League</h1>
-      <p class="lead">Dos formas de unirte: registra el equipo de tu academia, o registra a un jugador. Cada una abre un formulario corto de Google en una pestaña nueva.</p>
+      <p class="lead">Dos formas de unirte: registra el equipo de tu academia, o registra a un jugador. Elige una abajo y llena el formulario corto.</p>
     </div>
   </section>
 
@@ -82,42 +82,141 @@
 <article class="join-card" id="teams" data-join-card="teams">
   <h2>Equipos / Academias</h2>
   <p>Para academias oficiales de clubes de Liga MX o MLS que quieran inscribirse en la liga.</p>
-  <p>El formulario pide el nombre de tu academia, el club afiliado, ciudad/estado, las categorías en las que participarás, y el nombre, cargo, correo y teléfono de una persona de contacto.</p>
-  <div class="privacy-notice">Recopilamos esta información para revisar y procesar el registro de tu academia. El formulario está alojado en Google; National League Official Academies recibe las respuestas. Los datos se conservan hasta 24 meses después de que termine la temporada. Consulta el <a href="privacy-policy.html">Aviso de Privacidad</a> para más detalles. Nunca vendemos esta información.</div>
-  <div class="consent-field">
-    <input type="checkbox" id="teams-consent-privacy" data-consent-group="teams" data-consent-missing="Acepta el Aviso de Privacidad y los Términos y Condiciones para continuar." aria-describedby="teams-consent-error">
-    <label for="teams-consent-privacy">He leído y acepto el <a href="privacy-policy.html">Aviso de Privacidad</a> y los <a href="terms-conditions.html">Términos y Condiciones</a>.</label>
+  <p>A través de este formulario podremos conocer tu institución, establecer contacto con sus representantes y conocer las categorías con las que cuenta, así como aquellas que tiene proyectado integrar. Nuestro equipo se pondrá en contacto contigo para brindarte más información sobre el proyecto, los requisitos de participación y los siguientes pasos.</p>
+  <div class="privacy-notice">Recopilamos esta información para revisar el registro de tu academia y contactarte al respecto. Tus respuestas se envían por correo a National League Official Academies y se conservan en los registros de la liga hasta 24 meses después de que termine la temporada. Consulta el <a href="privacy-policy.html">Aviso de Privacidad</a> para más detalles. Nunca vendemos esta información.</div>
+  <noscript><p class="consent-error is-visible">El formulario de registro necesita JavaScript para enviarse. Actívalo y recarga esta página, o <a href="contact.html">contáctanos</a>.</p></noscript>
+  <form class="reg-form" data-registration="teams" data-lang="es" data-endpoint="https://formsubmit.co/ajax/info@nationalleagueusa.com" novalidate
+    data-msg-required="Completa este campo." data-msg-select="Elige una opción." data-msg-email="Escribe un correo válido, como nombre@ejemplo.com." data-msg-phone="Escribe un teléfono de al menos 7 dígitos." data-msg-fix="Algunas respuestas necesitan atención. Revisa los campos marcados." data-msg-sending="Enviando tu registro…" data-msg-failed="No pudimos enviar tu registro. Tus respuestas siguen aquí; inténtalo de nuevo o escríbenos a <a href=&quot;mailto:info@nationalleagueusa.com&quot;>info@nationalleagueusa.com</a>."
+    data-subject="Registro de equipo" data-msg-yes="Sí" data-msg-no="No">
+    <p class="form-hint">Todos los campos son obligatorios, salvo los marcados como opcionales.</p>
+    <div class="form-grid"><div class="form-field is-wide">
+    <label for="teams-academy">Nombre oficial del club o academia</label>
+    <input id="teams-academy" name="academy" type="text" required maxlength="120" autocomplete="organization" aria-describedby="teams-academy-error">
+    <p class="field-error" id="teams-academy-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="teams-club">Nombre del club al que está afiliado</label>
+    <input id="teams-club" name="club" type="text" required maxlength="120" autocomplete="off" list="club-names" aria-describedby="teams-club-error">
+    <p class="field-error" id="teams-club-error" hidden></p>
+  </div><div class="form-field">
+    <label for="teams-state">Estado o provincia</label>
+    <input id="teams-state" name="state" type="text" required maxlength="120" autocomplete="address-level1" aria-describedby="teams-state-error">
+    <p class="field-error" id="teams-state-error" hidden></p>
+  </div><div class="form-field">
+    <label for="teams-city">Ciudad</label>
+    <input id="teams-city" name="city" type="text" required maxlength="120" autocomplete="address-level2" aria-describedby="teams-city-error">
+    <p class="field-error" id="teams-city-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="teams-facilitiesAddress">Dirección o ubicación de sus instalaciones deportivas</label>
+    <textarea id="teams-facilitiesAddress" name="facilitiesAddress" rows="3" required maxlength="1000" aria-describedby="teams-facilitiesAddress-error"></textarea>
+    <p class="field-error" id="teams-facilitiesAddress-error" hidden></p>
+  </div><fieldset class="form-field is-wide form-radios">
+    <legend>¿Actualmente cuenta con instalaciones propias o campos de entrenamiento disponibles?</legend>
+    <div class="form-radio-row"><label class="form-radio"><input type="radio" name="ownFacilities" value="Sí" id="teams-ownFacilities" required aria-describedby="teams-ownFacilities-error"> Sí</label><label class="form-radio"><input type="radio" name="ownFacilities" value="No" required aria-describedby="teams-ownFacilities-error"> No</label></div>
+    <p class="field-error" id="teams-ownFacilities-error" hidden></p>
+  </fieldset><div class="form-field is-wide">
+    <label for="teams-categoriesPlayers">¿Cuántas categorías tiene actualmente en funcionamiento y cuántos jugadores?</label>
+    <textarea id="teams-categoriesPlayers" name="categoriesPlayers" rows="3" required maxlength="1000" aria-describedby="teams-categoriesPlayers-error"></textarea>
+    <p class="field-error" id="teams-categoriesPlayers-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="teams-links">Links de redes sociales y sitio web, si tiene <span class="field-optional">(opcional)</span></label>
+    <textarea id="teams-links" name="links" rows="3" maxlength="1000" aria-describedby="teams-links-error"></textarea>
+    <p class="field-error" id="teams-links-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="teams-contactName">Nombre completo del responsable del club o academia</label>
+    <input id="teams-contactName" name="contactName" type="text" required maxlength="120" autocomplete="name" aria-describedby="teams-contactName-error">
+    <p class="field-error" id="teams-contactName-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="teams-contactRole">Cargo que desempeña dentro de la institución</label>
+    <input id="teams-contactRole" name="contactRole" type="text" required maxlength="120" autocomplete="organization-title" aria-describedby="teams-contactRole-error">
+    <p class="field-error" id="teams-contactRole-error" hidden></p>
+  </div><div class="form-field">
+    <label for="teams-contactPhone">Número de teléfono</label>
+    <input id="teams-contactPhone" name="contactPhone" type="tel" required maxlength="30" autocomplete="tel" aria-describedby="teams-contactPhone-error">
+    <p class="field-error" id="teams-contactPhone-error" hidden></p>
+  </div><div class="form-field">
+    <label for="teams-contactEmail">Correo electrónico de contacto</label>
+    <input id="teams-contactEmail" name="contactEmail" type="email" required maxlength="254" autocomplete="email" aria-describedby="teams-contactEmail-error">
+    <p class="field-error" id="teams-contactEmail-error" hidden></p>
+  </div></div>
+    <div class="form-checks"><div class="consent-field form-check">
+    <input type="checkbox" id="teams-consentTerms" name="consentTerms" required data-missing="Acepta el Aviso de Privacidad y los Términos y Condiciones para continuar." aria-describedby="teams-consentTerms-error">
+    <label for="teams-consentTerms">He leído y acepto el <a href="privacy-policy.html">Aviso de Privacidad</a> y los <a href="terms-conditions.html">Términos y Condiciones</a>.</label>
   </div>
-  <p class="consent-error" id="teams-consent-error" aria-live="polite">
-    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span data-consent-text>Marca la casilla de arriba antes de abrir el formulario.</span>
-  </p>
-  <noscript><p class="consent-error is-visible">El registro necesita JavaScript para abrir el formulario. Actívalo y recarga esta página, o <a href="contact.html">contáctanos</a>.</p></noscript>
-  <button type="button" class="btn" id="teams-submit" data-form-url="https://forms.gle/WPyyJBmizJsPh9aq5" aria-disabled="true" data-consent-for="teams" aria-describedby="teams-consent-error"><span class="ball-btn__label" data-ball-label="Abrir formulario de registro de equipos (se abre en una pestaña nueva)">Abrir formulario de registro de equipos (se abre en una pestaña nueva)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
-  <p class="join-next" role="status" hidden data-join-next>El formulario debería estar abierto en una pestaña nueva. Si no lo ves, <a target="_blank" rel="noopener noreferrer">ábrelo aquí</a>. Después de enviarlo, la liga revisa tu registro y te contacta por separado.</p>
+  <p class="field-error" id="teams-consentTerms-error" hidden></p><div class="consent-field form-check">
+    <input type="checkbox" id="teams-contactByPhone" name="contactByPhone" aria-describedby="teams-contactByPhone-error">
+    <label for="teams-contactByPhone">Pueden contactarme sobre el registro tanto por teléfono como por correo electrónico. <span class="field-optional">(opcional)</span></label>
+  </div>
+  <p class="field-error" id="teams-contactByPhone-error" hidden></p></div>
+    <div class="hp-field" aria-hidden="true"><label for="teams-honey">Deja este campo vacío</label><input id="teams-honey" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+    <button type="submit" class="btn"><span class="ball-btn__label" data-ball-label="Enviar registro de equipo">Enviar registro de equipo</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+  </form>
+  <div class="form-success" data-form-success tabindex="-1" hidden>
+    <h3>Registro enviado</h3>
+    <p>Gracias. La liga revisará tu registro y se pondrá en contacto contigo con los datos que nos diste.</p>
+  </div>
 </article>
-      
 <article class="join-card" id="players" data-join-card="players">
   <h2>Jugadores</h2>
   <p>Para jugadores que quieran registrarse con una academia invitada. Un padre, madre o tutor legal debe completar este formulario para cualquier persona menor de 18 años.</p>
-  <p>El formulario pide el nombre del jugador y su año de nacimiento, academia/club actual, posición, y el nombre, correo y teléfono del tutor, además de preguntas de consentimiento. No pedimos dirección particular, números de identificación, escuela, información médica ni fotos al momento del registro.</p>
-  <div class="privacy-notice">Recopilamos esta información para ubicar al jugador en la categoría correcta y registrarlo en la liga. El formulario está alojado en Google; National League Official Academies recibe las respuestas. Los datos se conservan hasta 24 meses después de que termine la temporada. Consulta el <a href="privacy-policy.html">Aviso de Privacidad</a> para más detalles. Nunca vendemos esta información.</div>
-  <div class="consent-field">
-    <input type="checkbox" id="players-consent-privacy" data-consent-group="players" data-consent-missing="Acepta el Aviso de Privacidad y los Términos y Condiciones para continuar." aria-describedby="players-consent-error">
-    <label for="players-consent-privacy">He leído y acepto el <a href="privacy-policy.html">Aviso de Privacidad</a> y los <a href="terms-conditions.html">Términos y Condiciones</a>.</label>
+  
+  <div class="privacy-notice">Recopilamos esta información para ubicar al jugador en la categoría correcta y registrarlo en la liga. Tus respuestas se envían por correo a National League Official Academies y se conservan en los registros de la liga hasta 24 meses después de que termine la temporada. No pedimos dirección particular, números de identificación, escuela, información médica ni fotos al momento del registro. Consulta el <a href="privacy-policy.html">Aviso de Privacidad</a> para más detalles. Nunca vendemos esta información.</div>
+  <noscript><p class="consent-error is-visible">El formulario de registro necesita JavaScript para enviarse. Actívalo y recarga esta página, o <a href="contact.html">contáctanos</a>.</p></noscript>
+  <form class="reg-form" data-registration="players" data-lang="es" data-endpoint="https://formsubmit.co/ajax/info@nationalleagueusa.com" novalidate
+    data-msg-required="Completa este campo." data-msg-select="Elige una opción." data-msg-email="Escribe un correo válido, como nombre@ejemplo.com." data-msg-phone="Escribe un teléfono de al menos 7 dígitos." data-msg-fix="Algunas respuestas necesitan atención. Revisa los campos marcados." data-msg-sending="Enviando tu registro…" data-msg-failed="No pudimos enviar tu registro. Tus respuestas siguen aquí; inténtalo de nuevo o escríbenos a <a href=&quot;mailto:info@nationalleagueusa.com&quot;>info@nationalleagueusa.com</a>."
+    data-subject="Registro de jugador" data-msg-yes="Sí" data-msg-no="No">
+    <p class="form-hint">Todos los campos son obligatorios, salvo los marcados como opcionales.</p>
+    <div class="form-grid"><div class="form-field is-wide">
+    <label for="players-playerName">Nombre completo del jugador</label>
+    <input id="players-playerName" name="playerName" type="text" required maxlength="120" autocomplete="off" aria-describedby="players-playerName-error">
+    <p class="field-error" id="players-playerName-error" hidden></p>
+  </div><div class="form-field">
+    <label for="players-birthYear">Año de nacimiento</label>
+    <select id="players-birthYear" name="birthYear" required aria-describedby="players-birthYear-error"><option value="">Selecciona…</option><option value="2010">2010 · Sub 17</option><option value="2011">2011 · Sub 17</option><option value="2012">2012 · Sub 15</option><option value="2013">2013 · Sub 15</option><option value="2014">2014 · Sub 13</option><option value="2015">2015 · Sub 13</option><option value="2016">2016 · Sub 11</option><option value="2017">2017 · Sub 11</option></select>
+    <p class="field-error" id="players-birthYear-error" hidden></p>
+  </div><div class="form-field">
+    <label for="players-position">Posición</label>
+    <select id="players-position" name="position" required aria-describedby="players-position-error"><option value="">Selecciona…</option><option value="Portero">Portero</option><option value="Defensa">Defensa</option><option value="Mediocampista">Mediocampista</option><option value="Delantero">Delantero</option></select>
+    <p class="field-error" id="players-position-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="players-currentClub">Academia o club actual</label>
+    <input id="players-currentClub" name="currentClub" type="text" required maxlength="120" autocomplete="off" list="club-names" aria-describedby="players-currentClub-error">
+    <p class="field-error" id="players-currentClub-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="players-guardianName">Nombre completo del padre, madre o tutor</label>
+    <input id="players-guardianName" name="guardianName" type="text" required maxlength="120" autocomplete="name" aria-describedby="players-guardianName-error">
+    <p class="field-error" id="players-guardianName-error" hidden></p>
+  </div><div class="form-field">
+    <label for="players-guardianEmail">Correo del padre, madre o tutor</label>
+    <input id="players-guardianEmail" name="guardianEmail" type="email" required maxlength="254" autocomplete="email" aria-describedby="players-guardianEmail-error">
+    <p class="field-error" id="players-guardianEmail-error" hidden></p>
+  </div><div class="form-field">
+    <label for="players-guardianPhone">Teléfono del padre, madre o tutor</label>
+    <input id="players-guardianPhone" name="guardianPhone" type="tel" required maxlength="30" autocomplete="tel" aria-describedby="players-guardianPhone-error">
+    <p class="field-error" id="players-guardianPhone-error" hidden></p>
+  </div></div>
+    <div class="form-checks"><div class="consent-field form-check">
+    <input type="checkbox" id="players-consentTerms" name="consentTerms" required data-missing="Acepta el Aviso de Privacidad y los Términos y Condiciones para continuar." aria-describedby="players-consentTerms-error">
+    <label for="players-consentTerms">He leído y acepto el <a href="privacy-policy.html">Aviso de Privacidad</a> y los <a href="terms-conditions.html">Términos y Condiciones</a>.</label>
   </div>
-  <div class="consent-field">
-    <input type="checkbox" id="players-consent-guardian" data-consent-group="players" data-consent-missing="Confirma que eres el padre, madre o tutor legal del jugador, o que el jugador es mayor de 18 años." aria-describedby="players-consent-error">
-    <label for="players-consent-guardian">Soy el padre, madre o tutor legal del jugador, o el jugador es mayor de 18 años.</label>
+  <p class="field-error" id="players-consentTerms-error" hidden></p><div class="consent-field form-check">
+    <input type="checkbox" id="players-consentGuardian" name="consentGuardian" required data-missing="Confirma que eres el padre, madre o tutor legal del jugador, o que el jugador es mayor de 18 años." aria-describedby="players-consentGuardian-error">
+    <label for="players-consentGuardian">Soy el padre, madre o tutor legal del jugador, o el jugador es mayor de 18 años.</label>
   </div>
-  <p class="consent-error" id="players-consent-error" aria-live="polite">
-    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span data-consent-text>Marca ambas casillas de arriba antes de abrir el formulario.</span>
-  </p>
-  <noscript><p class="consent-error is-visible">El registro necesita JavaScript para abrir el formulario. Actívalo y recarga esta página, o <a href="contact.html">contáctanos</a>.</p></noscript>
-  <button type="button" class="btn" id="players-submit" data-form-url="https://forms.gle/qmw9LNgiRo4kurkv8" aria-disabled="true" data-consent-for="players" aria-describedby="players-consent-error"><span class="ball-btn__label" data-ball-label="Abrir formulario de registro de jugadores (se abre en una pestaña nueva)">Abrir formulario de registro de jugadores (se abre en una pestaña nueva)</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
-  <p class="join-next" role="status" hidden data-join-next>El formulario debería estar abierto en una pestaña nueva. Si no lo ves, <a target="_blank" rel="noopener noreferrer">ábrelo aquí</a>. Después de enviarlo, la liga revisa tu registro y te contacta por separado.</p>
-</article>
+  <p class="field-error" id="players-consentGuardian-error" hidden></p><div class="consent-field form-check">
+    <input type="checkbox" id="players-consentMedia" name="consentMedia" aria-describedby="players-consentMedia-error">
+    <label for="players-consentMedia">Autorizo a National League Official Academies y a Wame Sports a usar la foto o el video del jugador en medios de la liga y perfiles de jugador. <span class="field-optional">(opcional)</span></label>
+  </div>
+  <p class="field-error" id="players-consentMedia-error" hidden></p></div>
+    <div class="hp-field" aria-hidden="true"><label for="players-honey">Deja este campo vacío</label><input id="players-honey" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+    <button type="submit" class="btn"><span class="ball-btn__label" data-ball-label="Enviar registro de jugador">Enviar registro de jugador</span><span class="ball-btn__track" aria-hidden="true"><span class="ball-btn__fill"></span><span class="ball-btn__ball"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="256" fill="#fff"/><path fill="#111" d="M417.3 360.1l-71.6-4.8c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-17.6 69.6C289.5 445.8 273 448 256 448s-33.5-2.2-49.2-6.4L189.2 372c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-71.6 4.8c-17.6-27.2-28.5-59.2-30.4-93.6L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15l-26.7-66.6C128 109.2 155.3 89 186.7 76.9l55.2 46c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l55.2-46c31.3 12.1 58.7 32.3 79.6 57.9l-26.7 66.6c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9l60.7 38.2c-1.9 34.4-12.8 66.4-30.4 93.6zM256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6l59.2 0c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"/></svg></span></span></button>
+    <p class="form-status" data-form-status aria-live="polite"></p>
+  </form>
+  <div class="form-success" data-form-success tabindex="-1" hidden>
+    <h3>Registro enviado</h3>
+    <p>Gracias. La liga revisará tu registro y se pondrá en contacto contigo con los datos que nos diste.</p>
+  </div>
+</article><datalist id="club-names"><option value="Nido Águila"></option><option value="Chivas Guadalajara"></option><option value="Atlas FC"></option><option value="CF Monterrey"></option><option value="Club Tijuana"></option><option value="LAFC"></option><option value="LA Galaxy"></option><option value="San Jose Earthquakes"></option></datalist>
     </div>
     <p class="fees-note">Las cuotas de registro no se publican en este sitio. Una vez que se envíe el formulario de registro de tu equipo o jugador y cumplas los requisitos de elegibilidad de la liga, la cuota correspondiente se te comunicará directamente — consulta la página de <a href="refund-policy.html">Política de Reembolsos</a> para saber cómo funcionan los reembolsos, o <a href="contact.html">contáctanos</a> si tienes preguntas.</p>
   </div>
@@ -138,7 +237,7 @@
         <p class="footer-label">Síguenos</p>
         <ul class="social"><li><a href="https://www.instagram.com/officialacademiesnl" target="_blank" rel="noopener noreferrer" aria-label="National League Instagram (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.05 15.58 2.04 15.2 2.04 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.16c-3.14 0-3.51.01-4.75.07-1.15.05-1.77.24-2.19.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.42-.35 1.04-.4 2.19-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.05 1.15.24 1.77.4 2.19.22.55.47.94.88 1.35.41.41.8.66 1.35.88.42.16 1.04.35 2.19.4 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.15-.05 1.77-.24 2.19-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.42.35-1.04.4-2.19.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.15-.24-1.77-.4-2.19a3.64 3.64 0 0 0-.88-1.35 3.64 3.64 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.19-.4-1.24-.06-1.61-.07-4.75-.07zm0 3.68a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm0 2.16a3.84 3.84 0 1 0 0 7.68 3.84 3.84 0 0 0 0-7.68zm6.24-.66a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a></li><li><a href="https://www.facebook.com/profile.php?id=61596286252568" target="_blank" rel="noopener noreferrer" aria-label="National League Facebook (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.03.29-1.73 1.76-1.73z"/></svg></a></li></ul>
         <p class="footer-label footer-label-spaced">Contacto</p>
-        <a class="footer-contact" href="mailto:nationalleague26@gmail.com">nationalleague26@gmail.com</a><br><a class="footer-contact" href="tel:+19517312046">+1 (951) 731-2046</a>
+        <a class="footer-contact" href="mailto:info@nationalleagueusa.com">info@nationalleagueusa.com</a><br><a class="footer-contact" href="tel:+19517312046">+1 (951) 731-2046</a>
       </div>
       <nav class="footer-col" aria-label="Legal">
         <p class="footer-label">Legal</p>
@@ -158,6 +257,6 @@
 <script src="../js/layout.js" type="module" defer></script>
 <script src="../js/main.js" defer></script>
 <script src="../js/ball-button.js" defer></script>
-
+<script src="../js/registration-form.js" defer></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   legalEntityName: "", // TODO: fill in before launch — used on the legal pages
   legalAddress: "", // TODO: fill in before launch — mailing address for the legal pages
 
-  email: "nationalleague26@gmail.com",
+  email: "info@nationalleagueusa.com",
   phone: "+1 (951) 731-2046",
 
   social: {
@@ -23,8 +23,14 @@ export const SITE_CONFIG = {
   },
 
   forms: {
-    teams: "https://forms.gle/WPyyJBmizJsPh9aq5",
-    players: "https://forms.gle/qmw9LNgiRo4kurkv8",
+    /* Where the Join page's Teams and Players forms and the Contact page's
+       message form send: FormSubmit, a form-to-email service that emails
+       each submission to this address. The first submission makes
+       FormSubmit email that inbox an "Activate Form" link, which someone
+       has to click once (see REGISTRATION-FORM-SETUP.md). After that,
+       FormSubmit can give you a random string to use here instead of the
+       email address, so the address isn't in the page code. */
+    endpoint: "https://formsubmit.co/ajax/info@nationalleagueusa.com",
   },
 
   /* Club/partner crests: shown by default. Set clubs:false to hide every

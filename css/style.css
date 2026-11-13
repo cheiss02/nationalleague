@@ -2202,11 +2202,6 @@ main > section[id] {
   grid-template-columns: minmax(0, 46rem);
 }
 
-.join-next {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
 .fees-note {
   max-width: 65ch;
   margin: clamp(1.75rem, 1.25rem + 2vw, 2.75rem) 0 0;
@@ -2299,15 +2294,202 @@ main > section[id] {
   display: block;
 }
 
-.consent-error.is-ready {
-  display: none;
-}
-
 .join-card .btn {
   align-self: flex-start;
   white-space: normal;
   text-align: center;
   text-wrap: balance;
+}
+
+/* ---- on-site registration forms ---- */
+
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.25rem;
+}
+
+.form-hint {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.form-field.is-wide {
+  grid-column: 1 / -1;
+}
+
+.form-field label,
+.form-field legend {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--color-ink);
+  background: #fff;
+  border: 1px solid var(--color-ink-soft);
+  border-radius: 4px;
+  caret-color: var(--color-accent);
+  transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+
+.form-field textarea {
+  min-height: 6rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 3px solid var(--color-royal);
+  outline-offset: 1px;
+}
+
+.form-field [aria-invalid="true"] {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.form-radios {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.form-radios legend {
+  padding: 0;
+  margin-bottom: 0.4rem;
+}
+
+.form-radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.form-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-radio input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--color-primary);
+}
+
+.form-radio input[aria-invalid="true"] {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.form-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.field-optional {
+  font-weight: 400;
+  color: var(--color-ink-soft);
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.form-check + .field-error {
+  margin: -0.35rem 0 0 calc(22px + 0.7rem);
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--color-ink-soft);
+}
+
+.form-status.is-error {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.form-status a {
+  color: inherit;
+}
+
+.reg-form.is-sending .btn {
+  cursor: progress;
+}
+
+.form-success {
+  padding: 1.5rem;
+  color: #fff;
+  background: var(--color-primary);
+  border-radius: var(--radius);
+  scroll-margin-top: calc(var(--header-h) + var(--marquee-h) + 16px);
+}
+
+.form-success:focus {
+  outline: none;
+}
+
+.form-success h3 {
+  font-size: 2rem;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.form-success p {
+  color: var(--color-silver);
+}
+
+/* honeypot: off-screen for people, still filled in by naive bots */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 560px) {
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2426,6 +2608,25 @@ mark.todo {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.15rem;
+}
+
+/* with the message form on: form on the left, contact details on the right */
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  align-items: start;
+}
+
+.contact-grid.is-stacked {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 860px) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .contact-card {

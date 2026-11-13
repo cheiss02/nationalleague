@@ -1,5 +1,7 @@
 import { renderLegalPage } from "../lib/ssg.mjs";
 
+const FORMSUBMIT_PRIVACY = "https://formsubmit.co/privacy.pdf";
+
 const EFFECTIVE_DATE = { en: "January 1, 2027", es: "1 de enero de 2027" };
 const ENTITY = "National League USA";
 const ADDRESS = "2884 Marie Dr, Riverside, CA 92509";
@@ -13,20 +15,21 @@ function sectionsEn(t, pagePath, lang, config) {
     },
     {
       heading: "What we collect, and why",
-      html: `<p>We collect information through two Google Forms linked from the Join page:</p>
+      html: `<p>We collect information through the forms on this site:</p>
       <ul>
-        <li><strong>Team/academy registration:</strong> academy name, affiliated club, city/state, categories entered, and a contact person's name, role, email, and phone.</li>
+        <li><strong>Team/academy registration:</strong> the club or academy's official name, affiliated club, state and city, the address or location of its sports facilities and whether it has its own, the categories it runs today and its number of players, optional social media and website links, the responsible person's name, role, phone, and email, and whether we may also contact them by phone.</li>
         <li><strong>Player registration:</strong> player name, birth year, current academy/club, position, and a parent or guardian's name, email, and phone. We do not ask for a home address, SSN or ID numbers, school, medical information, immigration status, or photos/videos at sign-up.</li>
+        <li><strong>Contact form:</strong> your name, email, optional phone number, and message. We use these only to answer you, and keep them only as long as needed to do so.</li>
       </ul>
       <p>We use this information to review and process registrations, place players in the correct age category, organize the competition, and communicate with academies and guardians about the league.</p>`,
     },
     {
       heading: "Legal basis for processing",
-      html: `<p>We process this information based on your consent (collected via the checkboxes on the Join page) and to take steps requested by you before entering into a registration with the League.</p>`,
+      html: `<p>We process this information based on your consent (collected via the checkboxes on the Join page) and to take steps requested by you before entering into a registration with the League. We process contact messages to answer the request you send us.</p>`,
     },
     {
-      heading: "Google Forms as a processor",
-      html: `<p>Registration forms are hosted by Google Forms. Google processes form submissions on our behalf as a data processor. Google's own privacy practices apply to how the form itself operates; see Google's Privacy Policy for details. We do not embed these forms on our site — the Join page links to them in a new tab.</p>`,
+      heading: "How form submissions are sent and stored",
+      html: `<p>When you submit a form on this site, your answers are sent through FormSubmit (formsubmit.co), a form-to-email service, which delivers them to the League's inbox. FormSubmit handles the answers only to deliver them; see <a href="${FORMSUBMIT_PRIVACY}" target="_blank" rel="noopener noreferrer">FormSubmit's privacy policy</a>. The League's email provider then keeps the message, and only League staff who need it can read it.</p>`,
     },
     {
       heading: "Wame Sports",
@@ -72,20 +75,21 @@ function sectionsEs(t, pagePath, lang, config) {
     },
     {
       heading: "Qué recopilamos y por qué",
-      html: `<p>Recopilamos información a través de dos formularios de Google enlazados desde la página Forma Parte:</p>
+      html: `<p>Recopilamos información a través de los formularios de este sitio:</p>
       <ul>
-        <li><strong>Registro de equipo/academia:</strong> nombre de la academia, club afiliado, ciudad/estado, categorías en las que participará, y el nombre, cargo, correo y teléfono de una persona de contacto.</li>
+        <li><strong>Registro de equipo/academia:</strong> nombre oficial del club o academia, club afiliado, estado y ciudad, dirección o ubicación de sus instalaciones deportivas y si son propias, las categorías que tiene en funcionamiento y su número de jugadores, links opcionales de redes sociales y sitio web, el nombre, cargo, teléfono y correo del responsable, y si también podemos contactarle por teléfono.</li>
         <li><strong>Registro de jugador:</strong> nombre del jugador, año de nacimiento, academia/club actual, posición, y el nombre, correo y teléfono de un padre, madre o tutor. No pedimos dirección particular, números de identificación, escuela, información médica, estatus migratorio, ni fotos/videos al momento del registro.</li>
+        <li><strong>Formulario de contacto:</strong> tu nombre, correo, teléfono opcional y mensaje. Los usamos solo para responderte y los conservamos solo el tiempo necesario para hacerlo.</li>
       </ul>
       <p>Usamos esta información para revisar y procesar los registros, ubicar a los jugadores en la categoría correcta, organizar la competencia y comunicarnos con academias y tutores sobre la liga.</p>`,
     },
     {
       heading: "Base legal para el tratamiento",
-      html: `<p>Tratamos esta información con base en tu consentimiento (recopilado mediante las casillas en la página Forma Parte) y para tomar los pasos que solicites antes de formalizar un registro con la Liga.</p>`,
+      html: `<p>Tratamos esta información con base en tu consentimiento (recopilado mediante las casillas en la página Forma Parte) y para tomar los pasos que solicites antes de formalizar un registro con la Liga. Los mensajes de contacto los tratamos para responder la solicitud que nos envías.</p>`,
     },
     {
-      heading: "Google Forms como encargado del tratamiento",
-      html: `<p>Los formularios de registro están alojados en Google Forms. Google procesa las respuestas en nuestro nombre como encargado del tratamiento. Las propias prácticas de privacidad de Google aplican al funcionamiento del formulario; consulta el Aviso de Privacidad de Google para más detalles. No incrustamos estos formularios en nuestro sitio — la página Forma Parte enlaza a ellos en una pestaña nueva.</p>`,
+      heading: "Cómo se envían y guardan los formularios",
+      html: `<p>Cuando envías un formulario en este sitio, tus respuestas se envían a través de FormSubmit (formsubmit.co), un servicio que convierte formularios en correos y los entrega en la bandeja de la Liga. FormSubmit trata las respuestas solo para entregarlas; consulta el <a href="${FORMSUBMIT_PRIVACY}" target="_blank" rel="noopener noreferrer">aviso de privacidad de FormSubmit</a>. Después, el proveedor de correo de la Liga conserva el mensaje, y solo el personal de la Liga que lo necesita puede leerlo.</p>`,
     },
     {
       heading: "Wame Sports",
@@ -109,7 +113,7 @@ function sectionsEs(t, pagePath, lang, config) {
     },
     {
       heading: "Aviso de Privacidad (México — LFPDPPP)",
-      html: `<p>Para familias en México, este aviso también funciona como Aviso de Privacidad conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). Puedes ejercer tus derechos ARCO (Acceso, Rectificación, Cancelación y Oposición) contactándonos en los datos de la página de Contacto. No transferimos tus datos personales a terceros salvo lo descrito en este aviso (Google Forms como encargado, y Wame Sports como se explica arriba).</p>`,
+      html: `<p>Para familias en México, este aviso también funciona como Aviso de Privacidad conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). Puedes ejercer tus derechos ARCO (Acceso, Rectificación, Cancelación y Oposición) contactándonos en los datos de la página de Contacto. No transferimos tus datos personales a terceros salvo lo descrito en este aviso (FormSubmit y el proveedor de correo de la Liga como encargados, y Wame Sports como se explica arriba).</p>`,
     },
     {
       heading: "Residentes de California (CCPA/CPRA, CalOPPA)",
