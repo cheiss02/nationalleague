@@ -16,11 +16,12 @@ function optionalTag(required) {
   return required ? "" : ` <span class="field-optional">${OPTIONAL}</span>`;
 }
 
-export function input({ form, name, label, type = "text", autocomplete = "off", list = "", wide = false, maxlength = 120, required = true }) {
+export function input({ form, name, label, hint = "", type = "text", autocomplete = "off", list = "", wide = false, maxlength = 120, required = true }) {
   const id = `${form}-${name}`;
   return `<div class="form-field${wide ? " is-wide" : ""}">
     <label for="${id}">${label}${optionalTag(required)}</label>
-    <input id="${id}" name="${name}" type="${type}"${required ? " required" : ""} maxlength="${maxlength}" autocomplete="${autocomplete}"${list ? ` list="${list}"` : ""} aria-describedby="${id}-error">
+    ${hint ? `<p class="field-hint" id="${id}-hint">${hint}</p>` : ""}
+    <input id="${id}" name="${name}" type="${type}"${required ? " required" : ""} maxlength="${maxlength}" autocomplete="${autocomplete}"${list ? ` list="${list}"` : ""} aria-describedby="${hint ? `${id}-hint ` : ""}${id}-error">
     <p class="field-error" id="${id}-error" hidden></p>
   </div>`;
 }

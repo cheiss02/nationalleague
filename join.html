@@ -94,18 +94,22 @@
     <p class="form-hint">All fields are required unless marked optional.</p>
     <div class="form-grid"><div class="form-field is-wide">
     <label for="teams-academy">Official name of the club or academy</label>
+    
     <input id="teams-academy" name="academy" type="text" required maxlength="120" autocomplete="organization" aria-describedby="teams-academy-error">
     <p class="field-error" id="teams-academy-error" hidden></p>
   </div><div class="form-field is-wide">
     <label for="teams-club">Club it's affiliated with</label>
+    
     <input id="teams-club" name="club" type="text" required maxlength="120" autocomplete="off" list="club-names" aria-describedby="teams-club-error">
     <p class="field-error" id="teams-club-error" hidden></p>
   </div><div class="form-field">
     <label for="teams-state">State or province</label>
+    
     <input id="teams-state" name="state" type="text" required maxlength="120" autocomplete="address-level1" aria-describedby="teams-state-error">
     <p class="field-error" id="teams-state-error" hidden></p>
   </div><div class="form-field">
     <label for="teams-city">City</label>
+    
     <input id="teams-city" name="city" type="text" required maxlength="120" autocomplete="address-level2" aria-describedby="teams-city-error">
     <p class="field-error" id="teams-city-error" hidden></p>
   </div><div class="form-field is-wide">
@@ -126,18 +130,22 @@
     <p class="field-error" id="teams-links-error" hidden></p>
   </div><div class="form-field is-wide">
     <label for="teams-contactName">Full name of the person responsible for the club or academy</label>
+    
     <input id="teams-contactName" name="contactName" type="text" required maxlength="120" autocomplete="name" aria-describedby="teams-contactName-error">
     <p class="field-error" id="teams-contactName-error" hidden></p>
   </div><div class="form-field is-wide">
     <label for="teams-contactRole">Their role at the organization</label>
+    
     <input id="teams-contactRole" name="contactRole" type="text" required maxlength="120" autocomplete="organization-title" aria-describedby="teams-contactRole-error">
     <p class="field-error" id="teams-contactRole-error" hidden></p>
   </div><div class="form-field">
     <label for="teams-contactPhone">Phone number</label>
+    
     <input id="teams-contactPhone" name="contactPhone" type="tel" required maxlength="30" autocomplete="tel" aria-describedby="teams-contactPhone-error">
     <p class="field-error" id="teams-contactPhone-error" hidden></p>
   </div><div class="form-field">
     <label for="teams-contactEmail">Contact email</label>
+    
     <input id="teams-contactEmail" name="contactEmail" type="email" required maxlength="254" autocomplete="email" aria-describedby="teams-contactEmail-error">
     <p class="field-error" id="teams-contactEmail-error" hidden></p>
   </div></div>
@@ -171,6 +179,7 @@
     <p class="form-hint">All fields are required unless marked optional.</p>
     <div class="form-grid"><div class="form-field is-wide">
     <label for="players-playerName">Player's full name</label>
+    
     <input id="players-playerName" name="playerName" type="text" required maxlength="120" autocomplete="off" aria-describedby="players-playerName-error">
     <p class="field-error" id="players-playerName-error" hidden></p>
   </div><div class="form-field">
@@ -178,23 +187,50 @@
     <select id="players-birthYear" name="birthYear" required aria-describedby="players-birthYear-error"><option value="">Select…</option><option value="2010">2010 · U17</option><option value="2011">2011 · U17</option><option value="2012">2012 · U15</option><option value="2013">2013 · U15</option><option value="2014">2014 · U13</option><option value="2015">2015 · U13</option><option value="2016">2016 · U11</option><option value="2017">2017 · U11</option></select>
     <p class="field-error" id="players-birthYear-error" hidden></p>
   </div><div class="form-field">
-    <label for="players-position">Position</label>
+    <label for="players-position">Main position</label>
     <select id="players-position" name="position" required aria-describedby="players-position-error"><option value="">Select…</option><option value="Goalkeeper">Goalkeeper</option><option value="Defender">Defender</option><option value="Midfielder">Midfielder</option><option value="Forward">Forward</option></select>
     <p class="field-error" id="players-position-error" hidden></p>
   </div><div class="form-field is-wide">
+    <label for="players-secondaryPositions">Secondary positions <span class="field-optional">(optional)</span></label>
+    
+    <input id="players-secondaryPositions" name="secondaryPositions" type="text" maxlength="120" autocomplete="off" aria-describedby="players-secondaryPositions-error">
+    <p class="field-error" id="players-secondaryPositions-error" hidden></p>
+  </div><fieldset class="form-field is-wide form-radios">
+    <legend>Player's dominant foot</legend>
+    <div class="form-radio-row"><label class="form-radio"><input type="radio" name="dominantFoot" value="Right" id="players-dominantFoot" required aria-describedby="players-dominantFoot-error"> Right</label><label class="form-radio"><input type="radio" name="dominantFoot" value="Left" required aria-describedby="players-dominantFoot-error"> Left</label><label class="form-radio"><input type="radio" name="dominantFoot" value="Both" required aria-describedby="players-dominantFoot-error"> Both</label></div>
+    <p class="field-error" id="players-dominantFoot-error" hidden></p>
+  </fieldset><div class="form-field is-wide">
     <label for="players-currentClub">Current academy or club</label>
-    <input id="players-currentClub" name="currentClub" type="text" required maxlength="120" autocomplete="off" list="club-names" aria-describedby="players-currentClub-error">
+    <p class="field-hint" id="players-currentClub-hint">Write “None” if the player doesn't have one.</p>
+    <input id="players-currentClub" name="currentClub" type="text" required maxlength="120" autocomplete="off" list="player-club-names" aria-describedby="players-currentClub-hint players-currentClub-error">
     <p class="field-error" id="players-currentClub-error" hidden></p>
   </div><div class="form-field is-wide">
+    <label for="players-pastTeams">Has the player been part of a club, academy, or competitive team before? <span class="field-optional">(optional)</span></label>
+    
+    <input id="players-pastTeams" name="pastTeams" type="text" maxlength="200" autocomplete="off" aria-describedby="players-pastTeams-error">
+    <p class="field-error" id="players-pastTeams-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="players-lastTeam">When did the player last play on an organized team? <span class="field-optional">(optional)</span></label>
+    
+    <input id="players-lastTeam" name="lastTeam" type="text" maxlength="120" autocomplete="off" aria-describedby="players-lastTeam-error">
+    <p class="field-error" id="players-lastTeam-error" hidden></p>
+  </div><div class="form-field is-wide">
+    <label for="players-wantedClubs">Which clubs or academies would the player like a chance to join?</label>
+    <textarea id="players-wantedClubs" name="wantedClubs" rows="3" required maxlength="1000" aria-describedby="players-wantedClubs-error"></textarea>
+    <p class="field-error" id="players-wantedClubs-error" hidden></p>
+  </div><div class="form-field is-wide">
     <label for="players-guardianName">Parent or guardian's full name</label>
+    
     <input id="players-guardianName" name="guardianName" type="text" required maxlength="120" autocomplete="name" aria-describedby="players-guardianName-error">
     <p class="field-error" id="players-guardianName-error" hidden></p>
   </div><div class="form-field">
     <label for="players-guardianEmail">Parent or guardian's email</label>
+    
     <input id="players-guardianEmail" name="guardianEmail" type="email" required maxlength="254" autocomplete="email" aria-describedby="players-guardianEmail-error">
     <p class="field-error" id="players-guardianEmail-error" hidden></p>
   </div><div class="form-field">
     <label for="players-guardianPhone">Parent or guardian's phone</label>
+    
     <input id="players-guardianPhone" name="guardianPhone" type="tel" required maxlength="30" autocomplete="tel" aria-describedby="players-guardianPhone-error">
     <p class="field-error" id="players-guardianPhone-error" hidden></p>
   </div></div>
@@ -219,7 +255,7 @@
     <h3>Registration sent</h3>
     <p>Thank you. The league will review your registration and contact you using the details you gave.</p>
   </div>
-</article><datalist id="club-names"><option value="Nido Águila"></option><option value="Chivas Guadalajara"></option><option value="Atlas FC"></option><option value="CF Monterrey"></option><option value="Club Tijuana"></option><option value="LAFC"></option><option value="LA Galaxy"></option><option value="San Jose Earthquakes"></option></datalist>
+</article><datalist id="club-names"><option value="Nido Águila"></option><option value="Chivas Guadalajara"></option><option value="Atlas FC"></option><option value="CF Monterrey"></option><option value="Club Tijuana"></option><option value="LAFC"></option><option value="LA Galaxy"></option><option value="San Jose Earthquakes"></option></datalist><datalist id="player-club-names"><option value="None"></option><option value="Nido Águila"></option><option value="Chivas Guadalajara"></option><option value="Atlas FC"></option><option value="CF Monterrey"></option><option value="Club Tijuana"></option><option value="LAFC"></option><option value="LA Galaxy"></option><option value="San Jose Earthquakes"></option></datalist>
     </div>
     <p class="fees-note">Registration fees aren't published on this site. Once your team's or player's registration form is submitted and you meet the league's eligibility requirements, the applicable fee is communicated to you directly — see the <a href="refund-policy.html">Refund Policy</a> page for how refunds work, or <a href="contact.html">contact us</a> with questions.</p>
   </div>

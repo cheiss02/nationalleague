@@ -165,14 +165,26 @@ export const translations = {
         "players": {
           "playerName": "Player's full name",
           "birthYear": "Birth year",
-          "position": "Position",
+          "position": "Main position",
           "positions": [
             "Goalkeeper",
             "Defender",
             "Midfielder",
             "Forward"
           ],
+          "secondaryPositions": "Secondary positions",
+          "dominantFoot": "Player's dominant foot",
+          "feet": [
+            "Right",
+            "Left",
+            "Both"
+          ],
           "currentClub": "Current academy or club",
+          "currentClubHint": "Write “None” if the player doesn't have one.",
+          "none": "None",
+          "pastTeams": "Has the player been part of a club, academy, or competitive team before?",
+          "lastTeam": "When did the player last play on an organized team?",
+          "wantedClubs": "Which clubs or academies would the player like a chance to join?",
           "guardianName": "Parent or guardian's full name",
           "guardianEmail": "Parent or guardian's email",
           "guardianPhone": "Parent or guardian's phone",
@@ -522,14 +534,26 @@ export const translations = {
         "players": {
           "playerName": "Nombre completo del jugador",
           "birthYear": "Año de nacimiento",
-          "position": "Posición",
+          "position": "Posición principal",
           "positions": [
             "Portero",
             "Defensa",
             "Mediocampista",
             "Delantero"
           ],
+          "secondaryPositions": "Posiciones secundarias",
+          "dominantFoot": "Pierna dominante del jugador",
+          "feet": [
+            "Derecha",
+            "Izquierda",
+            "Ambas"
+          ],
           "currentClub": "Academia o club actual",
+          "currentClubHint": "Escribe “Ninguno” si el jugador no tiene.",
+          "none": "Ninguno",
+          "pastTeams": "¿El jugador ha participado anteriormente en algún club, academia o equipo competitivo?",
+          "lastTeam": "¿Cuándo fue la última participación del jugador en un equipo organizado?",
+          "wantedClubs": "¿Con qué clubes o academias le gustaría al jugador tener una oportunidad de integrarse?",
           "guardianName": "Nombre completo del padre, madre o tutor",
           "guardianEmail": "Correo del padre, madre o tutor",
           "guardianPhone": "Teléfono del padre, madre o tutor",

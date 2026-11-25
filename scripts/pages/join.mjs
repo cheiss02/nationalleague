@@ -38,7 +38,12 @@ function registrationForm({ t, lang, kind, privacyHref, termsHref, email }) {
           input({ form: kind, name: "playerName", label: k.playerName, wide: true }),
           select({ form: kind, name: "birthYear", label: k.birthYear, options: birthYearOptions(t), choose: f.choose }),
           select({ form: kind, name: "position", label: k.position, options: k.positions.map((p) => [p, p]), choose: f.choose }),
-          input({ form: kind, name: "currentClub", label: k.currentClub, list: "club-names", wide: true }),
+          input({ form: kind, name: "secondaryPositions", label: k.secondaryPositions, wide: true, required: false }),
+          radios({ form: kind, name: "dominantFoot", label: k.dominantFoot, options: k.feet.map((p) => [p, p]) }),
+          input({ form: kind, name: "currentClub", label: k.currentClub, hint: k.currentClubHint, list: "player-club-names", wide: true }),
+          input({ form: kind, name: "pastTeams", label: k.pastTeams, wide: true, maxlength: 200, required: false }),
+          input({ form: kind, name: "lastTeam", label: k.lastTeam, wide: true, required: false }),
+          textarea({ form: kind, name: "wantedClubs", label: k.wantedClubs }),
           input({ form: kind, name: "guardianName", label: k.guardianName, autocomplete: "name", wide: true }),
           input({ form: kind, name: "guardianEmail", label: k.guardianEmail, type: "email", autocomplete: "email", maxlength: 254 }),
           input({ form: kind, name: "guardianPhone", label: k.guardianPhone, type: "tel", autocomplete: "tel", maxlength: 30 }),
@@ -72,8 +77,11 @@ function renderCards({ t, lang, privacyHref, termsHref, contactHref, config }) {
   ${registrationForm({ t, lang, kind, privacyHref, termsHref, email: config.email })}
 </article>`;
   };
-  const clubList = `<datalist id="club-names">${CLUBS.map((c) => `<option value="${attr(c.name)}"></option>`).join("")}</datalist>`;
-  return card("teams") + card("players") + clubList;
+  const clubOptions = CLUBS.map((c) => `<option value="${attr(c.name)}"></option>`).join("");
+  /* the player's current club can also be "None" */
+  const clubList = `<datalist id="club-names">${clubOptions}</datalist>`;
+  const playerClubList = `<datalist id="player-club-names"><option value="${attr(t("join.form.players.none"))}"></option>${clubOptions}</datalist>`;
+  return card("teams") + card("players") + clubList + playerClubList;
 }
 
 function renderMain(ctx) {

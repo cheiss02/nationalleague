@@ -18,7 +18,7 @@ function sectionsEn(t, pagePath, lang, config) {
       html: `<p>We collect information through the forms on this site:</p>
       <ul>
         <li><strong>Team/academy registration:</strong> the club or academy's official name, affiliated club, state and city, the address or location of its sports facilities and whether it has its own, the categories it runs today and its number of players, optional social media and website links, the responsible person's name, role, phone, and email, and whether we may also contact them by phone.</li>
-        <li><strong>Player registration:</strong> player name, birth year, current academy/club, position, and a parent or guardian's name, email, and phone. We do not ask for a home address, SSN or ID numbers, school, medical information, immigration status, or photos/videos at sign-up.</li>
+        <li><strong>Player registration:</strong> player name, birth year, main and secondary positions, dominant foot, current academy/club, past clubs or teams and when they last played on one, the clubs or academies they'd like to join, and a parent or guardian's name, email, and phone. We do not ask for a home address, SSN or ID numbers, school, medical information, immigration status, or photos/videos at sign-up.</li>
         <li><strong>Contact form:</strong> your name, email, optional phone number, and message. We use these only to answer you, and keep them only as long as needed to do so.</li>
       </ul>
       <p>We use this information to review and process registrations, place players in the correct age category, organize the competition, and communicate with academies and guardians about the league.</p>`,
@@ -78,7 +78,7 @@ function sectionsEs(t, pagePath, lang, config) {
       html: `<p>Recopilamos información a través de los formularios de este sitio:</p>
       <ul>
         <li><strong>Registro de equipo/academia:</strong> nombre oficial del club o academia, club afiliado, estado y ciudad, dirección o ubicación de sus instalaciones deportivas y si son propias, las categorías que tiene en funcionamiento y su número de jugadores, links opcionales de redes sociales y sitio web, el nombre, cargo, teléfono y correo del responsable, y si también podemos contactarle por teléfono.</li>
-        <li><strong>Registro de jugador:</strong> nombre del jugador, año de nacimiento, academia/club actual, posición, y el nombre, correo y teléfono de un padre, madre o tutor. No pedimos dirección particular, números de identificación, escuela, información médica, estatus migratorio, ni fotos/videos al momento del registro.</li>
+        <li><strong>Registro de jugador:</strong> nombre del jugador, año de nacimiento, posición principal y secundarias, pierna dominante, academia/club actual, clubes o equipos anteriores y cuándo fue su última participación, los clubes o academias a los que le gustaría integrarse, y el nombre, correo y teléfono de un padre, madre o tutor. No pedimos dirección particular, números de identificación, escuela, información médica, estatus migratorio, ni fotos/videos al momento del registro.</li>
         <li><strong>Formulario de contacto:</strong> tu nombre, correo, teléfono opcional y mensaje. Los usamos solo para responderte y los conservamos solo el tiempo necesario para hacerlo.</li>
       </ul>
       <p>Usamos esta información para revisar y procesar los registros, ubicar a los jugadores en la categoría correcta, organizar la competencia y comunicarnos con academias y tutores sobre la liga.</p>`,

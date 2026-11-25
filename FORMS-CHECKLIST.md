@@ -22,8 +22,12 @@ The website links to two Google Forms rather than embedding them (see the Cookie
 **Fields to collect — nothing more:**
 - Player's full name
 - Player's birth year (not full date of birth — a year is enough to place a player in a category; only ask for a full date of birth if the league's rules require verifying age, and if so, say why in the form)
+- Main position, plus secondary positions (optional)
+- Dominant foot
 - Current academy/club
-- Position
+- Past clubs, academies, or competitive teams (optional)
+- When the player last played on an organized team (optional)
+- Clubs or academies the player would like a chance to join
 - Guardian's full name, email, phone
 
 **Do not collect:** home address, SSN or any government ID number, school name, medical information, immigration status, or photos/videos at sign-up.
