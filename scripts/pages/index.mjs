@@ -1,6 +1,7 @@
 import { renderMarquee, ballButtonInner, keyDateEvents, SITE_URL } from "../lib/ssg.mjs";
+import { renderWelcomeWall } from "../lib/welcome-wall.mjs";
 
-function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
+function renderMain({ lang, t, pagePath, config, recentPosts = [], posts = [] }) {
   const heroJpg = pagePath.asset("assets/images/hero/hero-pitch.jpg");
   const heroWebp = pagePath.asset("assets/images/hero/hero-pitch.webp");
   const sloganLines = t("hero.title")
@@ -32,10 +33,12 @@ function renderMain({ lang, t, pagePath, config, recentPosts = [] }) {
         new Date(post.date + "T00:00:00")
       );
       const img = post.image
-        ? `<div class="news-card-media"><img src="${pagePath.asset("assets/images/news/" + post.image)}" alt="${post[`image_alt_${lang}`] || ""}" loading="lazy" width="640" height="400"></div>`
+        ? `<div class="news-card-media"><img src="${pagePath.asset("assets/images/news/" + (post.image_card || post.image))}" alt="${post[`image_alt_${lang}`] || ""}" loading="lazy" width="640" height="400"></div>`
         : "";
       const href = lang === "es" ? pagePath.asset(`es/news/${post.slug_es}.html`) : pagePath.asset(`news/${post.slug_en}.html`);
-      return `<li><a class="news-card" href="${href}">${img}<div class="news-card-body"><span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p>${post.sample ? `<span class="news-sample-tag">${t("news.sample")}</span>` : ""}</div></a></li>`;
+      /* the post's section (Welcome, Tournament, ...), same as on the News page */
+      const category = t("news.filters")[post.category] || "";
+      return `<li><a class="news-card" href="${href}">${img}<div class="news-card-body">${category ? `<span class="news-card-category">${category}</span>` : ""}<span class="news-card-date">${dateStr}</span><h3>${title}</h3><p class="news-card-excerpt">${excerpt}</p>${post.sample ? `<span class="news-sample-tag">${t("news.sample")}</span>` : ""}</div></a></li>`;
     })
     .join("");
 
@@ -74,6 +77,8 @@ ${renderMarquee({ lang, pagePath, t })}
   </div>
   <ul class="pillars-row">${pillars}</ul>
 </section>
+
+${renderWelcomeWall({ t, pagePath, lang, posts, tone: "plain" })}
 
 <section class="section section-alt">
   <div class="wrap split">
@@ -157,6 +162,6 @@ export function render(ctx) {
   return {
     bodyHtml: renderMain(ctx),
     jsonLd,
-    scripts: ["js/logo-marquee.js"],
+    scripts: ["js/logo-marquee.js", "js/welcome-wall.js"],
   };
 }

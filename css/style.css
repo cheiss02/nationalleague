@@ -171,6 +171,18 @@ p {
   padding-inline: clamp(20px, 5vw, 48px);
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .skip-link {
   position: absolute;
   left: 16px;
@@ -1936,6 +1948,578 @@ main > section[id] {
 .post-article p {
   font-size: 1.05rem;
   line-height: 1.75;
+}
+
+.post-article h2 {
+  font-size: clamp(1.7rem, 1.35rem + 1.1vw, 2.25rem);
+  margin: 2.6rem 0 0.9rem;
+}
+
+/* ---- post banner: breaks out of the text column, with the banner's flag
+   slash peeking from behind its corner; on phones it runs edge to edge and
+   the <picture> swaps in the close crop ---- */
+.post-banner {
+  --banner-w: min(1100px, 100vw - 2 * clamp(20px, 5vw, 48px));
+  position: relative;
+  isolation: isolate;
+  width: var(--banner-w);
+  margin: 0 0 clamp(2rem, 1.5rem + 1.5vw, 2.75rem) calc(50% - var(--banner-w) / 2);
+}
+
+.post-banner::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: clamp(-1.6rem, -1.6vw, -0.75rem);
+  bottom: clamp(-1.6rem, -1.6vw, -0.75rem);
+  width: clamp(44px, 7vw, 96px);
+  height: 64%;
+  background: linear-gradient(90deg, var(--color-royal) 0 44%, #fff 44% 50%, var(--color-accent) 50% 100%);
+  transform: skewX(-20deg);
+  transform-origin: bottom;
+}
+
+.post-article .post-banner img {
+  width: 100%;
+  margin: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--color-primary);
+}
+
+.post-pull {
+  margin: 2.75rem 0 1rem;
+  padding-top: 1.25rem;
+  border-top: 3px solid var(--color-primary);
+}
+
+.post-article .post-pull p {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(1.8rem, 1.35rem + 1.6vw, 2.6rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--color-primary);
+}
+
+/* ---- a welcome post's closing call to action ---- */
+.post-cta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.post-cta.no-crest {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.post-article .post-cta img {
+  width: clamp(64px, 8vw, 88px);
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  filter: drop-shadow(0 8px 12px rgba(3, 10, 28, 0.45));
+}
+
+.post-article .post-cta h2 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.5rem, 1.25rem + 0.9vw, 1.95rem);
+  color: #fff;
+}
+
+.post-article .post-cta p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.post-cta .btn {
+  background: #fff;
+  color: var(--color-primary);
+  border-color: #fff;
+}
+
+.post-cta .btn .ball-btn__fill {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+/* --------------------------------------------------------------------------
+   News: the welcome wall
+   The newest enrolled academy stands in a floodlit spotlight (the pitch from
+   the league banner, the banner's flag slash behind its crest); beside it,
+   an open spot in the lineup asks the next academy in; below, everyone who
+   is already in. js/welcome-wall.js runs the entrance and the cheer.
+   -------------------------------------------------------------------------- */
+
+.welcome-board {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(1rem, 0.5rem + 1.5vw, 1.5rem);
+}
+
+.welcome-spotlight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(1.25rem, 0.5rem + 2.5vw, 2.75rem);
+  padding: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+/* floodlight on the crest, fading into the stadium below */
+.welcome-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 24% 42%, rgba(30, 79, 216, 0.42), transparent 46%),
+    linear-gradient(180deg, var(--color-primary) 26%, rgba(11, 31, 75, 0.84) 62%, rgba(11, 31, 75, 0.6));
+}
+
+.welcome-pitch {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -2;
+  height: 72%;
+}
+
+.welcome-pitch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.welcome-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 300px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.welcome-slash {
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: 50%;
+  width: 40%;
+  margin-left: -20%;
+  background: linear-gradient(90deg, var(--color-royal) 0 44%, #fff 44% 50%, var(--color-accent) 50% 100%);
+  transform: skewX(-20deg);
+}
+
+.welcome-crest {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+}
+
+.welcome-crest img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 22px rgba(3, 10, 28, 0.55));
+}
+
+.welcome-monogram {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: var(--color-primary-deep);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  box-shadow: 0 18px 30px -12px rgba(3, 10, 28, 0.6);
+}
+
+.welcome-stage.is-cheered .welcome-crest img {
+  animation: crest-jump 0.55s var(--ease-out);
+}
+
+/* above the slash, behind the crest: the confetti comes up from behind it */
+.welcome-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.welcome-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 13px;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.welcome-piece.is-star {
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* "give them a welcome": one page-wide layer above the header (below the
+   skip link) for the flying ball and the confetti; it never takes clicks */
+.welcome-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.welcome-fx .welcome-piece {
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 14px;
+}
+
+.welcome-fx .welcome-piece.is-star {
+  width: 16px;
+  height: 16px;
+}
+
+.welcome-piece.is-white {
+  box-shadow: 0 0 0 1px rgba(11, 31, 75, 0.3);
+}
+
+.welcome-fx-ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 8px 10px rgba(3, 10, 28, 0.35));
+}
+
+.welcome-fx-ball svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-copy h3 {
+  margin: 0 0 0.4em;
+  font-size: clamp(2.2rem, 1.5rem + 2.4vw, 3.6rem);
+  font-style: italic;
+  line-height: 0.94;
+  color: #fff;
+}
+
+.welcome-meta {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-silver);
+}
+
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.6rem;
+  margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+}
+
+.welcome-spotlight .btn {
+  background: #fff;
+  color: var(--color-primary);
+  border-color: #fff;
+}
+
+.welcome-spotlight .btn .ball-btn__fill {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+/* the open spot in the lineup */
+.welcome-next {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  border: 2px dashed rgba(11, 31, 75, 0.32);
+  border-radius: var(--radius);
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.welcome-next:hover,
+.welcome-next:focus-within {
+  border-color: var(--color-primary);
+}
+
+/* on a white section (homepage) the open spot takes the gray instead */
+.welcome-wall.is-plain .welcome-next {
+  background: var(--color-bg-warm);
+}
+
+.welcome-next-shield {
+  width: 58px;
+  height: 66px;
+  margin-bottom: 0.35rem;
+  overflow: visible;
+}
+
+.welcome-next-outline {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-dasharray: 7 6;
+  transition: stroke-dasharray 0.35s var(--ease-out), fill 0.35s ease;
+}
+
+.welcome-next-plus {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke 0.2s ease;
+}
+
+.welcome-next:hover .welcome-next-outline,
+.welcome-next:focus-within .welcome-next-outline {
+  stroke-dasharray: 200 0;
+  fill: var(--color-primary);
+}
+
+.welcome-next:hover .welcome-next-plus,
+.welcome-next:focus-within .welcome-next-plus {
+  stroke: #fff;
+}
+
+.welcome-next h3 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.75rem, 1.4rem + 0.9vw, 2.15rem);
+  font-style: italic;
+}
+
+/* everyone already in */
+.welcome-roster {
+  margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+}
+
+.welcome-roster h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.welcome-roster ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.welcome-roster a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  height: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.welcome-roster a:hover {
+  border-color: var(--color-primary);
+}
+
+.welcome-roster img,
+.welcome-roster .welcome-monogram {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.welcome-roster .welcome-monogram {
+  font-size: 1.3rem;
+  border-width: 2px;
+  box-shadow: none;
+}
+
+.welcome-roster-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.welcome-roster-date {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+/* entrance: held at its first frame until the spotlight is in view */
+.welcome-wall.is-armed .welcome-slash {
+  animation: slash-drop 0.6s var(--ease-out) both paused;
+}
+
+.welcome-wall.is-armed .welcome-crest {
+  animation: crest-walkout 0.8s var(--ease-out) 0.16s both paused;
+}
+
+.welcome-wall.is-armed .welcome-copy h3 {
+  animation: wipe-in 0.62s var(--ease-out) 0.44s both paused;
+}
+
+.welcome-wall.is-armed .welcome-meta,
+.welcome-wall.is-armed .welcome-actions {
+  animation: welcome-fade 0.5s ease 0.66s both paused;
+}
+
+.welcome-wall.is-live .welcome-slash,
+.welcome-wall.is-live .welcome-crest,
+.welcome-wall.is-live .welcome-copy h3,
+.welcome-wall.is-live .welcome-meta,
+.welcome-wall.is-live .welcome-actions {
+  animation-play-state: running;
+}
+
+@keyframes slash-drop {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes crest-walkout {
+  from {
+    opacity: 0;
+    scale: 0.7;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes welcome-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes crest-jump {
+  0% {
+    translate: 0 0;
+  }
+  35% {
+    translate: 0 -10px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .welcome-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .welcome-spotlight {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+    padding-top: 2.25rem;
+  }
+
+  .welcome-spotlight::before {
+    background:
+      radial-gradient(circle at 50% 26%, rgba(30, 79, 216, 0.42), transparent 50%),
+      linear-gradient(180deg, var(--color-primary) 30%, rgba(11, 31, 75, 0.86) 66%, rgba(11, 31, 75, 0.62));
+  }
+
+  .welcome-stage {
+    width: min(72%, 250px);
+  }
+
+  /* stacked: the slash comes down from the top edge and fades out under
+     the crest, so it never runs through the name below */
+  .welcome-slash {
+    top: -45%;
+    bottom: -6%;
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+    mask-image: linear-gradient(180deg, #000 70%, transparent);
+  }
+
+  .welcome-pitch {
+    height: 48%;
+  }
+
+  .welcome-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .post-banner {
+    --banner-w: 100vw;
+  }
+
+  .post-banner::after {
+    display: none;
+  }
+
+  .post-article .post-banner img {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .post-cta {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .post-cta .btn {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
 }
 
 /* --------------------------------------------------------------------------

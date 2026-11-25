@@ -87,9 +87,25 @@ export const translations = {
       title: "News",
       lead: "Updates from the National League Official Academies.",
       keyDatesTitle: "Key dates",
-      filters: { all: "All", torneo: "Tournament", convocatoria: "Call for registration", resultados: "Results", general: "General" },
+      filters: { all: "All", bienvenida: "Welcome", torneo: "Tournament", convocatoria: "Call for registration", resultados: "Results", general: "General" },
       empty: "No news posts match this filter yet.",
       sample: "Sample",
+      /* the welcome wall above the news list, and the close of each welcome
+         post. TEAM and DATE are filled in by the build. */
+      welcome: {
+        title: "Welcome to the league!",
+        lead: "The academies that have confirmed their place this season. Every new academy gets its welcome here.",
+        joined: "Joined DATE",
+        cheer: "Give them a welcome",
+        cheerGoal: "Welcome!",
+        cheerMessage: "Welcome to the league, TEAM!",
+        rosterTitle: "Already in the league",
+        nextTitle: "Is your academy next?",
+        nextCta: "Register your academy",
+        postCtaTitle: "Want to play for TEAM?",
+        postCtaText: "Fill in the player registration and name TEAM among the academies you'd like to join.",
+        postCtaBtn: "Player registration",
+      },
     },
 
     documents: {
@@ -456,9 +472,23 @@ export const translations = {
       title: "Noticias",
       lead: "Novedades de National League Official Academies.",
       keyDatesTitle: "Fechas importantes",
-      filters: { all: "Todas", torneo: "Torneo", convocatoria: "Convocatoria", resultados: "Resultados", general: "General" },
+      filters: { all: "Todas", bienvenida: "Bienvenidas", torneo: "Torneo", convocatoria: "Convocatoria", resultados: "Resultados", general: "General" },
       empty: "Todavía no hay publicaciones para este filtro.",
       sample: "Ejemplo",
+      welcome: {
+        title: "¡Bienvenidos a la liga!",
+        lead: "Las academias que ya confirmaron su lugar en esta temporada. Cada nueva academia recibe aquí su bienvenida.",
+        joined: "Se unió el DATE",
+        cheer: "Dales la bienvenida",
+        cheerGoal: "¡Bienvenidos!",
+        cheerMessage: "¡Bienvenidos a la liga, TEAM!",
+        rosterTitle: "Ya están en la liga",
+        nextTitle: "¿Tu academia es la siguiente?",
+        nextCta: "Inscribe tu academia",
+        postCtaTitle: "¿Quieres jugar en TEAM?",
+        postCtaText: "Llena el registro de jugador y escribe TEAM en las academias a las que te gustaría integrarte.",
+        postCtaBtn: "Registro de jugador",
+      },
     },
 
     documents: {

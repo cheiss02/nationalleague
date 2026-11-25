@@ -3,10 +3,10 @@
 | Folder | What's inside |
 |---|---|
 | `brand/` | `nl-crest.png` (+ `.webp`): the National League crest, transparent background. `nl-crest-light.png` (+ `.webp`): a dark-background variant — the navy shield fill is keyed to transparent so the white outline, lettering, and stripes stay crisp on dark sections. `icon-32/192/512.png`, `apple-touch-icon.png`: the favicon set. `nl-share.jpg`: the 1200×630 social share image. |
-| `clubs/` | One crest per participating club, named after the club's slug (see `js/site-config.js`). Transparent PNG, except `atlas.svg` which is a real vector file. |
+| `clubs/` | One crest per participating club, named after the club's slug (see `js/site-config.js`). Transparent PNG, except `atlas.svg` which is a real vector file. Also the crests of enrolled academies for the welcome wall (`team_crest:` in a welcome post), e.g. `nido-aguila-hesperia.png`, cut out of its welcome banner by `scripts/process-news-images.mjs` (310px; replace with the academy's own file when available). |
 | `partners/` | `wame-sports-dark.png` (navy text, for light backgrounds) and `wame-sports-light.png` (white text, for dark backgrounds). |
 | `hero/` | Hero background photos, processed as WebP + JPG pairs. |
-| `news/` | One image per news post, named after the post's slug — referenced from the post's front matter (`image:` field), not auto-discovered. |
+| `news/` | One image per news post, named after the post's slug — referenced from the post's front matter (`image:` field), not auto-discovered. `scripts/process-news-images.mjs` can add `-800` and `-mobile` (phone crop) variants plus WebP; the post page uses them when they exist. |
 
 Naming rule: lowercase, words joined with hyphens, named after what the image shows.
 

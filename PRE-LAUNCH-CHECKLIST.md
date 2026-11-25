@@ -9,6 +9,8 @@ Written permission for 7 of the 8 club crests and the Wame Sports logo **has bee
 - The other crest/logo files (everything but Club América) were still cut out of the league's promotional flyer and are lower resolution than official brand files — replace them with official files (same filename) once available. See `assets/images/README.md`.
 - **Still pending, not yet actionable:** the client mentioned (1) adding an "Academias Invitadas" (guest academies) section/concept to the Academies page, and (2) per-club venue/location info once each confirmed club's field is known. Neither has concrete content yet — the client said more clubs will be confirmed "next week" — so nothing was added; revisit once there's an actual list of guest academies and/or venues to publish.
 
+- **Nido Águila Hesperia welcome banner** (`_source-assets/welcome-nido-aguila-hesperia.jpg`): the web address printed on it reads "nationaleagueusa.com" (one L) instead of nationalleagueusa.com, and its QR code wasn't checked. Ask the designer for a corrected file, then re-run `node scripts/process-news-images.mjs`. Phones get a close crop that leaves the address and QR code out, so for now only desktop and tablet visitors see the typo. The academy's crest on the welcome wall was cut from this banner (310px); swap in the academy's own crest file if they have one.
+
 ## 2. Legal pages — done
 
 The client confirmed their lawyer has reviewed the legal pages, so the draft banner is gone. Effective date is January 1, 2027 on all five legal pages (`EFFECTIVE_DATE` at the top of each file, one value per language).

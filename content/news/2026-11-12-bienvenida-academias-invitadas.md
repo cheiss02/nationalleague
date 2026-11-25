@@ -3,7 +3,7 @@ title_es: Bienvenidas, academias invitadas
 title_en: Welcome to our invited academies
 slug_en: welcome-invited-academies
 date: 2026-11-12
-category: general
+category: bienvenida
 ---
 National League Official Academies da la bienvenida a las primeras academias invitadas a la liga: Nido Águila, Chivas Guadalajara, Atlas FC, CF Monterrey y Club Tijuana, de la Liga MX, y LAFC, LA Galaxy y San Jose Earthquakes, de la MLS.
 

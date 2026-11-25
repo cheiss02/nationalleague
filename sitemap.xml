@@ -209,6 +209,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nationalleagueusa.com/news/nido-aguila-hesperia-joins.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nationalleagueusa.com/news/nido-aguila-hesperia-joins.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nationalleagueusa.com/es/news/nido-aguila-hesperia-se-incorpora.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nationalleagueusa.com/news/nido-aguila-hesperia-joins.html"/>
+    <lastmod>2026-11-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nationalleagueusa.com/es/news/nido-aguila-hesperia-se-incorpora.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nationalleagueusa.com/news/nido-aguila-hesperia-joins.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nationalleagueusa.com/es/news/nido-aguila-hesperia-se-incorpora.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nationalleagueusa.com/news/nido-aguila-hesperia-joins.html"/>
+    <lastmod>2026-11-25</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nationalleagueusa.com/news/official-call-for-teams-open.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://nationalleagueusa.com/news/official-call-for-teams-open.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://nationalleagueusa.com/es/news/convocatoria-oficial-abierta.html"/>

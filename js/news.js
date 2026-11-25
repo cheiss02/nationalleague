@@ -65,7 +65,7 @@
         });
 
         var img = post.image
-          ? '<div class="news-card-media"><img src="' + assetBase + "assets/images/news/" + post.image +
+          ? '<div class="news-card-media"><img src="' + assetBase + "assets/images/news/" + (post.image_card || post.image) +
             '" alt="' + (field(post, "image_alt") || "") + '" loading="lazy" width="640" height="400"></div>'
           : "";
 

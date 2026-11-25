@@ -1,6 +1,7 @@
 import { renderPageHero, keyDateEvents } from "../lib/ssg.mjs";
+import { renderWelcomeWall } from "../lib/welcome-wall.mjs";
 
-function renderMain({ t, pagePath, lang }) {
+function renderMain({ t, pagePath, lang, posts = [] }) {
   const filters = t("news.filters");
   const filterBtns = Object.entries(filters)
     .map(
@@ -11,6 +12,7 @@ function renderMain({ t, pagePath, lang }) {
 
   return `
 ${renderPageHero({ title: t("news.title"), lead: t("news.lead") })}
+${renderWelcomeWall({ t, pagePath, lang, posts })}
 
 <section class="section">
   <div class="wrap">
@@ -52,5 +54,5 @@ export function render(ctx) {
       ...keyDateEvents(lang),
     ],
   };
-  return { bodyHtml: renderMain(ctx), jsonLd, scripts: ["js/news.js"] };
+  return { bodyHtml: renderMain(ctx), jsonLd, scripts: ["js/news.js", "js/welcome-wall.js"] };
 }

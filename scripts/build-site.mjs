@@ -25,6 +25,7 @@ import {
   SITE_CONFIG,
   SITE_URL,
   translations,
+  ballButtonInner,
 } from "./lib/ssg.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -52,17 +53,73 @@ function parseFrontMatter(raw) {
   return { data, body: match[2] };
 }
 
+const NEWS_IMAGES = join(ROOT, "assets", "images", "news");
+const CLUB_IMAGES = join(ROOT, "assets", "images", "clubs");
+
+/* Width and height straight from a JPEG or PNG header, so <img> gets its
+   real size without an image library (Vercel installs no dev deps). */
+function imageSize(file) {
+  if (!existsSync(file)) return null;
+  const b = readFileSync(file);
+  if (b[0] === 0x89 && b.toString("ascii", 1, 4) === "PNG") return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+  if (b[0] === 0xff && b[1] === 0xd8) {
+    let i = 2;
+    while (i + 9 < b.length) {
+      if (b[i] !== 0xff) return null;
+      const marker = b[i + 1];
+      if (marker === 0xff) {
+        i++;
+        continue;
+      }
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+        return { height: b.readUInt16BE(i + 5), width: b.readUInt16BE(i + 7) };
+      }
+      i += 2 + b.readUInt16BE(i + 2);
+    }
+  }
+  return null;
+}
+
+/* A post's image plus whichever variants scripts/process-news-images.mjs
+   made for it: <name>.webp, <name>-800.*, <name>-mobile.* (phone crop). */
+function newsImageSet(image) {
+  if (!image) return null;
+  const ext = (image.match(/\.[a-z]+$/i) || [""])[0];
+  const base = image.slice(0, image.length - ext.length);
+  const has = (f) => (existsSync(join(NEWS_IMAGES, f)) ? f : "");
+  const mobile = has(`${base}-mobile${ext}`);
+  return {
+    full: image,
+    size: imageSize(join(NEWS_IMAGES, image)),
+    webp: ext.toLowerCase() === ".webp" ? "" : has(`${base}.webp`),
+    sm: has(`${base}-800${ext}`),
+    smWebp: has(`${base}-800.webp`),
+    mobile,
+    mobileWebp: has(`${base}-mobile.webp`),
+    mobileSize: mobile ? imageSize(join(NEWS_IMAGES, mobile)) : null,
+  };
+}
+
+/* blocks that are a subheading ("## ") or a pull line ("> ") never become the excerpt */
+function firstParagraph(text) {
+  const blocks = text.trim().split(/\n\s*\n/);
+  return (blocks.find((b) => !/^\s*(##|>)\s/.test(b)) || blocks[0] || "").trim();
+}
+
 function buildNews() {
   const newsDir = join(ROOT, "content", "news");
   ensureDir(newsDir);
   const files = readdirSync(newsDir).filter((f) => f.endsWith(".md"));
   const posts = files.map((file) => {
-    const raw = readFileSync(join(newsDir, file), "utf8");
+    const raw = readFileSync(join(newsDir, file), "utf8").replace(/\r\n/g, "\n");
     const { data, body } = parseFrontMatter(raw);
     const [bodyEs, bodyEn] = body.split(/<!--\s*en\s*-->/);
     const slugMatch = file.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
     const slugEs = slugMatch ? slugMatch[1] : file.replace(/\.md$/, "");
     const slugEn = data.slug_en || slugEs;
+    const images = newsImageSet(data.image || "");
+    const crest = data.team_crest || "";
+    const crestWebp = crest.replace(/\.(png|jpe?g)$/i, ".webp");
     return {
       slug_en: slugEn,
       slug_es: slugEs,
@@ -70,13 +127,21 @@ function buildNews() {
       category: data.category || "general",
       title_en: data.title_en,
       title_es: data.title_es,
-      excerpt_en: (bodyEn || bodyEs || "").trim().split(/\n\s*\n/)[0],
-      excerpt_es: (bodyEs || "").trim().split(/\n\s*\n/)[0],
+      excerpt_en: firstParagraph(bodyEn || bodyEs || ""),
+      excerpt_es: firstParagraph(bodyEs || ""),
       body_en: (bodyEn || bodyEs || "").trim(),
       body_es: (bodyEs || "").trim(),
       image: data.image || "",
+      image_card: images ? images.sm || images.full : "",
       image_alt_en: data.image_alt_en || "",
       image_alt_es: data.image_alt_es || "",
+      /* welcome posts ("bienvenida") for an enrolled academy feed the
+         welcome wall on the News page */
+      team: data.team || "",
+      team_note_en: data.team_note_en || "",
+      team_note_es: data.team_note_es || "",
+      team_crest: crest,
+      team_crest_webp: crest && crestWebp !== crest && existsSync(join(CLUB_IMAGES, crestWebp)) ? crestWebp : "",
       sample: data.sample === "true",
     };
   });
@@ -95,12 +160,62 @@ function truncateWords(text, maxLen) {
   return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trim() + "…";
 }
 
+/* Post bodies: blank-line-separated paragraphs, plus "## " for a
+   subheading and "> " for a closing pull line. */
 function paragraphsHtml(text) {
   return text
     .trim()
     .split(/\n\s*\n/)
-    .map((p) => `<p>${p.trim()}</p>`)
+    .map((block) => {
+      const p = block.trim();
+      if (p.startsWith("## ")) return `<h2>${p.slice(3).trim()}</h2>`;
+      if (p.startsWith("> ")) return `<blockquote class="post-pull"><p>${p.replace(/^>\s?/gm, "").trim()}</p></blockquote>`;
+      return `<p>${p}</p>`;
+    })
     .join("\n");
+}
+
+function attr(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
+/* The post's banner. With the processed variants it serves WebP + JPG at
+   two widths, and below 600px a close crop (if there is one) so text baked
+   into a wide banner stays readable on a phone. */
+function postBannerHtml(post, lang, pagePath) {
+  const set = newsImageSet(post.image);
+  if (!set) return "";
+  const src = (f) => pagePath.asset("assets/images/news/" + f);
+  const alt = attr(post[`image_alt_${lang}`] || "");
+  const sizes = "(max-width: 599px) 100vw, (max-width: 1196px) 92vw, 1100px";
+  const fullW = set.size ? set.size.width : 1600;
+  const widths = (sm, full) => [sm && `${src(sm)} 800w`, full && `${src(full)} ${fullW}w`].filter(Boolean).join(", ");
+  const dims = (s) => (s ? ` width="${s.width}" height="${s.height}"` : "");
+  const sources = [];
+  if (set.mobile) {
+    if (set.mobileWebp) sources.push(`<source media="(max-width: 599px)" type="image/webp" srcset="${src(set.mobileWebp)}"${dims(set.mobileSize)}>`);
+    sources.push(`<source media="(max-width: 599px)" srcset="${src(set.mobile)}"${dims(set.mobileSize)}>`);
+  }
+  if (set.webp) sources.push(`<source type="image/webp" srcset="${widths(set.smWebp, set.webp)}" sizes="${sizes}">`);
+  const srcset = set.sm ? ` srcset="${widths(set.sm, set.full)}" sizes="${sizes}"` : "";
+  return `<figure class="post-banner"><picture>${sources.join("")}<img src="${src(set.full)}"${srcset} alt="${alt}"${dims(set.size)} fetchpriority="high"></picture></figure>`;
+}
+
+/* closing call to action on a welcome post: play for the academy */
+function welcomeCtaHtml(post, lang, t, pagePath) {
+  if (post.category !== "bienvenida" || !post.team) return "";
+  const fill = (s) => s.replace(/TEAM/g, post.team);
+  const crest = post.team_crest
+    ? `<img src="${pagePath.asset("assets/images/clubs/" + post.team_crest)}" alt="" width="88" height="88" loading="lazy">`
+    : "";
+  return `<aside class="post-cta${crest ? "" : " no-crest"}">
+        ${crest}
+        <div>
+          <h2>${fill(t("news.welcome.postCtaTitle"))}</h2>
+          <p>${fill(t("news.welcome.postCtaText"))}</p>
+        </div>
+        <a class="btn" href="${pagePath("join", lang)}#players">${ballButtonInner(t("news.welcome.postCtaBtn"))}</a>
+      </aside>`;
 }
 
 function renderNewsPostPage(post, lang) {
@@ -117,9 +232,7 @@ function renderNewsPostPage(post, lang) {
     day: "numeric",
   }).format(new Date(post.date + "T00:00:00"));
 
-  const img = post.image
-    ? `<img src="${pagePath.asset("assets/images/news/" + post.image)}" alt="${post[`image_alt_${lang}`] || ""}" width="1200" height="700" loading="eager">`
-    : "";
+  const img = postBannerHtml(post, lang, pagePath);
 
   const sampleNote = post.sample
     ? `<p class="fine-print">${lang === "es" ? "Esta es una publicación de ejemplo." : "This is a sample post."}</p>`
@@ -132,6 +245,7 @@ function renderNewsPostPage(post, lang) {
       <p class="post-meta"><span>${dateStr}</span></p>
       ${img}
       ${paragraphsHtml(body)}
+      ${welcomeCtaHtml(post, lang, t, pagePath)}
       ${sampleNote}
     </div>
   </article>`;
@@ -311,6 +425,7 @@ async function buildPages(recentPosts) {
         pagePath,
         config: SITE_CONFIG,
         recentPosts: recentPosts.filter((p) => !p.sample || true).slice(0, 3),
+        posts: recentPosts,
       });
       const html = renderDocument({
         lang,
